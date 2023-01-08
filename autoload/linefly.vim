@@ -127,12 +127,6 @@ function! linefly#PluginsStatus() abort
         let l:added = get(l:counts, 'added', 0)
         let l:changed = get(l:counts, 'changed', 0)
         let l:removed = get(l:counts, 'removed', 0)
-    elseif g:lineflyWithGitGutterStatus && exists('g:loaded_gitgutter')
-        " GitGutter status.
-        let [l:added, l:changed, l:removed] = GitGutterGetHunkSummary()
-    elseif g:lineflyWithSignifyStatus && exists('g:loaded_signify') && sy#buffer_is_active()
-        " Signify status.
-        let [l:added, l:changed, l:removed] = sy#repo#get_stats()
     endif
 
     " Git plugin status.
@@ -158,30 +152,6 @@ function! linefly#PluginsStatus() abort
         elseif has('nvim-0.5')
             let l:errors = luaeval('vim.lsp.diagnostic.get_count(0, [[Error]])')
             let l:warnings = luaeval('vim.lsp.diagnostic.get_count(0, [[Warning]])')
-        endif
-    elseif g:lineflyWithALEStatus && exists('g:loaded_ale')
-        " ALE status.
-        let l:counts = ale#statusline#Count(bufnr(''))
-        if has_key(l:counts, 'error')
-            let l:errors = l:counts['error']
-        endif
-        if has_key(l:counts, 'warning')
-            let l:warnings = l:counts['warning']
-        endif
-        if has_key(l:counts, 'info')
-            let l:information = l:counts['info']
-        endif
-    elseif g:lineflyWithCocStatus && exists('g:did_coc_loaded')
-        " Coc status.
-        let l:counts = get(b:, 'coc_diagnostic_info', {})
-        if has_key(l:counts, 'error')
-            let l:errors = l:counts['error']
-        endif
-        if has_key(l:counts, 'warning')
-            let l:warnings = l:counts['warning']
-        endif
-        if has_key(l:counts, 'information')
-            let l:information = l:counts['information']
         endif
     endif
 
@@ -485,14 +455,6 @@ function s:ColorSchemeGitHighlights() abort
         call s:SynthesizeHighlight('LineflyGitAdd', 'GitSignsAdd', v:false)
         call s:SynthesizeHighlight('LineflyGitChange', 'GitSignsChange', v:false)
         call s:SynthesizeHighlight('LineflyGitDelete', 'GitSignsDelete', v:false)
-    elseif hlexists('GitGutterAdd')
-        call s:SynthesizeHighlight('LineflyGitAdd', 'GitGutterAdd', v:false)
-        call s:SynthesizeHighlight('LineflyGitChange', 'GitGutterChange', v:false)
-        call s:SynthesizeHighlight('LineflyGitDelete', 'GitGutterDelete', v:false)
-    elseif hlexists('SignifySignAdd')
-        call s:SynthesizeHighlight('LineflyGitAdd', 'SignifySignAdd', v:false)
-        call s:SynthesizeHighlight('LineflyGitChange', 'SignifySignChange', v:false)
-        call s:SynthesizeHighlight('LineflyGitDelete', 'SignifySignDelete', v:false)
     elseif hlexists('diffAdded')
         call s:SynthesizeHighlight('LineflyGitAdd', 'diffAdded', v:false)
         call s:SynthesizeHighlight('LineflyGitChange', 'diffChanged', v:false)
@@ -507,28 +469,16 @@ endfunction
 function s:ColorSchemeDiagnosticHighlights() abort
     if hlexists('DiagnosticError')
         call s:SynthesizeHighlight('LineflyDiagnosticError', 'DiagnosticError', v:false)
-    elseif hlexists('ALEErrorSign')
-        call s:SynthesizeHighlight('LineflyDiagnosticError', 'ALEErrorSign', v:false)
-    elseif hlexists('CocErrorSign')
-        call s:SynthesizeHighlight('LineflyDiagnosticError', 'CocErrorSign', v:false)
     else
         highlight! link LineflyDiagnosticError StatusLine
     endif
     if hlexists('DiagnosticWarn')
         call s:SynthesizeHighlight('LineflyDiagnosticWarning', 'DiagnosticWarn', v:false)
-    elseif hlexists('ALEWarningSign')
-        call s:SynthesizeHighlight('LineflyDiagnosticWarning', 'ALEWarningSign', v:false)
-    elseif hlexists('CocWarningSign')
-        call s:SynthesizeHighlight('LineflyDiagnosticWarning', 'CocWarningSign', v:false)
     else
         highlight! link LineflyDiagnosticWarning StatusLine
     endif
     if hlexists('DiagnosticInfo')
         call s:SynthesizeHighlight('LineflyDiagnosticInformation', 'DiagnosticInfo', v:false)
-    elseif hlexists('ALEInfoSign')
-        call s:SynthesizeHighlight('LineflyDiagnosticInformation', 'ALEInfoSign', v:false)
-    elseif hlexists('CocInfoSign')
-        call s:SynthesizeHighlight('LineflyDiagnosticInformation', 'CocInfoSign', v:false)
     else
         highlight! link LineflyDiagnosticInformation StatusLine
     endif

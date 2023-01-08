@@ -65,15 +65,7 @@ Plugins, Linters and Diagnostics supported
 
 - [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 
-- [GitGutter](https://github.com/airblade/vim-gitgutter)
-
-- [Signify](https://github.com/mhinz/vim-signify)
-
 - [Neovim Diagnostic](https://neovim.io/doc/user/diagnostic.html)
-
-- [ALE](https://github.com/dense-analysis/ale)
-
-- [Coc](https://github.com/neoclide/coc.nvim)
 
 - [Obsession](https://github.com/tpope/vim-obsession)
 
@@ -237,11 +229,7 @@ highlight! link LineflyReplace ErrorMsg
 | [lineflyWithIndentStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithindentstatus)                 | Disabled
 | [lineflyWithGitBranch](https://github.com/bluz71/vim-linefly-statusline#lineflywithgitbranch)                       | Enabled
 | [lineflyWithGitsignsStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithgitsignsstatus)             | Enabled if Gitsigns plugin is loaded
-| [lineflyWithGitGutterStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithgitgutterstatus)           | Enabled if GitGutter plugin is loaded
-| [lineflyWithSignifyStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithsignifystatus)               | Enabled if Signify plugin is loaded
 | [lineflyWithNvimDiagnosticStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithnvimdiagnosticstatus) | Enabled if nvim-lspconfig plugin is loaded
-| [lineflyWithALEStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithalestatus)                       | Enabled if ALE plugin is loaded
-| [lineflyWithCocStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithcocstatus)                       | Enabled if Coc plugin is loaded
 
 ---
 
@@ -485,52 +473,6 @@ vim.g.lineflyWithGitsignsStatus = false
 
 ---
 
-### lineflyWithGitGutterStatus
-
-The `lineflyWithGitGutterStatus` option specifies whether to display
-[GitGutter](https://github.com/airblade/vim-gitgutter) status of the current
-buffer in the _statusline_.
-
-By default, GitGutter status will be displayed if the plugin is loaded.
-
-To disable the display of GitGutter status in the _statusline_ please add the
-following to your initialization file:
-
-```viml
-" Vimscript initialization file
-let g:lineflyWithGitGutterStatus = v:false
-```
-
-```lua
--- Lua initialization file
-vim.g.lineflyWithGitGutterStatus = false
-```
-
----
-
-### lineflyWithSignifyStatus
-
-The `lineflyWithSignifyStatus` option specifies whether to display
-[Signify](https://github.com/mhinz/vim-signify) status of the current
-buffer in the _statusline_.
-
-By default, Signify status will be displayed if the plugin is loaded.
-
-To disable the display of Signify status in the _statusline_ please add the
-following to your initialization file:
-
-```viml
-" Vimscript initialization file
-let g:lineflyWithSignifyStatus = v:false
-```
-
-```lua
--- Lua initialization file
-vim.g.lineflyWithSignifyStatus = false
-```
-
----
-
 ### lineflyWithFileIcon
 
 The `lineflyWithFileIcon` option specifies whether a filetype icon, from a Nerd
@@ -580,56 +522,6 @@ let g:lineflyWithNvimDiagnosticStatus = v:false
 ```lua
 -- Lua initialization file
 vim.g.lineflyWithNvimDiagnosticStatus = false
-```
-
----
-
-### lineflyWithALEStatus
-
-_linefly statusline_ supports the [ALE](https://github.com/dense-analysis/ale)
-plugin.
-
-The `lineflyWithALEStatus` option specifies whether to indicate the presence of
-the ALE problems in the current buffer.
-
-By default, ALE problems will be displayed if the plugin is loaded.
-
-If ALE problems display is not wanted then please add the following to your
-initialization file:
-
-```viml
-" Vimscript initialization file
-let g:lineflyWithALEStatus = v:false
-```
-
-```lua
--- Lua initialization file
-vim.g.lineflyWithALEStatus = false
-```
-
----
-
-### lineflyWithCocStatus
-
-_linefly statusline_ supports the [Coc](https://github.com/neoclide/coc.nvim)
-plugin.
-
-The `lineflyWithCocStatus` option specifies whether to indicate the presence of
-the Coc diagnostics in the current buffer.
-
-By default, Coc diagnostics will be displayed if the plugin is loaded.
-
-If Coc diagnostics are not wanted then please add the following to your
-initialization file:
-
-```viml
-" Vimscript initialization file
-let g:lineflyWithCocStatus = v:false
-```
-
-```lua
--- Lua initialization file
-vim.g.lineflyWithCocStatus = false
 ```
 
 Sponsor

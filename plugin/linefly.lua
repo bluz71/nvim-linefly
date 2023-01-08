@@ -43,12 +43,6 @@ g.lineflyWithGitBranch = g.lineflyWithGitBranch or true
 -- By default display Gitsigns status, if the plugin is loaded.
 g.lineflyWithGitsignsStatus = g.lineflyWithGitsignsStatus or true
 
--- By default display GitGutter status, if the plugin is loaded.
-g.lineflyWithGitGutterStatus = g.lineflyWithGitGutterStatus or true
-
--- By default display Signify status, if the plugin is loaded.
-g.lineflyWithSignifyStatus = g.lineflyWithSignifyStatus or true
-
 -- By default don't display a filetype icon.
 g.lineflyWithFileIcon = g.lineflyWithFileIcon or false
 
