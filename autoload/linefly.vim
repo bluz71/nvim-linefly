@@ -1,15 +1,15 @@
 let s:modes = {
-  \  'n':      ['%#lineflyNormal#', ' normal ', '%#lineflyNormalEmphasis#'],
-  \  'i':      ['%#lineflyInsert#', ' insert ', '%#lineflyInsertEmphasis#'],
-  \  'R':      ['%#lineflyReplace#', ' r-mode ', '%#lineflyReplaceEmphasis#'],
-  \  'v':      ['%#lineflyVisual#', ' visual ', '%#lineflyVisualEmphasis#'],
-  \  'V':      ['%#lineflyVisual#', ' v-line ', '%#lineflyVisualEmphasis#'],
-  \  "\<C-v>": ['%#lineflyVisual#', ' v-rect ', '%#lineflyVisualEmphasis#'],
-  \  'c':      ['%#lineflyCommand#', ' c-mode ', '%#lineflyCommandEmphasis#'],
-  \  's':      ['%#lineflyVisual#', ' select ', '%#lineflyVisualEmphasis#'],
-  \  'S':      ['%#lineflyVisual#', ' s-line ', '%#lineflyVisualEmphasis#'],
-  \  "\<C-s>": ['%#lineflyVisual#', ' s-rect ', '%#lineflyVisualEmphasis#'],
-  \  't':      ['%#lineflyInsert#', ' t-mode ', '%#lineflyInsertEmphasis#'],
+  \  'n':      ['%#LineflyNormal#', ' normal ', '%#LineflyNormalEmphasis#'],
+  \  'i':      ['%#LineflyInsert#', ' insert ', '%#LineflyInsertEmphasis#'],
+  \  'R':      ['%#LineflyReplace#', ' r-mode ', '%#LineflyReplaceEmphasis#'],
+  \  'v':      ['%#LineflyVisual#', ' visual ', '%#LineflyVisualEmphasis#'],
+  \  'V':      ['%#LineflyVisual#', ' v-line ', '%#LineflyVisualEmphasis#'],
+  \  "\<C-v>": ['%#LineflyVisual#', ' v-rect ', '%#LineflyVisualEmphasis#'],
+  \  'c':      ['%#LineflyCommand#', ' c-mode ', '%#LineflyCommandEmphasis#'],
+  \  's':      ['%#LineflyVisual#', ' select ', '%#LineflyVisualEmphasis#'],
+  \  'S':      ['%#LineflyVisual#', ' s-line ', '%#LineflyVisualEmphasis#'],
+  \  "\<C-s>": ['%#LineflyVisual#', ' s-rect ', '%#LineflyVisualEmphasis#'],
+  \  't':      ['%#LineflyInsert#', ' t-mode ', '%#LineflyInsertEmphasis#'],
   \}
 
 " Cache current statusline background for performance reasons; that being to
@@ -137,13 +137,13 @@ function! linefly#PluginsStatus() abort
 
     " Git plugin status.
     if l:added > 0
-        let l:status .= ' %#lineflyGitAdd#+' . l:added . '%*'
+        let l:status .= ' %#LineflyGitAdd#+' . l:added . '%*'
     endif
     if l:changed > 0
-        let l:status .= ' %#lineflyGitChange#~' . l:changed . '%*'
+        let l:status .= ' %#LineflyGitChange#~' . l:changed . '%*'
     endif
     if l:removed > 0
-        let l:status .= ' %#lineflyGitDelete#-' . l:removed . '%*'
+        let l:status .= ' %#LineflyGitDelete#-' . l:removed . '%*'
     endif
     if len(l:status) > 0
         let l:status .= ' '
@@ -188,15 +188,15 @@ function! linefly#PluginsStatus() abort
     " Display errors and warnings from any of the previous diagnostic or linting
     " systems.
     if l:errors > 0
-        let l:status .= ' %#lineflyDiagnosticError#' . g:lineflyErrorSymbol
+        let l:status .= ' %#LineflyDiagnosticError#' . g:lineflyErrorSymbol
         let l:status .= ' ' . l:errors . '%* '
     endif
     if l:warnings > 0
-        let l:status .= ' %#lineflyDiagnosticWarning#' . g:lineflyWarningSymbol
+        let l:status .= ' %#LineflyDiagnosticWarning#' . g:lineflyWarningSymbol
         let l:status .= ' ' . l:warnings . '%* '
     endif
     if l:information > 0
-        let l:status .= ' %#lineflyDiagnosticInformation#' . g:lineflyInformationSymbol
+        let l:status .= ' %#LineflyDiagnosticInformation#' . g:lineflyInformationSymbol
         let l:status .= ' ' . l:information . '%* '
     endif
 
@@ -208,7 +208,7 @@ function! linefly#PluginsStatus() abort
             let l:obsession_status = ObsessionStatus('●', '■')
         endif
         if len(l:obsession_status) > 0
-            let l:status .= ' %#lineflySession#' . l:obsession_status . '%*'
+            let l:status .= ' %#LineflySession#' . l:obsession_status . '%*'
         endif
     endif
 
@@ -236,9 +236,9 @@ function! linefly#ActiveStatusLine() abort
     let l:divider = g:lineflyAsciiShapes ? '|' : '⎪'
     let l:arrow =  g:lineflyAsciiShapes ?  '' : '↓'
     let l:git_branch = linefly#GitBranch()
-    let l:mode_emphasis = get(s:modes, l:mode, '%#lineflyNormalEmphasis#')[2]
+    let l:mode_emphasis = get(s:modes, l:mode, '%#LineflyNormalEmphasis#')[2]
 
-    let l:statusline = get(s:modes, l:mode, '%#lineflyNormal#')[0]
+    let l:statusline = get(s:modes, l:mode, '%#LineflyNormal#')[0]
     let l:statusline .= get(s:modes, l:mode, ' normal ')[1]
     let l:statusline .= '%* %<%{linefly#File()}'
     let l:statusline .= "%{&modified ? '+\ ' : ' \ \ '}"
@@ -331,7 +331,7 @@ endfunction
 
 function! linefly#ActiveWinBar() abort
     let l:mode = mode()
-    let l:winbar = get(s:modes, l:mode, '%#lineflyNormal#')[0]
+    let l:winbar = get(s:modes, l:mode, '%#LineflyNormal#')[0]
     let l:winbar .= strpart(get(s:modes, l:mode, 'n')[1], 0, 2)
     let l:winbar .= ' %* %<%{linefly#File()}'
     let l:winbar .= "%{&modified ? '+\ ' : ' \ \ '}"
@@ -408,16 +408,16 @@ function! linefly#GenerateHighlightGroups() abort
     call s:ColorSchemeModeHighlights()
 
     " Synthesize emphasis colors from the existing mode colors.
-    call s:SynthesizeHighlight('lineflyNormalEmphasis', 'lineflyNormal', v:true)
-    call s:SynthesizeHighlight('lineflyInsertEmphasis', 'lineflyInsert', v:true)
-    call s:SynthesizeHighlight('lineflyVisualEmphasis', 'lineflyVisual', v:true)
-    call s:SynthesizeHighlight('lineflyCommandEmphasis', 'lineflyCommand', v:true)
-    call s:SynthesizeHighlight('lineflyReplaceEmphasis', 'lineflyReplace', v:true)
+    call s:SynthesizeHighlight('LineflyNormalEmphasis', 'LineflyNormal', v:true)
+    call s:SynthesizeHighlight('LineflyInsertEmphasis', 'LineflyInsert', v:true)
+    call s:SynthesizeHighlight('LineflyVisualEmphasis', 'LineflyVisual', v:true)
+    call s:SynthesizeHighlight('LineflyCommandEmphasis', 'LineflyCommand', v:true)
+    call s:SynthesizeHighlight('LineflyReplaceEmphasis', 'LineflyReplace', v:true)
 
     " Synthesize plugin colors from relevant existing highlight groups.
     call s:ColorSchemeGitHighlights()
     call s:ColorSchemeDiagnosticHighlights()
-    call s:SynthesizeHighlight('lineflySession', 'Error', v:false)
+    call s:SynthesizeHighlight('LineflySession', 'Error', v:false)
 
     if g:lineflyTabLine
         if !hlexists('TablineSelSymbol') || synIDattr(synIDtrans(hlID('TablineSelSymbol')), 'bg') == ''
@@ -431,106 +431,106 @@ function! s:ColorSchemeModeHighlights() abort
         " Do nothing since both colorschemes already set linefly mode colors.
         return
     elseif g:colors_name == 'catppuccin'
-        call s:SynthesizeModeHighlight('lineflyNormal', 'Title', 'VertSplit')
-        call s:SynthesizeModeHighlight('lineflyInsert', 'String', 'VertSplit')
-        call s:SynthesizeModeHighlight('lineflyVisual', 'Statement', 'VertSplit')
-        call s:SynthesizeModeHighlight('lineflyCommand', 'Constant', 'VertSplit')
-        call s:SynthesizeModeHighlight('lineflyReplace', 'Conditional', 'VertSplit')
+        call s:SynthesizeModeHighlight('LineflyNormal', 'Title', 'VertSplit')
+        call s:SynthesizeModeHighlight('LineflyInsert', 'String', 'VertSplit')
+        call s:SynthesizeModeHighlight('LineflyVisual', 'Statement', 'VertSplit')
+        call s:SynthesizeModeHighlight('LineflyCommand', 'Constant', 'VertSplit')
+        call s:SynthesizeModeHighlight('LineflyReplace', 'Conditional', 'VertSplit')
     elseif g:colors_name == 'edge' || g:colors_name == 'everforest' || g:colors_name == 'gruvbox-material' || g:colors_name == 'sonokai' || g:colors_name == 'tokyonight'
-        highlight! link lineflyNormal MiniStatuslineModeNormal
-        highlight! link lineflyInsert MiniStatuslineModeInsert
-        highlight! link lineflyVisual MiniStatuslineModeVisual
-        highlight! link lineflyCommand MiniStatuslineModeCommand
-        highlight! link lineflyReplace MiniStatuslineModeReplace
+        highlight! link LineflyNormal MiniStatuslineModeNormal
+        highlight! link LineflyInsert MiniStatuslineModeInsert
+        highlight! link LineflyVisual MiniStatuslineModeVisual
+        highlight! link LineflyCommand MiniStatuslineModeCommand
+        highlight! link LineflyReplace MiniStatuslineModeReplace
     elseif g:colors_name == 'dracula'
-        highlight! link lineflyNormal WildMenu
-        highlight! link lineflyInsert Search
-        call s:SynthesizeModeHighlight('lineflyVisual', 'String', 'WildMenu')
-        highlight! link lineflyCommand WildMenu
-        highlight! link lineflyReplace IncSearch
+        highlight! link LineflyNormal WildMenu
+        highlight! link LineflyInsert Search
+        call s:SynthesizeModeHighlight('LineflyVisual', 'String', 'WildMenu')
+        highlight! link LineflyCommand WildMenu
+        highlight! link LineflyReplace IncSearch
     elseif g:colors_name == 'gruvbox'
-        call s:SynthesizeModeHighlight('lineflyNormal', 'GruvboxFg4', 'GruvboxBg0')
-        call s:SynthesizeModeHighlight('lineflyInsert', 'GruvboxBlue', 'GruvboxBg0')
-        call s:SynthesizeModeHighlight('lineflyVisual', 'GruvboxOrange', 'GruvboxBg0')
-        call s:SynthesizeModeHighlight('lineflyCommand', 'GruvboxGreen', 'GruvboxBg0')
-        call s:SynthesizeModeHighlight('lineflyReplace', 'GruvboxRed', 'GruvboxBg0')
+        call s:SynthesizeModeHighlight('LineflyNormal', 'GruvboxFg4', 'GruvboxBg0')
+        call s:SynthesizeModeHighlight('LineflyInsert', 'GruvboxBlue', 'GruvboxBg0')
+        call s:SynthesizeModeHighlight('LineflyVisual', 'GruvboxOrange', 'GruvboxBg0')
+        call s:SynthesizeModeHighlight('LineflyCommand', 'GruvboxGreen', 'GruvboxBg0')
+        call s:SynthesizeModeHighlight('LineflyReplace', 'GruvboxRed', 'GruvboxBg0')
     elseif g:colors_name == 'carbonfox' || g:colors_name == 'nightfox' || g:colors_name == 'nordfox' || g:colors_name == 'terafox'
-        highlight! link lineflyNormal Todo
-        highlight! link lineflyInsert MiniStatuslineModeInsert
-        highlight! link lineflyVisual MiniStatuslineModeVisual
-        highlight! link lineflyCommand MiniStatuslineModeCommand
-        highlight! link lineflyReplace MiniStatuslineModeReplace
+        highlight! link LineflyNormal Todo
+        highlight! link LineflyInsert MiniStatuslineModeInsert
+        highlight! link LineflyVisual MiniStatuslineModeVisual
+        highlight! link LineflyCommand MiniStatuslineModeCommand
+        highlight! link LineflyReplace MiniStatuslineModeReplace
     else
         " Fallback for all other colorschemes.
-        if !hlexists('lineflyNormal') || synIDattr(synIDtrans(hlID('lineflyNormal')), 'bg') == ''
-            call s:SynthesizeModeHighlight('lineflyNormal', 'Directory', 'VertSplit')
+        if !hlexists('LineflyNormal') || synIDattr(synIDtrans(hlID('LineflyNormal')), 'bg') == ''
+            call s:SynthesizeModeHighlight('LineflyNormal', 'Directory', 'VertSplit')
         endif
-        if !hlexists('lineflyInsert') || synIDattr(synIDtrans(hlID('lineflyInsert')), 'bg') == ''
-            call s:SynthesizeModeHighlight('lineflyInsert', 'String', 'VertSplit')
+        if !hlexists('LineflyInsert') || synIDattr(synIDtrans(hlID('LineflyInsert')), 'bg') == ''
+            call s:SynthesizeModeHighlight('LIneflyInsert', 'String', 'VertSplit')
         endif
-        if !hlexists('lineflyVisual') || synIDattr(synIDtrans(hlID('lineflyVisual')), 'bg') == ''
-            call s:SynthesizeModeHighlight('lineflyVisual', 'Statement', 'VertSplit')
+        if !hlexists('LineflyVisual') || synIDattr(synIDtrans(hlID('LineflyVisual')), 'bg') == ''
+            call s:SynthesizeModeHighlight('LineflyVisual', 'Statement', 'VertSplit')
         endif
-        if !hlexists('lineflyCommand') || synIDattr(synIDtrans(hlID('lineflyCommand')), 'bg') == ''
-            call s:SynthesizeModeHighlight('lineflyCommand', 'WarningMsg', 'VertSplit')
+        if !hlexists('LineflyCommand') || synIDattr(synIDtrans(hlID('LineflyCommand')), 'bg') == ''
+            call s:SynthesizeModeHighlight('LineflyCommand', 'WarningMsg', 'VertSplit')
         endif
-        if !hlexists('lineflyReplace') || synIDattr(synIDtrans(hlID('lineflyReplace')), 'bg') == ''
-            call s:SynthesizeModeHighlight('lineflyReplace', 'Error', 'VertSplit')
+        if !hlexists('LineflyReplace') || synIDattr(synIDtrans(hlID('LineflyReplace')), 'bg') == ''
+            call s:SynthesizeModeHighlight('LineflyReplace', 'Error', 'VertSplit')
         endif
     endif
 endfunction
 
 function s:ColorSchemeGitHighlights() abort
     if hlexists('GitSignsAdd')
-        call s:SynthesizeHighlight('lineflyGitAdd', 'GitSignsAdd', v:false)
-        call s:SynthesizeHighlight('lineflyGitChange', 'GitSignsChange', v:false)
-        call s:SynthesizeHighlight('lineflyGitDelete', 'GitSignsDelete', v:false)
+        call s:SynthesizeHighlight('LineflyGitAdd', 'GitSignsAdd', v:false)
+        call s:SynthesizeHighlight('LineflyGitChange', 'GitSignsChange', v:false)
+        call s:SynthesizeHighlight('LineflyGitDelete', 'GitSignsDelete', v:false)
     elseif hlexists('GitGutterAdd')
-        call s:SynthesizeHighlight('lineflyGitAdd', 'GitGutterAdd', v:false)
-        call s:SynthesizeHighlight('lineflyGitChange', 'GitGutterChange', v:false)
-        call s:SynthesizeHighlight('lineflyGitDelete', 'GitGutterDelete', v:false)
+        call s:SynthesizeHighlight('LineflyGitAdd', 'GitGutterAdd', v:false)
+        call s:SynthesizeHighlight('LineflyGitChange', 'GitGutterChange', v:false)
+        call s:SynthesizeHighlight('LineflyGitDelete', 'GitGutterDelete', v:false)
     elseif hlexists('SignifySignAdd')
-        call s:SynthesizeHighlight('lineflyGitAdd', 'SignifySignAdd', v:false)
-        call s:SynthesizeHighlight('lineflyGitChange', 'SignifySignChange', v:false)
-        call s:SynthesizeHighlight('lineflyGitDelete', 'SignifySignDelete', v:false)
+        call s:SynthesizeHighlight('LineflyGitAdd', 'SignifySignAdd', v:false)
+        call s:SynthesizeHighlight('LineflyGitChange', 'SignifySignChange', v:false)
+        call s:SynthesizeHighlight('LineflyGitDelete', 'SignifySignDelete', v:false)
     elseif hlexists('diffAdded')
-        call s:SynthesizeHighlight('lineflyGitAdd', 'diffAdded', v:false)
-        call s:SynthesizeHighlight('lineflyGitChange', 'diffChanged', v:false)
-        call s:SynthesizeHighlight('lineflyGitDelete', 'diffRemoved', v:false)
+        call s:SynthesizeHighlight('LineflyGitAdd', 'diffAdded', v:false)
+        call s:SynthesizeHighlight('LineflyGitChange', 'diffChanged', v:false)
+        call s:SynthesizeHighlight('LineflyGitDelete', 'diffRemoved', v:false)
     else
-        highlight! link lineflyGitAdd StatusLine
-        highlight! link lineflyGitChange StatusLine
-        highlight! link lineflyGitDelete StatusLine
+        highlight! link LineflyGitAdd StatusLine
+        highlight! link LineflyGitChange StatusLine
+        highlight! link LineflyGitDelete StatusLine
     endif
 endfunction
 
 function s:ColorSchemeDiagnosticHighlights() abort
     if hlexists('DiagnosticError')
-        call s:SynthesizeHighlight('lineflyDiagnosticError', 'DiagnosticError', v:false)
+        call s:SynthesizeHighlight('LineflyDiagnosticError', 'DiagnosticError', v:false)
     elseif hlexists('ALEErrorSign')
-        call s:SynthesizeHighlight('lineflyDiagnosticError', 'ALEErrorSign', v:false)
+        call s:SynthesizeHighlight('LineflyDiagnosticError', 'ALEErrorSign', v:false)
     elseif hlexists('CocErrorSign')
-        call s:SynthesizeHighlight('lineflyDiagnosticError', 'CocErrorSign', v:false)
+        call s:SynthesizeHighlight('LineflyDiagnosticError', 'CocErrorSign', v:false)
     else
-        highlight! link lineflyDiagnosticError StatusLine
+        highlight! link LineflyDiagnosticError StatusLine
     endif
     if hlexists('DiagnosticWarn')
-        call s:SynthesizeHighlight('lineflyDiagnosticWarning', 'DiagnosticWarn', v:false)
+        call s:SynthesizeHighlight('LineflyDiagnosticWarning', 'DiagnosticWarn', v:false)
     elseif hlexists('ALEWarningSign')
-        call s:SynthesizeHighlight('lineflyDiagnosticWarning', 'ALEWarningSign', v:false)
+        call s:SynthesizeHighlight('LineflyDiagnosticWarning', 'ALEWarningSign', v:false)
     elseif hlexists('CocWarningSign')
-        call s:SynthesizeHighlight('lineflyDiagnosticWarning', 'CocWarningSign', v:false)
+        call s:SynthesizeHighlight('LineflyDiagnosticWarning', 'CocWarningSign', v:false)
     else
-        highlight! link lineflyDiagnosticWarning StatusLine
+        highlight! link LineflyDiagnosticWarning StatusLine
     endif
     if hlexists('DiagnosticInfo')
-        call s:SynthesizeHighlight('lineflyDiagnosticInformation', 'DiagnosticInfo', v:false)
+        call s:SynthesizeHighlight('LineflyDiagnosticInformation', 'DiagnosticInfo', v:false)
     elseif hlexists('ALEInfoSign')
-        call s:SynthesizeHighlight('lineflyDiagnosticInformation', 'ALEInfoSign', v:false)
+        call s:SynthesizeHighlight('LineflyDiagnosticInformation', 'ALEInfoSign', v:false)
     elseif hlexists('CocInfoSign')
-        call s:SynthesizeHighlight('lineflyDiagnosticInformation', 'CocInfoSign', v:false)
+        call s:SynthesizeHighlight('LineflyDiagnosticInformation', 'CocInfoSign', v:false)
     else
-        highlight! link lineflyDiagnosticInformation StatusLine
+        highlight! link LineflyDiagnosticInformation StatusLine
     endif
 endfunction
 

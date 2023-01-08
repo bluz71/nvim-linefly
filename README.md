@@ -96,24 +96,24 @@ I encourage terminal users to use a true-color terminal, such as:
 Installation
 ------------
 
-Install **bluz71/vim-linefly-statusline** with your preferred plugin manager.
+Install **bluz71/nvim-linefly** with your preferred plugin manager.
 
 [vim-plug](https://github.com/junegunn/vim-plug):
 
 ```viml
-Plug 'bluz71/vim-linefly-statusline'
+Plug 'bluz71/nvim-linefly'
 ```
 
 [packer.nvim](https://github.com/wbthomason/packer.nvim):
 
 ```lua
-use 'bluz71/vim-linefly-statusline'
+use 'bluz71/nvim-linefly'
 ```
 
 [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
-{ 'bluz71/vim-linefly-statusline' },
+{ 'bluz71/nvim-linefly' },
 ```
 
 Notice
@@ -174,11 +174,11 @@ colorscheme does not support _linefly statusline_.
 
 | Segment                  | Custom Highlight Group | Synthesized Highlight Fallback
 |--------------------------|------------------------|-------------------------------
-| Normal Mode              | `lineflyNormal`        | `Directory`
-| Insert Mode              | `lineflyInsert`        | `String`
-| Visual Mode              | `lineflyVisual`        | `Statement`
-| Command Mode             | `lineflyCommand`       | `WarningMsg`
-| Replace Mode             | `lineflyReplace`       | `Error`
+| Normal Mode              | `LineflyNormal`        | `Directory`
+| Insert Mode              | `LineflyInsert`        | `String`
+| Visual Mode              | `LineflyVisual`        | `Statement`
+| Command Mode             | `LineflyCommand`       | `WarningMsg`
+| Replace Mode             | `LineflyReplace`       | `Error`
 
 Note, the following colorschemes support _linefly statusline_, either within the
 colorscheme (moonfly & nightfly) or within this plugin (all others):
@@ -216,11 +216,11 @@ the following either at the end of your initialization file, after setting your
 `after/plugin/linefly-statusline.vim`.
 
 ```viml
-highlight! link lineflyNormal DiffChange
-highlight! link lineflyInsert WildMenu
-highlight! link lineflyVisual IncSearch
-highlight! link lineflyCommand WildMenu
-highlight! link lineflyReplace ErrorMsg
+highlight! link LineflyNormal DiffChange
+highlight! link LineflyInsert WildMenu
+highlight! link LineflyVisual IncSearch
+highlight! link LineflyCommand WildMenu
+highlight! link LineflyReplace ErrorMsg
 ```
 
 :wrench: Options
