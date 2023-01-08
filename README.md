@@ -263,9 +263,7 @@ vim.g.lineflyAsciiShapes = true
 ### lineflyErrorSymbol
 
 The `lineflyErrorSymbol` option specifies which character symbol to use when
-displaying [Neovim Diagnostic](https://neovim.io/doc/user/diagnostic.html),
-[ALE](https://github.com/dense-analysis/ale) or
-[Coc](https://github.com/neoclide/coc.nvim) errors.
+displaying [Neovim Diagnostic](https://neovim.io/doc/user/diagnostic.html).
 
 By default, the `x` character, will be displayed.
 
@@ -287,9 +285,7 @@ vim.g.lineflyErrorSymbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
 ### lineflyWarningSymbol
 
 The `lineflyWarningSymbol` option specifies which character symbol to use when
-displaying [Neovim Diagnostic](https://neovim.io/doc/user/diagnostic.html),
-[ALE](https://github.com/dense-analysis/ale) or
-[Coc](https://github.com/neoclide/coc.nvim) warnings.
+displaying [Neovim Diagnostic](https://neovim.io/doc/user/diagnostic.html).
 
 By default, the exclamation symbol, `!`, will be displayed.
 
@@ -311,9 +307,7 @@ vim.g.lineflyWarningSymbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
 ### lineflyInformationSymbol
 
 The `lineflyInformationSymbol` option specifies which character symbol to use
-when displaying [Neovim Diagnostic](https://neovim.io/doc/user/diagnostic.html),
-[ALE](https://github.com/dense-analysis/ale) or
-[Coc](https://github.com/neoclide/coc.nvim) information.
+when displaying [Neovim Diagnostic](https://neovim.io/doc/user/diagnostic.html).
 
 By default, the exclamation symbol, `i`, will be displayed.
 
