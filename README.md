@@ -1,6 +1,8 @@
 linefly statusline
 ==================
 
+**NOTE**, this is a work-in-progess, APIs will change.
+
 _linefly statusline_ is a simple, fast and informative `statusline` for Vim and
 Neovim.
 
