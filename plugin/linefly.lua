@@ -61,7 +61,9 @@ autocmd("VimEnter", {
 })
 
 autocmd("VimEnter", {
-  command = "call linefly#TabLine()",
+  callback = function()
+    require("linefly").tabline()
+  end,
   group = linefly_events,
 })
 

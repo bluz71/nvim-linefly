@@ -321,42 +321,6 @@ function! linefly#InactiveWinBar() abort
 endfunction
 
 "===========================================================
-" Tab-line
-"===========================================================
-
-function! linefly#ActiveTabLine() abort
-    let l:symbol = g:lineflyAsciiShapes ? '*' : '▪'
-    let l:tabline = ''
-    let l:counter = 0
-
-    for i in range(tabpagenr('$'))
-        let l:counter = l:counter + 1
-        if has('tablineat')
-            let l:tabline .= '%' . l:counter . 'T'
-        endif
-        if tabpagenr() == counter
-            let l:tabline .= '%#TablineSelSymbol#' . l:symbol
-            let l:tabline .= '%#TablineSel# Tab:'
-        else
-            let l:tabline .= '%#TabLine#  Tab:'
-        endif
-        let l:tabline .= l:counter
-        if has('tablineat')
-            let l:tabline .= '%T'
-        endif
-        let l:tabline .= '  %#TabLineFill#'
-    endfor
-
-    return l:tabline
-endfunction
-
-function! linefly#TabLine() abort
-    if g:lineflyTabLine
-        set tabline=%!linefly#ActiveTabLine()
-    endif
-endfunction
-
-"===========================================================
 " Highlights
 "===========================================================
 
