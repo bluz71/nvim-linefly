@@ -1,7 +1,8 @@
 local g = vim.g
+local mode = vim.api.nvim_get_mode
 local tabpagenr = vim.fn.tabpagenr
 
-local modes = {
+local modes_map = {
   ["n"] = { "%#LineflyNormal#", " normal ", "%#LineflyNormalEmphasis#" },
   ["i"] = { "%#LineflyInsert#", " insert ", "%#LineflyInsertEmphasis#" },
   ["R"] = { "%#LineflyReplace#", " r-mode ", "%#LineflyReplaceEmphasis#" },
@@ -15,17 +16,17 @@ local modes = {
   ["t"] = { "%#LineflyInsert#", " t-mode ", "%#LineflyInsertEmphasis#" },
 }
 
+local M = {}
+
+_G.linefly = M
+
 ------------------------------------------------------------
 -- Tab-line
 ------------------------------------------------------------
-function LineflyActiveTabline()
-  local symbol = "▪"
+M.active_tabline = function()
+  local symbol = g.lineflyAsciiShapes and "*" or "▪"
   local tabline = ""
   local counter = 0
-
-  if g.lineflyAsciiShapes then
-    symbol = "*"
-  end
 
   for _ = 1, tabpagenr("$"), 1 do
     counter = counter + 1
@@ -41,11 +42,39 @@ function LineflyActiveTabline()
   return tabline
 end
 
-local M = {}
+------------------------------------------------------------
+-- Status-line
+------------------------------------------------------------
+M.active_statusline = function()
+  local current_mode = mode().mode
+  local divider = g.lineflyAsciiShapes and "|" or "⎪"
+  local arrow = g.lineflyAsciiShape and "" or "↓"
+  -- let l:git_branch = linefly#GitBranch()
+  local mode_emphasis = modes_map[current_mode][3]
+
+  local statusline = modes_map[current_mode][1]
+  statusline = statusline .. modes_map[current_mode][2]
+  -- let l:statusline .= '%* %<%{linefly#File()}'
+  -- let l:statusline .= "%{&modified ? '+\ ' : ' \ \ '}"
+  -- let l:statusline .= "%{&readonly ? 'RO\ ' : ''}"
+  -- if len(l:git_branch) > 0
+  --     let l:statusline .= '%*' . l:divider . l:mode_emphasis
+  --     let l:statusline .= l:git_branch . '%* '
+  -- endif
+  -- let l:statusline .= linefly#PluginsStatus()
+  -- let l:statusline .= '%*%=%l:%c %*' . l:divider
+  -- let l:statusline .= '%* ' . l:mode_emphasis . '%L%* ' . l:arrow . '%P '
+  -- if g:lineflyWithIndentStatus
+  --     let l:statusline .= '%*' . l:divider
+  --     let l:statusline .= '%* %{linefly#IndentStatus()} '
+  -- endif
+  --
+  return statusline
+end
 
 M.tabline = function()
   if g.lineflyTabLine then
-    vim.o.tabline = "%!v:lua.LineflyActiveTabline()"
+    vim.o.tabline = "%!v:lua.linefly.active_tabline()"
   end
 end
 
