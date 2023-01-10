@@ -1,19 +1,39 @@
+local git = require("linefly.git")
+local plugins = require("linefly.plugins")
 local g = vim.g
 local mode = vim.api.nvim_get_mode
+local opt = vim.opt
+local opt_local = vim.opt_local
 local tabpagenr = vim.fn.tabpagenr
 
+-- Refer to ':help mode()' for the full selection of modes. For now not all
+-- all modes are handled, only the most common modes.
 local modes_map = {
-  ["n"] = { "%#LineflyNormal#", " normal ", "%#LineflyNormalEmphasis#" },
-  ["i"] = { "%#LineflyInsert#", " insert ", "%#LineflyInsertEmphasis#" },
-  ["R"] = { "%#LineflyReplace#", " r-mode ", "%#LineflyReplaceEmphasis#" },
-  ["v"] = { "%#LineflyVisual#", " visual ", "%#LineflyVisualEmphasis#" },
-  ["V"] = { "%#LineflyVisual#", " v-line ", "%#LineflyVisualEmphasis#" },
-  ["<C-v>"] = { "%#LineflyVisual#", " v-rect ", "%#LineflyVisualEmphasis#" },
-  ["c"] = { "%#LineflyCommand#", " c-mode ", "%#LineflyCommandEmphasis#" },
-  ["s"] = { "%#LineflyVisual#", " select ", "%#LineflyVisualEmphasis#" },
-  ["S"] = { "%#LineflyVisual#", " s-line ", "%#LineflyVisualEmphasis#" },
-  ["<C-s>"] = { "%#LineflyVisual#", " s-rect ", "%#LineflyVisualEmphasis#" },
-  ["t"] = { "%#LineflyInsert#", " t-mode ", "%#LineflyInsertEmphasis#" },
+  ["n"] = { "%#LineflyNormal#", " normal ", "%#LineflyNormalEmphasis#" }, -- Normal
+  ["no"] = { "%#LineflyNormal#", " o-pend ", "%#LineflyNormalEmphasis#" }, -- Operator pending
+  ["niI"] = { "%#LineflyNormal#", " i-pend ", "%#LineflyNormalEmphasis#" }, -- Insert mode pending (Ctrl-o)
+  ["niR"] = { "%#LineflyNormal#", " r-pend ", "%#LineflyNormalEmphasis#" }, -- Replace mode pending (Ctrl-o)
+  ["i"] = { "%#LineflyInsert#", " insert ", "%#LineflyInsertEmphasis#" }, -- Insert
+  ["ic"] = { "%#LineflyInsert#", " i-comp ", "%#LineflyInsertEmphasis#" }, -- Insert completion (generic)
+  ["ix"] = { "%#LineflyInsert#", " i-comp ", "%#LineflyInsertEmphasis#" }, -- Insert completion (Ctrl-x)
+  ["v"] = { "%#LineflyVisual#", " visual ", "%#LineflyVisualEmphasis#" }, -- Visual (v)
+  ["vs"] = { "%#LineflyVisual#", " visual ", "%#LineflyVisualEmphasis#" }, -- Visual (Ctrl-o select mode)
+  ["V"] = { "%#LineflyVisual#", " v-line ", "%#LineflyVisualEmphasis#" }, -- Visual line (V)
+  ["Vs"] = { "%#LineflyVisual#", " v-line ", "%#LineflyVisualEmphasis#" }, -- Visual line (Ctrl-o select mode)
+  ["\022"] = { "%#LineflyVisual#", " v-bloc ", "%#LineflyVisualEmphasis#" }, -- Visual block (Ctrl-v)
+  ["s"] = { "%#LineflyVisual#", " select ", "%#LineflyVisualEmphasis#" }, -- Select (gh)
+  ["S"] = { "%#LineflyVisual#", " s-line ", "%#LineflyVisualEmphasis#" }, -- Select line (gH)
+  ["\019"] = { "%#LineflyVisual#", " s-bloc ", "%#LineflyVisualEmphasis#" }, -- Select block (CTRL-S)
+  ["c"] = { "%#LineflyCommand#", " c-mode ", "%#LineflyCommandEmphasis#" }, -- Command line
+  ["r"] = { "%#LineflyCommand#", " prompt ", "%#LineflyReplaceEmphasis#" }, -- Prompt for 'enter'
+  ["rm"] = { "%#LineflyCommand#", " prompt ", "%#LineflyReplaceEmphasis#" }, -- Prompt for 'more'
+  ["r?"] = { "%#LineflyCommand#", " prompt ", "%#LineflyReplaceEmphasis#" }, -- Prompt for 'confirmation'
+  ["!"] = { "%#LineflyCommand#", "  !-mode ", "%#LineflyReplaceEmphasis#" }, -- Command execution
+  ["R"] = { "%#LineflyReplace#", " r-mode ", "%#LineflyReplaceEmphasis#" }, -- Replace
+  ["Rc"] = { "%#LineflyReplace#", " r-comp ", "%#LineflyReplaceEmphasis#" }, -- Replace completion (generic)
+  ["Rx"] = { "%#LineflyReplace#", " r-comp ", "%#LineflyReplaceEmphasis#" }, -- Replace completion (Ctrl-x)
+  ["t"] = { "%#LineflyInsert#", " t-mode ", "%#LineflyInsertEmphasis#" }, -- Terminal
+  ["nt"] = { "%#LineflyNormal#", " normal ", "%#LineflyNormalEmphasis#" }, -- Terminal normal mode
 }
 
 local M = {}
@@ -42,6 +62,12 @@ M.active_tabline = function()
   return tabline
 end
 
+M.tabline = function()
+  if g.lineflyTabLine then
+    opt.tabline = "%!v:lua.linefly.active_tabline()"
+  end
+end
+
 ------------------------------------------------------------
 -- Status-line
 ------------------------------------------------------------
@@ -49,32 +75,48 @@ M.active_statusline = function()
   local current_mode = mode().mode
   local divider = g.lineflyAsciiShapes and "|" or "⎪"
   local arrow = g.lineflyAsciiShape and "" or "↓"
-  -- let l:git_branch = linefly#GitBranch()
+  local branch_name = git.branch_name()
   local mode_emphasis = modes_map[current_mode][3]
 
   local statusline = modes_map[current_mode][1]
   statusline = statusline .. modes_map[current_mode][2]
-  -- let l:statusline .= '%* %<%{linefly#File()}'
-  -- let l:statusline .= "%{&modified ? '+\ ' : ' \ \ '}"
-  -- let l:statusline .= "%{&readonly ? 'RO\ ' : ''}"
-  -- if len(l:git_branch) > 0
-  --     let l:statusline .= '%*' . l:divider . l:mode_emphasis
-  --     let l:statusline .= l:git_branch . '%* '
-  -- endif
-  -- let l:statusline .= linefly#PluginsStatus()
-  -- let l:statusline .= '%*%=%l:%c %*' . l:divider
-  -- let l:statusline .= '%* ' . l:mode_emphasis . '%L%* ' . l:arrow . '%P '
-  -- if g:lineflyWithIndentStatus
-  --     let l:statusline .= '%*' . l:divider
-  --     let l:statusline .= '%* %{linefly#IndentStatus()} '
-  -- endif
-  --
+  statusline = statusline .. "%* %<%{linefly#File()}" -- XXX port to Lua
+  statusline = statusline .. "%{&modified ? '+ ' : '   '}"
+  statusline = statusline .. "%{&readonly ? 'RO ' : ''}"
+  if string.len(branch_name) > 0 then
+    statusline = statusline .. "%*" .. divider .. mode_emphasis
+    statusline = statusline .. branch_name .. "%* "
+  end
+  statusline = statusline .. plugins.status()
+  statusline = statusline .. "%*%=%l:%c %*" .. divider
+  statusline = statusline .. "%* " .. mode_emphasis .. "%L%* " .. arrow .. "%P "
+  if g.lineflyWithIndentStatus then
+    statusline = statusline .. "%*" .. divider .. "%* %{linefly#IndentStatus()} " -- XXX port to Lua
+  end
+
   return statusline
 end
 
-M.tabline = function()
-  if g.lineflyTabLine then
-    vim.o.tabline = "%!v:lua.linefly.active_tabline()"
+M.inactive_statusline = function()
+  local divider = g.lineflyAsciiShapes and "|" or "⎪"
+  local arrow = g.lineflyAsciiShape and "" or "↓"
+
+  local statusline = " %*%<%{linefly#File()}" -- XXX port to Lua
+  statusline = statusline .. "%{&modified?'+ ':'   '}"
+  statusline = statusline .. "%{&readonly?'RO ':''}"
+  statusline = statusline .. "%*%=%l:%c " .. divider .. " %L " .. arrow .. "%P "
+  if g.lineflyWithIndentStatus then
+    statusline = statusline .. divider .. " %{linefly#IndentStatus()} " -- XXX port to Lua
+  end
+
+  return statusline
+end
+
+M.statusline = function(active)
+  if active then
+    opt_local.statusline = "%!v:lua.linefly.active_statusline()"
+  else
+    opt_local.statusline = "%!v:lua.linefly.inactive_statusline()"
   end
 end
 

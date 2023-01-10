@@ -68,11 +68,15 @@ autocmd("VimEnter", {
 })
 
 autocmd({ "WinEnter", "BufWinEnter" }, {
-  command = "call linefly#StatusLine(v:true)",
+  callback = function()
+    require("linefly").statusline(true)
+  end,
   group = linefly_events,
 })
 
 autocmd("WinLeave", {
-  command = "call linefly#StatusLine(v:false)",
+  callback = function()
+    require("linefly").statusline(false)
+  end,
   group = linefly_events,
 })

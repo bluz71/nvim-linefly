@@ -201,48 +201,6 @@ endfunction
 " Status-line
 "===========================================================
 
-function! linefly#ActiveStatusLine() abort
-    let l:mode = mode()
-    let l:divider = g:lineflyAsciiShapes ? '|' : '⎪'
-    let l:arrow =  g:lineflyAsciiShapes ?  '' : '↓'
-    let l:git_branch = linefly#GitBranch()
-    let l:mode_emphasis = get(s:modes, l:mode, '%#LineflyNormalEmphasis#')[2]
-
-    let l:statusline = get(s:modes, l:mode, '%#LineflyNormal#')[0]
-    let l:statusline .= get(s:modes, l:mode, ' normal ')[1]
-    let l:statusline .= '%* %<%{linefly#File()}'
-    let l:statusline .= "%{&modified ? '+\ ' : ' \ \ '}"
-    let l:statusline .= "%{&readonly ? 'RO\ ' : ''}"
-    if len(l:git_branch) > 0
-        let l:statusline .= '%*' . l:divider . l:mode_emphasis
-        let l:statusline .= l:git_branch . '%* '
-    endif
-    let l:statusline .= linefly#PluginsStatus()
-    let l:statusline .= '%*%=%l:%c %*' . l:divider
-    let l:statusline .= '%* ' . l:mode_emphasis . '%L%* ' . l:arrow . '%P '
-    if g:lineflyWithIndentStatus
-        let l:statusline .= '%*' . l:divider
-        let l:statusline .= '%* %{linefly#IndentStatus()} '
-    endif
-
-    return l:statusline
-endfunction
-
-function! linefly#InactiveStatusLine() abort
-    let l:divider = g:lineflyAsciiShapes ? '|' : '⎪'
-    let l:arrow =  g:lineflyAsciiShapes ? '' : '↓'
-
-    let l:statusline = ' %*%<%{linefly#File()}'
-    let l:statusline .= "%{&modified?'+\ ':' \ \ '}"
-    let l:statusline .= "%{&readonly?'RO\ ':''}"
-    let l:statusline .= '%*%=%l:%c ' . l:divider . ' %L ' . l:arrow . '%P '
-    if g:lineflyWithIndentStatus
-        let l:statusline .= l:divider . ' %{linefly#IndentStatus()} '
-    endif
-
-    return l:statusline
-endfunction
-
 function! linefly#NoFileStatusLine() abort
     return pathshorten(fnamemodify(getcwd(), ':~:.'))
 endfunction
