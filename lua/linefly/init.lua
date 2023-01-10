@@ -49,6 +49,7 @@ _G.linefly = M
 ------------------------------------------------------------
 -- Status line
 ------------------------------------------------------------
+
 M.active_statusline = function()
   local current_mode = mode().mode
   local divider = g.lineflyAsciiShapes and "|" or "⎪"
@@ -147,6 +148,7 @@ end
 ------------------------------------------------------------
 -- Tab line
 ------------------------------------------------------------
+
 M.active_tabline = function()
   local symbol = g.lineflyAsciiShapes and "*" or "▪"
   local tabline = ""
