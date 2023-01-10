@@ -1,10 +1,13 @@
 local git = require("linefly.git")
 local plugins = require("linefly.plugins")
+local utils = require("linefly.utils")
+local buf_get_option = vim.api.nvim_buf_get_option
 local g = vim.g
 local mode = vim.api.nvim_get_mode
 local opt = vim.opt
 local opt_local = vim.opt_local
 local tabpagenr = vim.fn.tabpagenr
+local winheight = vim.api.nvim_win_get_height
 
 -- Refer to ':help mode()' for the full list of available modes. For now only
 -- handle the most common modes.
@@ -85,10 +88,30 @@ M.inactive_statusline = function()
 end
 
 M.statusline = function(active)
-  if active then
+  if buf_get_option(0, "buftype") == "nofile" or buf_get_option(0, "filetype") == "netrw" then
+    -- Likely a file explorer or some other special type of buffer. Set a blank
+    -- statusline for these types of buffers.
+    opt_local.statusline = "%!linefly#NoFileStatusLine()" --- XXX port to Lua
+    if g.lineflyWinBar then
+      opt_local.winbar = nil
+    end
+  elseif buf_get_option(0, "buftype") == "nowrite" then
+    -- Don't set a custom statusline for certain special windows.
+    return
+  elseif active then
     opt_local.statusline = "%!v:lua.linefly.active_statusline()"
+    if g.lineflyWinBar and utils.window_count() > 1 then
+      opt_local.winbar = "%!v:lua.linefly.active_winbar()"
+    else
+      opt_local.winbar = nil
+    end
   else
     opt_local.statusline = "%!v:lua.linefly.inactive_statusline()"
+    if g.lineflyWinBar and winheight(0) > 1 then
+      opt_local.winbar = "%!v:lua.linefly.inactive_winbar()"
+    else
+      opt_local.winbar= nil
+    end
   end
 end
 
