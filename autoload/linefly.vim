@@ -359,7 +359,7 @@ endfunction
 " The following Git branch name functionality derives from:
 "   https://github.com/itchyny/vim-gitbranch
 "
-" MIT Licensed Copyright (c) 2014-2017 itchyny
+" MIT Licensed Copyright (c) 2014-2021 itchyny
 "
 function! s:GitBranchName() abort
     if get(b:, 'gitbranch_pwd', '') !=# expand('%:p:h') || !has_key(b:, 'gitbranch_path')
