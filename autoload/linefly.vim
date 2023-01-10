@@ -198,14 +198,6 @@ function! linefly#IndentStatus() abort
 endfunction
 
 "===========================================================
-" Status-line
-"===========================================================
-
-function! linefly#NoFileStatusLine() abort
-    return pathshorten(fnamemodify(getcwd(), ':~:.'))
-endfunction
-
-"===========================================================
 " Highlights
 "===========================================================
 
