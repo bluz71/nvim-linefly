@@ -6,8 +6,8 @@ local opt = vim.opt
 local opt_local = vim.opt_local
 local tabpagenr = vim.fn.tabpagenr
 
--- Refer to ':help mode()' for the full selection of modes. For now not all
--- all modes are handled, only the most common modes.
+-- Refer to ':help mode()' for the full list of available modes. For now only
+-- handle the most common modes.
 local modes_map = {
   ["n"] = { "%#LineflyNormal#", " normal ", "%#LineflyNormalEmphasis#" }, -- Normal
   ["no"] = { "%#LineflyNormal#", " o-pend ", "%#LineflyNormalEmphasis#" }, -- Operator pending
@@ -41,35 +41,7 @@ local M = {}
 _G.linefly = M
 
 ------------------------------------------------------------
--- Tab-line
-------------------------------------------------------------
-M.active_tabline = function()
-  local symbol = g.lineflyAsciiShapes and "*" or "▪"
-  local tabline = ""
-  local counter = 0
-
-  for _ = 1, tabpagenr("$"), 1 do
-    counter = counter + 1
-    tabline = tabline .. "%" .. counter .. "T"
-    if tabpagenr() == counter then
-      tabline = tabline .. "%#TablineSelSymbol#" .. symbol .. "%#TablineSel# Tab:"
-    else
-      tabline = tabline .. "%#TabLine#  Tab:"
-    end
-    tabline = tabline .. counter .. "%T" .. "  %#TabLineFill#"
-  end
-
-  return tabline
-end
-
-M.tabline = function()
-  if g.lineflyTabLine then
-    opt.tabline = "%!v:lua.linefly.active_tabline()"
-  end
-end
-
-------------------------------------------------------------
--- Status-line
+-- Status line
 ------------------------------------------------------------
 M.active_statusline = function()
   local current_mode = mode().mode
@@ -117,6 +89,60 @@ M.statusline = function(active)
     opt_local.statusline = "%!v:lua.linefly.active_statusline()"
   else
     opt_local.statusline = "%!v:lua.linefly.inactive_statusline()"
+  end
+end
+
+------------------------------------------------------------
+-- Window bar
+------------------------------------------------------------
+
+M.active_winbar = function()
+  local current_mode = mode().mode
+
+  local winbar = modes_map[current_mode][1]
+  winbar = winbar .. string.sub(modes_map[current_mode][2], 1, 2)
+  winbar = winbar .. " %* %<%{linefly#File()}" --- XXX port to Lua
+  winbar = winbar .. "%{&modified ? '+ ' : '   '}"
+  winbar = winbar .. "%{&readonly ? 'RO ' : ''}"
+  winbar = winbar .. "%#Normal#"
+
+  return winbar
+end
+
+M.inactive_winbar = function()
+  local winbar = " %*%<%{linefly#File()}" -- XXX port to Lua
+  winbar = winbar .. "%{&modified?'+ ':'   '}"
+  winbar = winbar .. "%{&readonly?'RO ':''}"
+  winbar = winbar .. "%#NonText#"
+
+  return winbar
+end
+
+------------------------------------------------------------
+-- Tab line
+------------------------------------------------------------
+M.active_tabline = function()
+  local symbol = g.lineflyAsciiShapes and "*" or "▪"
+  local tabline = ""
+  local counter = 0
+
+  for _ = 1, tabpagenr("$"), 1 do
+    counter = counter + 1
+    tabline = tabline .. "%" .. counter .. "T"
+    if tabpagenr() == counter then
+      tabline = tabline .. "%#TablineSelSymbol#" .. symbol .. "%#TablineSel# Tab:"
+    else
+      tabline = tabline .. "%#TabLine#  Tab:"
+    end
+    tabline = tabline .. counter .. "%T" .. "  %#TabLineFill#"
+  end
+
+  return tabline
+end
+
+M.tabline = function()
+  if g.lineflyTabLine then
+    opt.tabline = "%!v:lua.linefly.active_tabline()"
   end
 end
 

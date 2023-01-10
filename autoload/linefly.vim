@@ -254,31 +254,6 @@ function! linefly#StatusLine(active) abort
 endfunction
 
 "===========================================================
-" Window-bar
-"===========================================================
-
-function! linefly#ActiveWinBar() abort
-    let l:mode = mode()
-    let l:winbar = get(s:modes, l:mode, '%#LineflyNormal#')[0]
-    let l:winbar .= strpart(get(s:modes, l:mode, 'n')[1], 0, 2)
-    let l:winbar .= ' %* %<%{linefly#File()}'
-    let l:winbar .= "%{&modified ? '+\ ' : ' \ \ '}"
-    let l:winbar .= "%{&readonly ? 'RO\ ' : ''}"
-    let l:winbar .= '%#Normal#'
-
-    return l:winbar
-endfunction
-
-function! linefly#InactiveWinBar() abort
-    let l:winbar = ' %*%<%{linefly#File()}'
-    let l:winbar .= "%{&modified?'+\ ':' \ \ '}"
-    let l:winbar .= "%{&readonly?'RO\ ':''}"
-    let l:winbar .= '%#NonText#'
-
-    return l:winbar
-endfunction
-
-"===========================================================
 " Highlights
 "===========================================================
 
