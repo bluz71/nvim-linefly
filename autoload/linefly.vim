@@ -394,6 +394,7 @@ endfunction
 function! s:GitDir(path) abort
     let l:path = a:path
     let l:prev = ''
+    let l:modules = a:path =~# '/\.git/modules/'
 
     while l:path !=# prev
         let l:dir = path . '/.git'
@@ -408,6 +409,8 @@ function! s:GitDir(path) abort
             if l:reldir =~# '^gitdir: '
                 return simplify(l:path . '/' . l:reldir[8:])
             endif
+        elseif l:modules && isdirectory(a:path . '/objects') && isdirectory(a:path . '/refs') && getfsize(a:path . '/HEAD') > 10
+            return a:path
         endif
         let l:prev = l:path
         " Go up a directory searching for a '.git' directory.
