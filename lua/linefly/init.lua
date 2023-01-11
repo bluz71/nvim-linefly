@@ -60,7 +60,7 @@ M.active_statusline = function()
   local statusline = modes_map[current_mode][1]
   statusline = statusline .. modes_map[current_mode][2]
   statusline = statusline .. "%* %<" .. utils.filename()
-  statusline = statusline .. "%{&modified ? '+ ' : '   '}"
+  statusline = statusline .. "%{&modified ? '+ ' : '  '}"
   statusline = statusline .. "%{&readonly ? 'RO ' : ''}"
   if not utils.is_empty(branch_name) then
     statusline = statusline .. "%*" .. divider .. mode_emphasis
@@ -81,7 +81,7 @@ M.inactive_statusline = function()
   local arrow = g.lineflyAsciiShape and "" or "↓"
 
   local statusline = " %*%<" .. utils.filename()
-  statusline = statusline .. "%{&modified?'+ ':'   '}"
+  statusline = statusline .. "%{&modified?'+ ':'  '}"
   statusline = statusline .. "%{&readonly?'RO ':''}"
   statusline = statusline .. "%*%=%l:%c " .. divider .. " %L " .. arrow .. "%P "
   if g.lineflyWithIndentStatus then
