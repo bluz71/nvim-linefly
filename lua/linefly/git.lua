@@ -14,11 +14,10 @@ M.current_branch_name = function()
   local git_branch_name
 
   if package.loaded.gitsigns ~= nil then
-    -- Gitsigns is available, let's use it to get the branch name since it is
-    -- readily accessible.
+    -- Gitsigns is available, let's use it to access the branch name.
     git_branch_name = b.gitsigns_head
   else
-    -- Else use the fallback detection path.
+    -- Else use fallback detection.
     git_branch_name = b.git_branch_name
   end
 
