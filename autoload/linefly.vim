@@ -20,51 +20,6 @@ let s:statusline_bg = ''
 " Utilities
 "===========================================================
 
-function! linefly#File() abort
-    return s:FileIcon() . s:FilePath()
-endfunction
-
-function! s:FileIcon() abort
-    if !g:lineflyWithFileIcon || bufname('%') == ''
-        return ''
-    endif
-
-    if exists('g:nvim_web_devicons')
-        return luaeval("require'nvim-web-devicons'.get_icon(vim.fn.expand('%'), nil, { default = true })") . ' '
-    elseif exists('g:loaded_webdevicons')
-        return WebDevIconsGetFileTypeSymbol() . ' '
-    else
-        return ''
-    endif
-endfunction
-
-function! s:FilePath() abort
-    if &buftype ==# 'terminal'
-        return expand('%:t')
-    else
-        if len(expand('%:f')) == 0
-            return ''
-        else
-            let l:separator = '/'
-            if has('win32') || has('win64')
-                let l:separator = '\'
-            endif
-            if &laststatus == 3
-                let l:path = fnamemodify(expand('%:f'), ':~:.')
-            else
-                let l:path = pathshorten(fnamemodify(expand('%:f'), ':~:.'))
-            endif
-            let l:pathComponents = split(l:path, l:separator)
-            let l:numPathComponents = len(l:pathComponents)
-            if l:numPathComponents > 4
-                return '.../' . join(l:pathComponents[l:numPathComponents - 4:], l:separator)
-            else
-                return l:path
-            endif
-        endif
-    endif
-endfunction
-
 " Iterate though the windows and update the statusline and winbar for all
 " inactive windows.
 "

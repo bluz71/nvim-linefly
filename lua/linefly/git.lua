@@ -7,7 +7,7 @@ local system = vim.fn.system
 local M = {}
 
 M.current_branch_name = function()
-  if not g.lineflyWithGitBranch or buf_get_name(0) == "" then
+  if not g.lineflyWithGitBranch or is_empty(buf_get_name(0)) then
     return ""
   end
 
