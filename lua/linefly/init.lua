@@ -54,7 +54,7 @@ M.active_statusline = function()
   local current_mode = mode().mode
   local divider = g.lineflyAsciiShapes and "|" or "⎪"
   local arrow = g.lineflyAsciiShape and "" or "↓"
-  local branch_name = git.branch_name()
+  local branch_name = git.current_branch_name()
   local mode_emphasis = modes_map[current_mode][3]
 
   local statusline = modes_map[current_mode][1]
@@ -62,7 +62,7 @@ M.active_statusline = function()
   statusline = statusline .. "%* %<%{linefly#File()}" -- XXX port to Lua
   statusline = statusline .. "%{&modified ? '+ ' : '   '}"
   statusline = statusline .. "%{&readonly ? 'RO ' : ''}"
-  if string.len(branch_name) > 0 then
+  if not utils.is_empty(branch_name) then
     statusline = statusline .. "%*" .. divider .. mode_emphasis
     statusline = statusline .. branch_name .. "%* "
   end

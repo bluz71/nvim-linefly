@@ -3,8 +3,10 @@
 -- URL:          github.com/bluz71/nvim-linefly
 -- License:      MIT (https://opensource.org/licenses/MIT)
 
+local git = require("linefly.git")
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
+local b = vim.b
 local g = vim.g
 
 if vim.g.lineflyLoaded ~= nil then
@@ -77,6 +79,16 @@ autocmd({ "WinEnter", "BufWinEnter" }, {
 autocmd("WinLeave", {
   callback = function()
     require("linefly").statusline(false)
+  end,
+  group = linefly_events,
+})
+
+autocmd({ "BufEnter", "FocusGained" }, {
+  callback = function()
+    if package.loaded.gitsigns == nil then
+      -- Gitsigns is not loaded, use fallback branch name detection.
+      b.git_branch_name = git.detect_branch_name()
+    end
   end,
   group = linefly_events,
 })

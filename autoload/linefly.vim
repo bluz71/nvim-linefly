@@ -78,37 +78,11 @@ function! linefly#UpdateInactiveWindows() abort
     for winnum in range(1, winnr('$'))
         if winnum != winnr()
             call setwinvar(winnum, '&statusline', '%!linefly#InactiveStatusLine()')
-            if g:lineflyWinBar && exists('&winbar') && winheight(0) > 1
-                call setwinvar(winnum, '&winbar', '%!linefly#InactiveWinBar()')
-            endif
+            " if g:lineflyWinBar && exists('&winbar') && winheight(0) > 1
+            "     call setwinvar(winnum, '&winbar', '%!linefly#InactiveWinBar()')
+            " endif
         endif
     endfor
-endfunction
-
-function! linefly#GitBranch() abort
-    if !g:lineflyWithGitBranch || bufname('%') == ''
-        return ''
-    endif
-
-    let l:git_branch_name = ''
-    if g:lineflyWithGitsignsStatus && has('nvim-0.5') && luaeval("pcall(require, 'gitsigns')")
-        " Gitsigns is available, let's use it to get the branch name since it
-        " will already be in memory.
-        let l:git_branch_name = get(b:, 'gitsigns_head', '')
-    else
-        " Fallback to traditional filesystem-based branch name detection.
-        let l:git_branch_name = s:GitBranchName()
-    endif
-
-    if len(l:git_branch_name) == 0
-        return ''
-    endif
-
-    if g:lineflyAsciiShapes
-        return ' ' . l:git_branch_name
-    else
-        return '  ' . l:git_branch_name
-    endif
 endfunction
 
 function! linefly#PluginsStatus() abort
@@ -350,72 +324,4 @@ function! s:SynthesizeHighlight(target, source, reverse) abort
         " Fallback to statusline highlighting.
         exec 'highlight! link ' . a:target . ' StatusLine'
     endif
-endfunction
-
-"===========================================================
-" Git utilities
-"===========================================================
-
-" The following Git branch name functionality derives from:
-"   https://github.com/itchyny/vim-gitbranch
-"
-" MIT Licensed Copyright (c) 2014-2021 itchyny
-"
-function! s:GitBranchName() abort
-    if get(b:, 'gitbranch_pwd', '') !=# expand('%:p:h') || !has_key(b:, 'gitbranch_path')
-        call s:GitDetect()
-    endif
-
-    if has_key(b:, 'gitbranch_path') && filereadable(b:gitbranch_path)
-        let l:branchDetails = get(readfile(b:gitbranch_path), 0, '')
-        if l:branchDetails =~# '^ref: '
-            return substitute(l:branchDetails, '^ref: \%(refs/\%(heads/\|remotes/\|tags/\)\=\)\=', '', '')
-        elseif l:branchDetails =~# '^\x\{20\}'
-            return l:branchDetails[:6]
-        endif
-    endif
-
-    return ''
-endfunction
-
-function! s:GitDetect() abort
-    unlet! b:gitbranch_path
-    let b:gitbranch_pwd = expand('%:p:h')
-    let l:dir = s:GitDir(b:gitbranch_pwd)
-
-    if l:dir !=# ''
-        let l:path = l:dir . '/HEAD'
-        if filereadable(l:path)
-            let b:gitbranch_path = l:path
-        endif
-    endif
-endfunction
-
-function! s:GitDir(path) abort
-    let l:path = a:path
-    let l:prev = ''
-    let l:modules = a:path =~# '/\.git/modules/'
-
-    while l:path !=# prev
-        let l:dir = path . '/.git'
-        let l:type = getftype(l:dir)
-        if l:type ==# 'dir' && isdirectory(l:dir . '/objects')
-                    \ && isdirectory(l:dir . '/refs')
-                    \ && getfsize(l:dir . '/HEAD') > 10
-            " Looks like we found a '.git' directory.
-            return l:dir
-        elseif l:type ==# 'file'
-            let l:reldir = get(readfile(l:dir), 0, '')
-            if l:reldir =~# '^gitdir: '
-                return simplify(l:path . '/' . l:reldir[8:])
-            endif
-        elseif l:modules && isdirectory(a:path . '/objects') && isdirectory(a:path . '/refs') && getfsize(a:path . '/HEAD') > 10
-            return a:path
-        endif
-        let l:prev = l:path
-        " Go up a directory searching for a '.git' directory.
-        let path = fnamemodify(l:path, ':h')
-    endwhile
-
-    return ''
 endfunction

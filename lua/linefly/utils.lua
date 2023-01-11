@@ -5,6 +5,10 @@ local win_get_config = vim.api.nvim_win_get_config
 
 local M = {}
 
+M.is_empty = function(str)
+  return str == nil or string.len(str) == 0
+end
+
 -- Return the number of split windows exluding floating windows and other
 -- special windows.
 M.window_count = function()
