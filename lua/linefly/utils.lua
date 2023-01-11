@@ -22,35 +22,35 @@ local file_icon = function()
 end
 
 local file_path = function()
+  if M.is_empty(expand("%:f")) then
+    return ""
+  end
+
   if buf_get_option(0, "buftype") == "terminal" then
     return expand("%:t")
+  end
+
+  local separator = "/"
+  if has("win64") == 1 then
+    separator = "\\"
+  end
+
+  local path
+  if opt.laststatus:get() == 3 then
+    -- Global statusline is active, no path shortening.
+    path = fnamemodify(expand("%:f"), ":~:.")
   else
-    if M.is_empty(expand("%:f")) then
-      return ""
-    end
+    path = pathshorten(fnamemodify(expand("%:f"), ":~:."))
+  end
 
-    local separator = "/"
-    if has("win64") == 1 then
-      separator = "\\"
-    end
-
-    local path
-    if opt.laststatus:get() == 3 then
-      -- Global statusline is active, no path shortening.
-      path = fnamemodify(expand("%:f"), ":~:.")
-    else
-      path = pathshorten(fnamemodify(expand("%:f"), ":~:."))
-    end
-
-    local path_components = split(path, separator)
-    local num_path_components = #path_components
-    if num_path_components > 4 then
-      -- In future, if Neovim switches to Lua 5.2 or above, 'unpack' will need
-      -- to change to 'table.unpack'.
-      return ".../" .. table.concat({ unpack(path_components, num_path_components - 3) }, separator)
-    else
-      return path
-    end
+  local path_components = split(path, separator)
+  local num_path_components = #path_components
+  if num_path_components > 4 then
+    -- In future, if Neovim switches to Lua 5.2 or above, 'unpack' will need
+    -- to change to 'table.unpack'.
+    return ".../" .. table.concat({ unpack(path_components, num_path_components - 3) }, separator)
+  else
+    return path
   end
 end
 
