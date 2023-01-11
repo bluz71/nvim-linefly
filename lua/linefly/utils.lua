@@ -35,7 +35,7 @@ local file_path = function()
     end
 
     local path
-    if vim.opt.laststatus:get() == 3 then
+    if opt.laststatus:get() == 3 then
       -- Global statusline is active, no path shortening.
       path = fnamemodify(expand("%:f"), ":~:.")
     else
