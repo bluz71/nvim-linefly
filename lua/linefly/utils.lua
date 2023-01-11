@@ -71,8 +71,9 @@ M.window_count = function()
   for _, w in pairs(windows) do
     local cfg = win_get_config(w)
     local ft = buf_get_option(win_get_buf(w), "filetype")
+    local bt = buf_get_option(win_get_buf(w), "buftype")
 
-    if (cfg.relative == "" or cfg.external == false) and ft ~= "qf" then
+    if (cfg.relative == "" or cfg.external == false) and ft ~= "qf" and bt ~= "terminal" then
       count = count + 1
     end
   end
