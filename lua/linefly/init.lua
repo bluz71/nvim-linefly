@@ -129,7 +129,7 @@ M.active_winbar = function()
   local winbar = modes_map[current_mode][1]
   winbar = winbar .. string.sub(modes_map[current_mode][2], 1, 2)
   winbar = winbar .. " %* %<" .. utils.filename()
-  winbar = winbar .. "%{&modified ? '+ ' : '   '}"
+  winbar = winbar .. "%{&modified ? '+ ' : '  '}"
   winbar = winbar .. "%{&readonly ? 'RO ' : ''}"
   winbar = winbar .. "%#Normal#"
 
@@ -138,7 +138,7 @@ end
 
 M.inactive_winbar = function()
   local winbar = " %*%<" .. utils.filename()
-  winbar = winbar .. "%{&modified?'+ ':'   '}"
+  winbar = winbar .. "%{&modified?'+ ':'  '}"
   winbar = winbar .. "%{&readonly?'RO ':''}"
   winbar = winbar .. "%#NonText#"
 

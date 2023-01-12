@@ -6,7 +6,6 @@ local g = vim.g
 local has = vim.fn.has
 local opt = vim.opt
 local pathshorten = vim.fn.pathshorten
-local split = vim.split
 local tabpage_list_wins = vim.api.nvim_tabpage_list_wins
 local win_get_buf = vim.api.nvim_win_get_buf
 local win_get_config = vim.api.nvim_win_get_config
@@ -43,7 +42,7 @@ local file_path = function()
     path = pathshorten(fnamemodify(expand("%:f"), ":~:."))
   end
 
-  local path_components = split(path, separator)
+  local path_components = vim.split(path, separator)
   local num_path_components = #path_components
   if num_path_components > 4 then
     -- In future, if Neovim switches to Lua 5.2 or above, 'unpack' will need
