@@ -103,16 +103,16 @@ M.statusline = function(active)
     -- Don't set a custom statusline for certain special windows.
     return
   elseif active then
-    opt_local.statusline = "%!v:lua.linefly.active_statusline()"
+    opt_local.statusline = "%{%v:lua.linefly.active_statusline()%}"
     if g.lineflyWinBar and utils.window_count() > 1 then
-      opt_local.winbar = "%!v:lua.linefly.active_winbar()"
+      opt_local.winbar = "%{%v:lua.linefly.active_winbar()%}"
     else
       opt_local.winbar = nil
     end
   else
-    opt_local.statusline = "%!v:lua.linefly.inactive_statusline()"
+    opt_local.statusline = "%{%v:lua.linefly.inactive_statusline()%}"
     if g.lineflyWinBar and winheight(0) > 1 then
-      opt_local.winbar = "%!v:lua.linefly.inactive_winbar()"
+      opt_local.winbar = "%{%v:lua.linefly.inactive_winbar()%}"
     else
       opt_local.winbar = nil
     end
