@@ -1,3 +1,4 @@
+local file = require("linefly.file")
 local git = require("linefly.git")
 local plugins = require("linefly.plugins")
 local utils = require("linefly.utils")
@@ -59,7 +60,7 @@ M.active_statusline = function()
 
   local statusline = modes_map[current_mode][1]
   statusline = statusline .. modes_map[current_mode][2]
-  statusline = statusline .. "%* %<" .. utils.filename()
+  statusline = statusline .. "%* %<" .. file.name()
   statusline = statusline .. "%{&modified ? '+ ' : '  '}"
   statusline = statusline .. "%{&readonly ? 'RO ' : ''}"
   if not utils.is_empty(branch_name) then
@@ -80,7 +81,7 @@ M.inactive_statusline = function()
   local divider = g.lineflyAsciiShapes and "|" or "⎪"
   local arrow = g.lineflyAsciiShape and "" or "↓"
 
-  local statusline = " %*%<" .. utils.filename()
+  local statusline = " %*%<" .. file.name()
   statusline = statusline .. "%{&modified?'+ ':'  '}"
   statusline = statusline .. "%{&readonly?'RO ':''}"
   statusline = statusline .. "%*%=%l:%c " .. divider .. " %L " .. arrow .. "%P "
@@ -128,7 +129,7 @@ M.active_winbar = function()
 
   local winbar = modes_map[current_mode][1]
   winbar = winbar .. string.sub(modes_map[current_mode][2], 1, 2)
-  winbar = winbar .. " %* %<" .. utils.filename()
+  winbar = winbar .. " %* %<" .. file.name()
   winbar = winbar .. "%{&modified ? '+ ' : '  '}"
   winbar = winbar .. "%{&readonly ? 'RO ' : ''}"
   winbar = winbar .. "%#Normal#"
@@ -137,7 +138,7 @@ M.active_winbar = function()
 end
 
 M.inactive_winbar = function()
-  local winbar = " %*%<" .. utils.filename()
+  local winbar = " %*%<" .. file.name()
   winbar = winbar .. "%{&modified?'+ ':'  '}"
   winbar = winbar .. "%{&readonly?'RO ':''}"
   winbar = winbar .. "%#NonText#"
