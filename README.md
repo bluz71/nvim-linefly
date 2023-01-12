@@ -231,7 +231,7 @@ highlight! link LineflyReplace ErrorMsg
 | [lineflyWithIndentStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithindentstatus)                 | Disabled
 | [lineflyWithGitBranch](https://github.com/bluz71/vim-linefly-statusline#lineflywithgitbranch)                       | Enabled
 | [lineflyWithGitsignsStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithgitsignsstatus)             | Enabled if Gitsigns plugin is loaded
-| [lineflyWithNvimDiagnosticStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithnvimdiagnosticstatus) | Enabled if nvim-lspconfig plugin is loaded
+| [lineflyWithDiagnosticStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithdiagnosticstatus) | Enabled if nvim-lspconfig plugin is loaded
 
 ---
 
@@ -496,12 +496,12 @@ vim.g.lineflyWithFileIcon = true
 
 ---
 
-### lineflyWithNvimDiagnosticStatus
+### lineflyWithDiagnosticStatus
 
 _linefly statusline_ supports [Neovim
 Diagnostics](https://neovim.io/doc/user/diagnostic.html)
 
-The `lineflyWithNvimDiagnosticStatus` option specifies whether to indicate the
+The `lineflyWithDiagnosticStatus` option specifies whether to indicate the
 presence of the Neovim Diagnostics in the current buffer.
 
 By default, Neovim Diagnositics will be displayed if the
@@ -512,12 +512,7 @@ your initialization file:
 
 ```viml
 " Vimscript initialization file
-let g:lineflyWithNvimDiagnosticStatus = v:false
-```
-
-```lua
--- Lua initialization file
-vim.g.lineflyWithNvimDiagnosticStatus = false
+let g:lineflyWithDiagnosticStatus = false
 ```
 
 Sponsor

@@ -71,7 +71,7 @@ M.active_statusline = function()
   statusline = statusline .. "%*%=%l:%c %*" .. divider
   statusline = statusline .. "%* " .. mode_emphasis .. "%L%* " .. arrow .. "%P "
   if g.lineflyWithIndentStatus then
-    statusline = statusline .. "%*" .. divider .. "%* %{linefly#IndentStatus()} " -- XXX port to Lua
+    statusline = statusline .. "%*" .. divider .. "%* " .. utils.indent_status()
   end
 
   return statusline
@@ -86,7 +86,7 @@ M.inactive_statusline = function()
   statusline = statusline .. "%{&readonly?'RO ':''}"
   statusline = statusline .. "%*%=%l:%c " .. divider .. " %L " .. arrow .. "%P "
   if g.lineflyWithIndentStatus then
-    statusline = statusline .. divider .. " %{linefly#IndentStatus()} " -- XXX port to Lua
+    statusline = statusline .. divider .. " " .. utils.indent_status()
   end
 
   return statusline

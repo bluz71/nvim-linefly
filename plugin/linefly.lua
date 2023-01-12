@@ -48,7 +48,7 @@ g.lineflyWithGitsignsStatus = g.lineflyWithGitsignsStatus or true
 g.lineflyWithFileIcon = g.lineflyWithFileIcon or false
 
 -- By default do indicate Neovim Diagnostic status, if nvim-lsp plugin is loaded.
-g.lineflyWithNvimDiagnosticStatus = g.lineflyWithNvimDiagnosticStatus or true
+g.lineflyWithDiagnosticStatus = g.lineflyWithDiagnosticStatus or true
 
 local linefly_events = augroup("LineflyEvents", {})
 

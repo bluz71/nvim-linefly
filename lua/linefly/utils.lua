@@ -1,4 +1,5 @@
 local buf_get_option = vim.api.nvim_buf_get_option
+local opt = vim.opt
 local tabpage_list_wins = vim.api.nvim_tabpage_list_wins
 local win_get_buf = vim.api.nvim_win_get_buf
 local win_get_config = vim.api.nvim_win_get_config
@@ -7,6 +8,18 @@ local M = {}
 
 M.is_empty = function(str)
   return str == nil or string.len(str) == 0
+end
+
+M.indent_status = function()
+  if not opt.expandtab:get() then
+    return "Tab:" .. opt.tabstop:get() .. " "
+  else
+    local size = opt.shiftwidth:get()
+    if size == 0 then
+      size = opt.tabstop:get()
+    end
+    return "Spc:" .. size .. " "
+  end
 end
 
 -- Return the number of split windows exluding floating windows and other
