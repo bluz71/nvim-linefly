@@ -12,7 +12,7 @@ local opt = vim.opt
 local opt_local = vim.opt_local
 local pathshorten = vim.fn.pathshorten
 local tabpagenr = vim.fn.tabpagenr
-local winheight = vim.api.nvim_win_get_height
+local win_get_height = vim.api.nvim_win_get_height
 
 -- Refer to ':help mode()' for the full list of available modes. For now only
 -- handle the most common modes.
@@ -113,7 +113,7 @@ M.statusline = function(active)
     end
   else
     opt_local.statusline = "%{%v:lua.linefly.inactive_statusline()%}"
-    if g.lineflyWinBar and winheight(0) > 1 then
+    if g.lineflyWinBar and window.count() > 1 and win_get_height(0) > 1 then
       opt_local.winbar = "%{%v:lua.linefly.inactive_winbar()%}"
     else
       opt_local.winbar = nil
