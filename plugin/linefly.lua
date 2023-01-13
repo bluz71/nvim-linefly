@@ -90,7 +90,7 @@ autocmd("WinLeave", {
 autocmd({ "BufEnter", "FocusGained" }, {
   callback = function()
     if package.loaded.gitsigns == nil then
-      -- Gitsigns is not loaded, use fallback branch name detection.
+      -- Gitsigns is not loaded, use fallback Git branch name detection.
       b.git_branch_name = git.detect_branch_name()
     end
   end,
