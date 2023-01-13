@@ -4,8 +4,9 @@ local setwinvar = vim.fn.setwinvar
 local tabpage_list_wins = vim.api.nvim_tabpage_list_wins
 local win_get_buf = vim.api.nvim_win_get_buf
 local win_get_config = vim.api.nvim_win_get_config
-local winheight = vim.api.nvim_win_get_height
-local winnr = vim.fn.winnr
+local win_get_height = vim.api.nvim_win_get_height
+local win_get_number = vim.api.nvim_win_get_number
+local win_set_option = vim.api.nvim_win_set_option
 
 local M = {}
 
@@ -39,11 +40,14 @@ end
 --
 -- Note - https://jip.dev/posts/a-simpler-vim-statusline/#inactive-statuslines
 M.update_inactive = function()
-  for winnum = 1, winnr("$") do
-    if winnum ~= winnr() then
-      setwinvar(winnum, "&statusline", "%{%v:lua.linefly.inactive_statusline()%}")
-      if g.lineflyWinBar and winheight(0) > 1 then
-        setwinvar(winnum, "&winbar", "%{%v:lua.linefly.inactive_winbar()%})")
+  local windows = tabpage_list_wins(0)
+  local current_window = win_get_number(0)
+
+  for _, w in pairs(windows) do
+    if win_get_number(w) ~= current_window then
+      win_set_option(w, "statusline", "%{%v:lua.linefly.inactive_statusline()%}")
+      if g.lineflyWinBar and win_get_height(0) > 1 then
+        win_set_option(w, "winbar", "%{%v:lua.linefly.inactive_winbar()%})")
       end
     end
   end
