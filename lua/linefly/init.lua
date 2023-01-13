@@ -2,6 +2,7 @@ local file = require("linefly.file")
 local git = require("linefly.git")
 local plugins = require("linefly.plugins")
 local utils = require("linefly.utils")
+local window = require("linefly.window")
 local buf_get_option = vim.api.nvim_buf_get_option
 local fnamemodify = vim.fn.fnamemodify
 local g = vim.g
@@ -105,7 +106,7 @@ M.statusline = function(active)
     return
   elseif active then
     opt_local.statusline = "%{%v:lua.linefly.active_statusline()%}"
-    if g.lineflyWinBar and utils.window_count() > 1 then
+    if g.lineflyWinBar and window.count() > 1 then
       opt_local.winbar = "%{%v:lua.linefly.active_winbar()%}"
     else
       opt_local.winbar = nil
