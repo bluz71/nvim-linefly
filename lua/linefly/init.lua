@@ -172,7 +172,7 @@ end
 
 M.tabline = function()
   if g.lineflyTabLine then
-    opt.tabline = "%!v:lua.linefly.active_tabline()"
+    opt.tabline = "%{%v:lua.linefly.active_tabline()%}"
   end
 end
 

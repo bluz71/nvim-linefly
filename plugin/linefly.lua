@@ -3,16 +3,18 @@
 -- URL:          github.com/bluz71/nvim-linefly
 -- License:      MIT (https://opensource.org/licenses/MIT)
 
-local git = require("linefly.git")
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-local b = vim.b
-local g = vim.g
-
 if vim.g.lineflyLoaded ~= nil then
   return
 end
 vim.g.lineflyLoaded = true
+
+local git = require("linefly.git")
+local linefly = require("linefly")
+local window = require("linefly.window")
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+local b = vim.b
+local g = vim.g
 
 -- By default do not use Ascii character shapes for dividers and symbols.
 g.lineflyAsciiShapes = g.lineflyAsciiShapes or false
@@ -47,7 +49,7 @@ g.lineflyWithGitsignsStatus = g.lineflyWithGitsignsStatus or true
 -- By default don't display a filetype icon.
 g.lineflyWithFileIcon = g.lineflyWithFileIcon or false
 
--- By default do indicate Neovim Diagnostic status, if nvim-lsp plugin is loaded.
+-- By default do inrequire("linefly")dicate Neovim Diagnostic status, if nvim-lsp plugin is loaded.
 g.lineflyWithDiagnosticStatus = g.lineflyWithDiagnosticStatus or true
 
 local linefly_events = augroup("LineflyEvents", {})
@@ -58,27 +60,29 @@ autocmd({ "VimEnter", "ColorScheme" }, {
 })
 
 autocmd("VimEnter", {
-  command = "call linefly#UpdateInactiveWindows()",
+  callback = function()
+    window.update_inactive()
+  end,
   group = linefly_events,
 })
 
 autocmd("VimEnter", {
   callback = function()
-    require("linefly").tabline()
+    linefly.tabline()
   end,
   group = linefly_events,
 })
 
 autocmd({ "WinEnter", "BufWinEnter" }, {
   callback = function()
-    require("linefly").statusline(true)
+    linefly.statusline(true)
   end,
   group = linefly_events,
 })
 
 autocmd("WinLeave", {
   callback = function()
-    require("linefly").statusline(false)
+    linefly.statusline(false)
   end,
   group = linefly_events,
 })
