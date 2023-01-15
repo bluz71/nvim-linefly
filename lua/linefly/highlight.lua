@@ -11,6 +11,10 @@ local synIDattr = vim.fn.synIDattr
 -- avoid needless highlight extraction and generation.
 local statusline_bg
 
+local highlight_empty = function(group)
+  return not hlexists(group) or is_empty(synIDattr(synIDtrans(hlID(group)), "bg"))
+end
+
 local synthesize_highlight = function(target, source, reverse)
   local source_fg
 
@@ -121,31 +125,19 @@ local colorscheme_mode_highlights = function()
     highlight(0, "LineflyReplace", { link = "MiniStatuslineModeReplace" })
   else
     -- Fallback for all other colorschemes.
-    if
-      not hlexists("LineflyNormal") or is_empty(synIDattr(synIDtrans(hlID("LineflyNormal")), "bg"))
-    then
+    if highlight_empty("LineflyNormal") then
       synthesize_mode_highlight("LineflyNormal", "Directory", "VertSplit")
     end
-    if
-      not hlexists("LineflyInsert") or is_empty(synIDattr(synIDtrans(hlID("LineflyInsert")), "bg"))
-    then
+    if highlight_empty("LineflyInsert") then
       synthesize_mode_highlight("LIneflyInsert", "String", "VertSplit")
     end
-    if
-      not hlexists("LineflyVisual") or is_empty(synIDattr(synIDtrans(hlID("LineflyVisual")), "bg"))
-    then
+    if highlight_empty("LineflyVisual") then
       synthesize_mode_highlight("LineflyVisual", "Statement", "VertSplit")
     end
-    if
-      not hlexists("LineflyCommand")
-      or is_empty(synIDattr(synIDtrans(hlID("LineflyCommand")), "bg"))
-    then
+    if highlight_empty("LineflyCommand") then
       synthesize_mode_highlight("LineflyCommand", "WarningMsg", "VertSplit")
     end
-    if
-      not hlexists("LineflyReplace")
-      or is_empty(synIDattr(synIDtrans(hlID("LineflyReplace")), "bg"))
-    then
+    if highlight_empty("LineflyReplace") then
       synthesize_mode_highlight("LineflyReplace", "Error", "VertSplit")
     end
   end
@@ -182,13 +174,8 @@ M.generate_groups = function()
   colorscheme_diagnostic_highlights()
   synthesize_highlight("LineflySession", "Error", false)
 
-  if g.lineflyTabLine then
-    if
-      not hlexists("TablineSelSymbol")
-      or is_empty(synIDattr(synIDtrans(hlID("TablineSelSymbol")), "bg"))
-    then
-      highlight(0, "TablineSelSymbol", { link = "TablineSel" })
-    end
+  if g.lineflyTabLine and highlight_empty("TablineSelSymbol") then
+    highlight(0, "TablineSelSymbol", { link = "TablineSel" })
   end
 end
 
