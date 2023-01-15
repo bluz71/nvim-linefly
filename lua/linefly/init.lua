@@ -64,7 +64,7 @@ M.active_statusline = function()
   statusline = statusline .. "%* %<" .. file.name()
   statusline = statusline .. "%{&modified ? '+ ' : '  '}"
   statusline = statusline .. "%{&readonly ? 'RO ' : ''}"
-  if not utils.is_empty(branch_name) then
+  if utils.is_present(branch_name) then
     statusline = statusline .. "%*" .. divider .. mode_emphasis
     statusline = statusline .. branch_name .. "%* "
   end

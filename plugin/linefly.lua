@@ -3,18 +3,20 @@
 -- URL:          github.com/bluz71/nvim-linefly
 -- License:      MIT (https://opensource.org/licenses/MIT)
 
-if vim.g.lineflyLoaded ~= nil then
+local g = vim.g
+
+if g.lineflyLoaded ~= nil then
   return
 end
-vim.g.lineflyLoaded = true
+g.lineflyLoaded = true
 
 local git = require("linefly.git")
+local highlight = require("linefly.highlight")
 local linefly = require("linefly")
 local window = require("linefly.window")
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 local b = vim.b
-local g = vim.g
 
 -- By default do not use Ascii character shapes for dividers and symbols.
 g.lineflyAsciiShapes = g.lineflyAsciiShapes or false
@@ -55,7 +57,9 @@ g.lineflyWithDiagnosticStatus = g.lineflyWithDiagnosticStatus or true
 local linefly_events = augroup("LineflyEvents", {})
 
 autocmd({ "VimEnter", "ColorScheme" }, {
-  command = "call linefly#GenerateHighlightGroups()",
+  callback = function()
+    highlight.generate_groups()
+  end,
   group = linefly_events,
 })
 

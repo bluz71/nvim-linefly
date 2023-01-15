@@ -6,6 +6,10 @@ M.is_empty = function(str)
   return str == nil or string.len(str) == 0
 end
 
+M.is_present = function(str)
+  return str and string.len(str) > 0
+end
+
 M.indent_status = function()
   if not opt.expandtab:get() then
     return "Tab:" .. opt.tabstop:get() .. " "

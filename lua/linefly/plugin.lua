@@ -1,4 +1,4 @@
-local is_empty = require("linefly.utils").is_empty
+local is_present = require("linefly.utils").is_present
 local diagnostic = vim.diagnostic
 local eval = vim.api.nvim_eval
 local g = vim.g
@@ -20,7 +20,7 @@ M.status = function()
     if signs and signs.removed and signs.removed > 0 then
       segments = segments .. " %#LineflyGitDelete#-" .. signs.removed .. "%*"
     end
-    if not is_empty(segments) then
+    if is_present(segments) then
       segments = segments .. " "
     end
   end
@@ -53,7 +53,7 @@ M.status = function()
     else
       obsession_segment = eval([[ObsessionStatus('●', '■')]])
     end
-    if not is_empty(obsession_segment) then
+    if is_present(obsession_segment) then
       segments = segments .. " %#LineflySession#" .. obsession_segment .. "%*"
     end
   end
