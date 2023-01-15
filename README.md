@@ -3,26 +3,26 @@ linefly statusline
 
 **NOTE**, this is a work-in-progess, APIs will change.
 
-_linefly statusline_ is a simple, fast and informative `statusline` for Vim and
-Neovim.
+_linefly_ is a simple, fast and informative `statusline` for Neovim.
 
-_linefly statusline_ also provides optional `tabline` and Neovim
-`winbar` support when the appropriate settings are enabled; refer to
+_linefly_ also provides optional `tabline` and Neovim `winbar` support when the
+appropriate settings are enabled; refer to
 [`lineflyTabLine`](https://github.com/bluz71/vim-linefly-statusline#lineflywinbar)
 and
 [`lineflyWinBar`](https://github.com/bluz71/vim-linefly-statusline#lineflywinbar).
 
-_linefly statusline_ will adapt it's colors to the colorscheme currently in
-effect. Colors can also be
+_linefly_ will adapt it's colors to the colorscheme currently in effect. Colors
+can also be
 [customized](https://github.com/bluz71/vim-linefly-statusline#highlight-groups-and-colors)
 if desired.
 
-Lastly, _linefly statusline_ is a light _statusline_ plugin clocking in at
-about 500 lines of code. For comparison, the
+Lastly, _linefly_ is a light _statusline_ plugin clocking in at about 500 lines
+of Lua code. For comparison, the
+[lualine](https://github.com/nvim-lualine/lualine.nvim)
 [lightline](https://github.com/itchyny/lightline.vim),
 [airline](https://github.com/vim-airline/vim-airline) and
-[lualine](https://github.com/nvim-lualine/lualine.nvim) `statusline` plugins
-contain over 3,600, 7,900 and 7,300 lines of code respectively. In fairness, the
+`statusline` plugins
+contain over 8,000, 3,600 and 7,300 code respectively. In fairness, the
 latter plugins are more featureful, configurable and visually pleasing.
 
 Screenshots
@@ -48,14 +48,14 @@ Neovim setup with the [moonfly](https://github.com/bluz71/vim-moonfly-colors)
 colorscheme. The Neovim startup times in the following table are provived by the
 [dstein64/vim-startuptime](https://github.com/dstein64/vim-startuptime) plugin.
 
-Startup times are the average of five consecutive runs. Note, `native` is run
+Startup times are the average of five consecutive runs. Note, `stock` is run
 without any `statusline` plugin.
 
-| native  | linefly | lightline | airline | lualine
-|---------|---------|-----------|---------|--------
-| 19.0ms  | 21.8ms  | 24.5ms    | 95.0ms  | 30.8ms
+| stock  | linefly | lualine | lightline | airline
+|--------|---------|---------|-----------|--------
+| 20.2ms | 21.1ms  | 26.9ms  | 32.3ms    | 117.6ms
 
-Startup times as of July 2022 on my system; performance on other systems will
+Startup times as of January 2023 on my system; performance on other systems will
 vary.
 
 Plugins, Linters and Diagnostics supported
@@ -74,7 +74,7 @@ Plugins, Linters and Diagnostics supported
 :zap: Requirements
 ------------------
 
-_linefly statusline_ requires a **GUI** capable version of Vim or Neovim with an
+_linefly_ requires a **GUI** capable version of Vim or Neovim with an
 appropriate `colorscheme` set.
 
 A GUI client, such as Gvim, or a modern terminal version of Vim or Neovim with
@@ -164,7 +164,7 @@ Highlight Groups And Colors
 
 Sections marked with `*` in the previous section are linked to the following
 custom highlight groups with their associated fallbacks if the current
-colorscheme does not support _linefly statusline_.
+colorscheme does not support _linefly_.
 
 | Segment                  | Custom Highlight Group | Synthesized Highlight Fallback
 |--------------------------|------------------------|-------------------------------
@@ -174,7 +174,7 @@ colorscheme does not support _linefly statusline_.
 | Command Mode             | `LineflyCommand`       | `WarningMsg`
 | Replace Mode             | `LineflyReplace`       | `Error`
 
-Note, the following colorschemes support _linefly statusline_, either within the
+Note, the following colorschemes support _linefly_, either within the
 colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [moonfly](https://github.com/bluz71/vim-moonfly-colors)
@@ -204,7 +204,7 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 Lastly, if the fallback colors do not suit then it is very easy to override with
 your own highlights.
 
-:gift: Here is a simple example of customized _linefly statusline_ colors. Save
+:gift: Here is a simple example of customized _linefly_ colors. Save
 the following either at the end of your initialization file, after setting your
 `colorscheme`, or in an appropriate `after` file such as
 `after/plugin/linefly-statusline.vim`.
@@ -240,9 +240,9 @@ highlight! link LineflyReplace ErrorMsg
 The `lineflyAsciiShapes` option specifies whether to only use Ascii characters
 for certain dividers and symbols.
 
-_linefly statusline_ by default **will use** Unicode Symbols and Powerline
-Glyphs for certain shapes such as: Git branch, dividers and active tabs. Note,
-many modern fonts, such as: [Hack](https://sourcefoundry.org/hack),
+_linefly_ by default **will use** Unicode Symbols and Powerline Glyphs for
+certain shapes such as: Git branch, dividers and active tabs. Note, many modern
+fonts, such as: [Hack](https://sourcefoundry.org/hack),
 [Iosevka](https://typeof.net/Iosevk), [Fira
 Code](https://github.com/tonsky/FiraCode) and [Jetbrains
 Mono](https://www.jetbrains.com/lp/mono), will provide these shapes.
@@ -334,12 +334,12 @@ The `lineflyTabLine` option specifies whether to let this plugin manage the
 `tabline` in addition to the `statusline`. By default `tabline` management will
 not be undertaken.
 
-If enabled, _linefly statusline_ will render a simple numbered, and clickable,
-window-space layout in the `tabline`; note, no buffers will be displayed in the
-`tabline` since there are many plugins that already provide that capability.
+If enabled, _linefly_ will render a simple numbered, and clickable, window-space
+layout in the `tabline`; note, no buffers will be displayed in the `tabline`
+since there are many plugins that already provide that capability.
 
-To enable _linefly statusline_'s `tabline` support please add the following to
-your initialization file:
+To enable _linefly_'s `tabline` support please add the following to your
+initialization file:
 
 ```viml
 " Vimscript initialization file
@@ -498,7 +498,7 @@ vim.g.lineflyWithFileIcon = true
 
 ### lineflyWithDiagnosticStatus
 
-_linefly statusline_ supports [Neovim
+_linefly_ supports [Neovim
 Diagnostics](https://neovim.io/doc/user/diagnostic.html)
 
 The `lineflyWithDiagnosticStatus` option specifies whether to indicate the
