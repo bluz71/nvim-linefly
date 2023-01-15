@@ -38,6 +38,12 @@ end
 -- only be called upon BufEnter and FocusGained events to avoid needlessly
 -- invoking that system call every time the statusline is redrawn.
 M.detect_branch_name = function()
+  if not g.lineflyWithGitBranch or is_empty(buf_get_name(0)) then
+    -- Don't calculate the expensive to compute branch name if it isn't wanted
+    -- or the buffer is empty.
+    return ""
+  end
+
   local git_branch_name = system("git branch --show-current 2> /dev/null")
 
   if is_empty(git_branch_name) then
