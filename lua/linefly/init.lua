@@ -1,3 +1,8 @@
+-- Useful information about Lua implemented statuslines:
+--  https://is.gd/0neIrY
+--  https://is.gd/jWqwWz
+--  https://is.gd/cQDVa7
+
 local file = require("linefly.file")
 local git = require("linefly.git")
 local plugin = require("linefly.plugin")
