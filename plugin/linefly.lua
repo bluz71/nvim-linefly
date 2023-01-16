@@ -3,8 +3,12 @@
 -- URL:          github.com/bluz71/nvim-linefly
 -- License:      MIT (https://opensource.org/licenses/MIT)
 
-local g = vim.g
+if vim.fn.has("nvim-0.8") ~= 1 then
+  vim.opt_local.statusline = "nvim-linefly requires Neovim 0.8, or later"
+  return
+end
 
+local g = vim.g
 if g.lineflyLoaded ~= nil then
   return
 end

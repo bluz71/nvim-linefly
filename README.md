@@ -69,11 +69,14 @@ Plugins supported
 :zap: Requirements
 ------------------
 
-_linefly_ requires Neovim 0.8 or later.
+_linefly_ requires Neovim 0.8, or later.
 
 _linefly_ also requires a **GUI** capable version Neovim with an appropriate
 `colorscheme` set. A GUI client, or Neovim with the `termguicolors` option
 enabled in a true-color terminal, is required.
+
+Lastly, please make sure that the `laststatus` option is set to either: `1`, `2`
+or `3`.
 
 Installation
 ------------
