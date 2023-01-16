@@ -5,7 +5,7 @@
 
 local file = require("linefly.file")
 local git = require("linefly.git")
-local plugin = require("linefly.plugin")
+local plugins = require("linefly.plugins")
 local utils = require("linefly.utils")
 local window = require("linefly.window")
 local buf_get_option = vim.api.nvim_buf_get_option
@@ -73,7 +73,7 @@ M.active_statusline = function()
     statusline = statusline .. "%*" .. divider .. mode_emphasis
     statusline = statusline .. branch_name .. "%* "
   end
-  statusline = statusline .. plugin.status()
+  statusline = statusline .. plugins.status()
   statusline = statusline .. "%*%=%l:%c %*" .. divider
   statusline = statusline .. "%* " .. mode_emphasis .. "%L%* " .. arrow .. "%P "
   if g.lineflyWithIndentStatus then
