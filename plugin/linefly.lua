@@ -9,15 +9,13 @@ if vim.fn.has("nvim-0.8") ~= 1 then
 end
 
 local g = vim.g
+
 if g.lineflyLoaded ~= nil then
   return
 end
 g.lineflyLoaded = true
 
-local git = require("linefly.git")
-local highlight = require("linefly.highlight")
 local linefly = require("linefly")
-local window = require("linefly.window")
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -25,14 +23,14 @@ local linefly_events = augroup("LineflyEvents", {})
 
 autocmd({ "VimEnter", "ColorScheme" }, {
   callback = function()
-    highlight.generate_groups()
+    require("linefly.highlight").generate_groups()
   end,
   group = linefly_events,
 })
 
 autocmd("VimEnter", {
   callback = function()
-    window.update_inactive()
+    require("linefly.window").update_inactive()
   end,
   group = linefly_events,
 })
@@ -62,7 +60,7 @@ autocmd({ "BufEnter", "FocusGained" }, {
   callback = function()
     if package.loaded.gitsigns == nil then
       -- Gitsigns is not loaded, use fallback Git branch name detection.
-      vim.b.git_branch_name = git.detect_branch_name()
+      vim.b.git_branch_name = require("linefly.git").detect_branch_name()
     end
   end,
   group = linefly_events,
