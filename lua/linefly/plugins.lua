@@ -1,4 +1,5 @@
 local is_present = require("linefly.utils").is_present
+local options = require("linefly.options").list
 local diagnostic = vim.diagnostic
 local eval = vim.api.nvim_eval
 local g = vim.g
@@ -9,7 +10,7 @@ M.status = function()
   local segments = ""
 
   -- Gitsigns status.
-  if g.lineflyWithGitsignsStatus and package.loaded.gitsigns then
+  if options().with_gitsigns_status and package.loaded.gitsigns then
     local signs = vim.b.gitsigns_status_dict
     if signs and signs.added and signs.added > 0 then
       segments = segments .. " %#LineflyGitAdd#+" .. signs.added .. "%*"
@@ -26,21 +27,21 @@ M.status = function()
   end
 
   -- Diagnostic status.
-  if g.lineflyWithDiagnosticStatus and g.lspconfig then
+  if options().with_diagnostic_status and g.lspconfig then
     local errors = #diagnostic.get(0, { severity = diagnostic.severity.ERROR })
     local warnings = #diagnostic.get(0, { severity = diagnostic.severity.WARN })
     local information = #diagnostic.get(0, { severity = diagnostic.severity.INFO })
 
     if errors > 0 then
-      segments = segments .. " %#LineflyDiagnosticError#" .. g.lineflyErrorSymbol
+      segments = segments .. " %#LineflyDiagnosticError#" .. options().error_symbol
       segments = segments .. " " .. errors .. "%* "
     end
     if warnings > 0 then
-      segments = segments .. " %#LineflyDiagnosticWarning#" .. g.lineflyWarningSymbol
+      segments = segments .. " %#LineflyDiagnosticWarning#" .. options().warning_symbol
       segments = segments .. " " .. warnings .. "%* "
     end
     if information > 0 then
-      segments = segments .. " %#LineflyDiagnosticInformation#" .. g.lineflyInformationSymbol
+      segments = segments .. " %#LineflyDiagnosticInformation#" .. options().information_symbol
       segments = segments .. " " .. information .. "%* "
     end
   end
@@ -48,7 +49,7 @@ M.status = function()
   -- Obsession plugin status.
   if g.loaded_obsession then
     local obsession_segment
-    if g.lineflyAsciiShapes then
+    if options().ascii_shapes then
       obsession_segment = eval([[ObsessionStatus('$', 'S')]])
     else
       obsession_segment = eval([[ObsessionStatus('●', '■')]])

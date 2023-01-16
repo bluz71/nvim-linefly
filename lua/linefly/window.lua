@@ -1,4 +1,5 @@
 local is_empty = require("linefly.utils").is_empty
+local options = require("linefly.options").list
 local buf_get_option = vim.api.nvim_buf_get_option
 local g = vim.g
 local tabpage_list_wins = vim.api.nvim_tabpage_list_wins
@@ -45,7 +46,7 @@ M.update_inactive = function()
   for _, w in pairs(windows) do
     if win_get_number(w) ~= current_window then
       win_set_option(w, "statusline", "%{%v:lua.linefly.inactive_statusline()%}")
-      if g.lineflyWinBar and win_get_height(0) > 1 then
+      if options().winbar and win_get_height(0) > 1 then
         win_set_option(w, "winbar", "%{%v:lua.linefly.inactive_winbar()%})")
       end
     end

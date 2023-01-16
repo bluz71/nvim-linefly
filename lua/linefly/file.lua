@@ -1,4 +1,5 @@
 local is_empty = require("linefly.utils").is_empty
+local options = require("linefly.options").list
 local buf_get_name = vim.api.nvim_buf_get_name
 local buf_get_option = vim.api.nvim_buf_get_option
 local expand = vim.fn.expand
@@ -7,7 +8,7 @@ local g = vim.g
 local pathshorten = vim.fn.pathshorten
 
 local file_icon = function()
-  if not g.lineflyWithFileIcon or is_empty(buf_get_name(0)) or not g.nvim_web_devicons then
+  if not options().with_file_icon or is_empty(buf_get_name(0)) or not g.nvim_web_devicons then
     return ""
   end
 

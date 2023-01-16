@@ -1,5 +1,6 @@
 local is_empty = require("linefly.utils").is_empty
 local is_present = require("linefly.utils").is_present
+local options = require("linefly.options").list
 local g = vim.g
 local highlight = vim.api.nvim_set_hl
 local hlexists = vim.fn.hlexists
@@ -174,7 +175,7 @@ M.generate_groups = function()
   colorscheme_diagnostic_highlights()
   synthesize_highlight("LineflySession", "Error", false)
 
-  if g.lineflyTabLine and highlight_empty("TablineSelSymbol") then
+  if options().tabline and highlight_empty("TablineSelSymbol") then
     highlight(0, "TablineSelSymbol", { link = "TablineSel" })
   end
 end

@@ -6,6 +6,7 @@
 local file = require("linefly.file")
 local git = require("linefly.git")
 local plugins = require("linefly.plugins")
+local options = require("linefly.options").list
 local utils = require("linefly.utils")
 local window = require("linefly.window")
 local buf_get_option = vim.api.nvim_buf_get_option
@@ -59,8 +60,8 @@ _G.linefly = M
 
 M.active_statusline = function()
   local current_mode = mode().mode
-  local divider = g.lineflyAsciiShapes and "|" or "⎪"
-  local arrow = g.lineflyAsciiShape and "" or "↓"
+  local divider = options().ascii_shapes and "|" or "⎪"
+  local arrow = options().ascii_shapes and "" or "↓"
   local branch_name = git.current_branch_name()
   local mode_emphasis = modes_map[current_mode][3]
 
@@ -76,7 +77,7 @@ M.active_statusline = function()
   statusline = statusline .. plugins.status()
   statusline = statusline .. "%*%=%l:%c %*" .. divider
   statusline = statusline .. "%* " .. mode_emphasis .. "%L%* " .. arrow .. "%P "
-  if g.lineflyWithIndentStatus then
+  if options().with_indent_status then
     statusline = statusline .. "%*" .. divider .. "%* " .. utils.indent_status()
   end
 
@@ -84,14 +85,14 @@ M.active_statusline = function()
 end
 
 M.inactive_statusline = function()
-  local divider = g.lineflyAsciiShapes and "|" or "⎪"
-  local arrow = g.lineflyAsciiShape and "" or "↓"
+  local divider = options().ascii_shapes and "|" or "⎪"
+  local arrow = options().ascii_shapes and "" or "↓"
 
   local statusline = " %*%<" .. file.name()
   statusline = statusline .. "%{&modified?'+ ':'  '}"
   statusline = statusline .. "%{&readonly?'RO ':''}"
   statusline = statusline .. "%*%=%l:%c " .. divider .. " %L " .. arrow .. "%P "
-  if g.lineflyWithIndentStatus then
+  if options().with_indent_status then
     statusline = statusline .. divider .. " " .. utils.indent_status()
   end
 
@@ -103,7 +104,7 @@ M.statusline = function(active)
     -- Likely a file explorer or some other special type of buffer. Set a short
     -- path statusline for these types of buffers.
     opt_local.statusline = pathshorten(fnamemodify(getcwd(), ":~:."))
-    if g.lineflyWinBar then
+    if options().winbar then
       opt_local.winbar = nil
     end
   elseif buf_get_option(0, "buftype") == "nowrite" then
@@ -111,14 +112,14 @@ M.statusline = function(active)
     return
   elseif active then
     opt_local.statusline = "%{%v:lua.linefly.active_statusline()%}"
-    if g.lineflyWinBar and window.count() > 1 then
+    if options().winbar and window.count() > 1 then
       opt_local.winbar = "%{%v:lua.linefly.active_winbar()%}"
     else
       opt_local.winbar = nil
     end
   else
     opt_local.statusline = "%{%v:lua.linefly.inactive_statusline()%}"
-    if g.lineflyWinBar and window.count() > 1 and win_get_height(0) > 1 then
+    if options().winbar and window.count() > 1 and win_get_height(0) > 1 then
       opt_local.winbar = "%{%v:lua.linefly.inactive_winbar()%}"
     else
       opt_local.winbar = nil
@@ -157,7 +158,7 @@ end
 ------------------------------------------------------------
 
 M.active_tabline = function()
-  local symbol = g.lineflyAsciiShapes and "*" or "▪"
+  local symbol = options().ascii_shapes and "*" or "▪"
   local tabline = ""
   local counter = 0
 
@@ -176,7 +177,7 @@ M.active_tabline = function()
 end
 
 M.tabline = function()
-  if g.lineflyTabLine then
+  if options().tabline then
     opt.tabline = "%{%v:lua.linefly.active_tabline()%}"
   end
 end

@@ -1,4 +1,5 @@
 local is_empty = require("linefly.utils").is_empty
+local options = require("linefly.options").list
 local b = vim.b
 local buf_get_name = vim.api.nvim_buf_get_name
 local g = vim.g
@@ -7,7 +8,7 @@ local system = vim.fn.system
 local M = {}
 
 M.current_branch_name = function()
-  if not g.lineflyWithGitBranch or is_empty(buf_get_name(0)) then
+  if not options().with_git_branch or is_empty(buf_get_name(0)) then
     return ""
   end
 
@@ -25,7 +26,7 @@ M.current_branch_name = function()
     return ""
   end
 
-  if g.lineflyAsciiShapes then
+  if options().ascii_shapes then
     return " " .. git_branch_name
   else
     return "  " .. git_branch_name
@@ -38,7 +39,7 @@ end
 -- only be called upon BufEnter and FocusGained events to avoid needlessly
 -- invoking that system call every time the statusline is redrawn.
 M.detect_branch_name = function()
-  if not g.lineflyWithGitBranch or is_empty(buf_get_name(0)) then
+  if not options().with_git_branch or is_empty(buf_get_name(0)) then
     -- Don't calculate the expensive to compute branch name if it isn't wanted
     -- or the buffer is empty.
     return ""
