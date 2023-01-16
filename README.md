@@ -389,23 +389,6 @@ vim.g.linefly_options = {
 
 ---
 
-### with_git_branch
-
-The `with_git_branch` option specifies whether to display Git branch
-details in the _statusline_. By default Git branches will be displayed in the
-`statusline`.
-
-To disable the display of Git branches in the _statusline_ please add the
-following to your initialization file:
-
-```lua
-vim.g.linefly_options = {
-  with_git_branch = false,
-}
-```
-
----
-
 ### with_file_icon
 
 The `with_file_icon` option specifies whether a filetype icon, from a Nerd
@@ -428,25 +411,6 @@ vim.g.linefly_options = {
 
 ---
 
-### with_gitsigns_status
-
-The `with_gitsigns_status` option specifies whether to display
-[Gitsigns](https://github.com/lewis6991/gitsigns.nvim) of the current buffer in
-the _statusline_.
-
-By default, Gitsigns will be displayed if the plugin is loaded.
-
-To disable the display of Gitsigns in the _statusline_ please add the following
-to your initialization file:
-
-```lua
-vim.g.linefly_options = {
-  with_gitsigns_status = false,
-}
-```
-
----
-
 ### with_diagnostic_status
 
 _linefly_ supports [Diagnostics](https://neovim.io/doc/user/diagnostic.html).
@@ -463,6 +427,42 @@ initialization file:
 ```lua
 vim.g.linefly_options = {
   with_diagnostic_status = false,
+}
+```
+
+---
+
+### with_git_branch
+
+The `with_git_branch` option specifies whether to display Git branch
+details in the _statusline_. By default Git branches will be displayed in the
+`statusline`.
+
+To disable the display of Git branches in the _statusline_ please add the
+following to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  with_git_branch = false,
+}
+```
+
+---
+
+### with_gitsigns_status
+
+The `with_gitsigns_status` option specifies whether to display
+[Gitsigns](https://github.com/lewis6991/gitsigns.nvim) of the current buffer in
+the _statusline_.
+
+By default, Gitsigns will be displayed if the plugin is loaded.
+
+To disable the display of Gitsigns in the _statusline_ please add the following
+to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  with_gitsigns_status = false,
 }
 ```
 
