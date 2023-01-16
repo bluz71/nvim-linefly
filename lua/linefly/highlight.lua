@@ -89,11 +89,8 @@ local colorscheme_mode_highlights = function()
     synthesize_mode_highlight("LineflyVisual", "Statement", "VertSplit")
     synthesize_mode_highlight("LineflyCommand", "Constant", "VertSplit")
     synthesize_mode_highlight("LineflyReplace", "Conditional", "VertSplit")
-  elseif
-    g.colors_name == "edge"
-    or g.colors_name == "everforest"
-    or g.colors_name == "gruvbox-material"
-    or g.colors_name == "sonokai"
+  elseif g.colors_name == "edge" or g.colors_name == "everforest"
+    or g.colors_name == "gruvbox-material" or g.colors_name == "sonokai"
     or g.colors_name == "tokyonight"
   then
     highlight(0, "LineflyNormal", { link = "MiniStatuslineModeNormal" })
@@ -101,6 +98,12 @@ local colorscheme_mode_highlights = function()
     highlight(0, "LineflyVisual", { link = "MiniStatuslineModeVisual" })
     highlight(0, "LineflyCommand", { link = "MiniStatuslineModeCommand" })
     highlight(0, "LineflyReplace", { link = "MiniStatuslineModeReplace" })
+  elseif g.colors_name == "kanagawa" then
+    synthesize_mode_highlight("LineflyNormal", "Directory", "VertSplit")
+    synthesize_mode_highlight("LineflyInsert", "GitSignsAdd", "VertSplit")
+    synthesize_mode_highlight("LineflyVisual", "Conditional", "VertSplit")
+    synthesize_mode_highlight("LineflyCommand", "Operator", "VertSplit")
+    synthesize_mode_highlight("LineflyReplace", "GitSignsDelete", "VertSplit")
   elseif g.colors_name == "dracula" then
     highlight(0, "LineflyNormal", { link = "WildMenu" })
     highlight(0, "LineflyInsert", { link = "Search" })
@@ -113,11 +116,8 @@ local colorscheme_mode_highlights = function()
     synthesize_mode_highlight("LineflyVisual", "GruvboxOrange", "GruvboxBg0")
     synthesize_mode_highlight("LineflyCommand", "GruvboxGreen", "GruvboxBg0")
     synthesize_mode_highlight("LineflyReplace", "GruvboxRed", "GruvboxBg0")
-  elseif
-    g.colors_name == "carbonfox"
-    or g.colors_name == "nightfox"
-    or g.colors_name == "nordfox"
-    or g.colors_name == "terafox"
+  elseif g.colors_name == "carbonfox" or g.colors_name == "nightfox"
+    or g.colors_name == "nordfox" or g.colors_name == "terafox"
   then
     highlight(0, "LineflyNormal", { link = "Todo" })
     highlight(0, "LineflyInsert", { link = "MiniStatuslineModeInsert" })

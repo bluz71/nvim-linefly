@@ -172,9 +172,11 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [everforest](https://github.com/sainnhe/everforest)
 
-- [gruvbox](https://github.com/gruvbox-community/gruvbox)
+- [gruvbox](https://github.com/ellisonleao/gruvbox.nvim)
 
 - [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
+
+- [kanagawa](https://github.com/rebelot/kanagawa.nvim)
 
 - [nightfox](https://github.com/EdenEast/nightfox.nvim)
 
