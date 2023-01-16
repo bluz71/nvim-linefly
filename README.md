@@ -204,19 +204,33 @@ Default option values:
 
 ```lua
 vim.g.linefly_options = {
-  [ascii_shapes](https://github.com/bluz71/nvim-lineflye#ascii_shapes) = false,
-  [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol) = "E",
-  [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol) = "W",
-  [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol) = "I",
-  [tabline](https://github.com/bluz71/nvim-linefly#tabline) = false,
-  [winbar](https://github.com/bluz71/nvim-linefly#winbar) = false,
-  [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) = true,
-  [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon) = false,
-  [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch) = true,
-  [with_gitsigns_status](https://github.com/bluz71/nvim-linefly#with_git_signs_status) = true,
-  [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status)  = false,
+  ascii_shapes = false,
+  error_symbol = "E",
+  warning_symbol = "W",
+  information_symbol = "I",
+  tabline = false,
+  winbar = false,
+  with_diagnostic_status = true,
+  with_file_icon = false,
+  with_git_branch = true,
+  with_gitsigns_status = true,
+  with_diagnostic_status = false,
 }
 ```
+
+| Option
+|-------
+| [ascii_shapes](https://github.com/bluz71/nvim-lineflye#ascii_shapes)
+| [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)
+| [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)
+| [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
+| [tabline](https://github.com/bluz71/nvim-linefly#tabline)
+| [winbar](https://github.com/bluz71/nvim-linefly#winbar)
+| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status)
+| [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)
+| [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)
+| [with_gitsigns_status](https://github.com/bluz71/nvim-linefly#with_git_signs_status)
+| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status)
 
 ---
 
