@@ -216,7 +216,8 @@ vim.g.linefly_options = {
 }
 ```
 
-|-----------------------------------------------------------------------------------------|------------------------------------------------------------------------------------
+| Options | Options
+|---------|--------
 | [ascii_shapes](https://github.com/bluz71/nvim-linefly#ascii_shapes)                     | [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)
 | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)                 | [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
 | [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
