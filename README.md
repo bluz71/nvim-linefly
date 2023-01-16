@@ -213,7 +213,7 @@ vim.g.linefly_options = {
   tabline = false,
   winbar = false,
   with_diagnostic_status = true,
-  with_file_icon = false,
+  with_file_icon = true,
   with_git_branch = true,
   with_gitsigns_status = true,
 }
@@ -400,15 +400,16 @@ Font, will be displayed prior to the filename in the `statusline` (and optional
 
 Note, a [Nerd Font](https://www.nerdfonts.com) must be active **and** the
 [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) plugin must
-be installed and active.
+also be installed and active.
 
-By default a filetype icon will not be displayed in the `statusline`.
+By default a filetype icon will be displayed if possible.
 
-To display a filetype icon please add the following to your initialization file:
+To disable the display of a filetype icon please add the following to your
+initialization file:
 
 ```lua
 vim.g.linefly_options = {
-  with_file_icon = true,
+  with_file_icon = false,
 }
 ```
 
