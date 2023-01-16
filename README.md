@@ -7,9 +7,9 @@ _linefly_ is a simple, fast and informative `statusline` for Neovim.
 
 _linefly_ provides optional `tabline` and `winbar` support when the
 appropriate settings are enabled; refer to
-[`lineflyTabLine`](https://github.com/bluz71/nvim-linefly#tabbar)
+[`tabline`](https://github.com/bluz71/nvim-linefly#tabline)
 and
-[`lineflyWinBar`](https://github.com/bluz71/nvim-linefly#winbar).
+[`winbar`](https://github.com/bluz71/nvim-linefly#winbar).
 
 _linefly_ will adapt it's colors to the colorscheme currently in effect. Colors
 can also be
@@ -57,14 +57,12 @@ without any `statusline` plugin.
 Startup times as of January 2023 on my system; performance on other systems will
 vary.
 
-Plugins, Linters and Diagnostics supported
-------------------------------------------
+Plugins supported
+-----------------
 
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
 
 - [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
-
-- [Neovim Diagnostic](https://neovim.io/doc/user/diagnostic.html)
 
 - [Obsession](https://github.com/tpope/vim-obsession)
 
@@ -93,6 +91,8 @@ use 'bluz71/nvim-linefly'
 ```lua
 { 'bluz71/nvim-linefly' },
 ```
+
+Please do **not** lazy-load _linefly_.
 
 Layout And Default Colors
 -------------------------
@@ -183,9 +183,8 @@ Lastly, if the fallback colors do not suit then it is very easy to override with
 your own highlights.
 
 :gift: Here is a simple example of customized _linefly_ colors. Save the
-following either at the end of your initialization file, after setting your
-`colorscheme`, or in an appropriate `after` file such as
-`after/plugin/linefly.lua`.
+following either at the end of your initialization file after setting your
+`colorscheme`.
 
 ```lua
 local highlight = vim.api.nvim_set_hl
@@ -214,23 +213,14 @@ vim.g.linefly_options = {
   with_file_icon = false,
   with_git_branch = true,
   with_gitsigns_status = true,
-  with_diagnostic_status = false,
 }
 ```
 
-| Option
-|-------
-| [ascii_shapes](https://github.com/bluz71/nvim-lineflye#ascii_shapes)
-| [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)
-| [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)
-| [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
-| [tabline](https://github.com/bluz71/nvim-linefly#tabline)
-| [winbar](https://github.com/bluz71/nvim-linefly#winbar)
-| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status)
-| [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)
-| [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)
-| [with_gitsigns_status](https://github.com/bluz71/nvim-linefly#with_git_signs_status)
-| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status)
+| [ascii_shapes](https://github.com/bluz71/nvim-linefly#ascii_shapes)                     | [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)
+| [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)                 | [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
+| [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
+| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)
+| [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)               | [with_gitsigns_status](https://github.com/bluz71/nvim-linefly#with_gitsigns_status)
 
 ---
 
@@ -260,9 +250,9 @@ vim.g.linefly_options = {
 ### error_symbol
 
 The `error_symbol` option specifies which character symbol to use when
-displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html).
+displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html) errors.
 
-By default, the `E` character, will be displayed.
+By default, the `E` character will be displayed.
 
 To specify your own error symbol please add the following to your initialization
 file:
@@ -278,9 +268,9 @@ vim.g.linefly_options = {
 ### warning_symbol
 
 The `warning_symbol` option specifies which character symbol to use when
-displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html).
+displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html) warnings.
 
-By default, the exclamation symbol, `W`, will be displayed.
+By default, the `W` character will be displayed.
 
 To specify your own warning symbol please add the following to your
 initialization file:
@@ -296,9 +286,10 @@ vim.g.linefly_options = {
 ### information_symbol
 
 The `information_symbol` option specifies which character symbol to use
-when displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html).
+when displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html)
+information.
 
-By default, the exclamation symbol, `I`, will be displayed.
+By default, the `I` character will be displayed.
 
 To specify your own information symbol please add the following to your
 initialization file:
@@ -313,8 +304,8 @@ vim.g.linefly_options = {
 
 ### tabline
 
-The `tabline` option specifies whether to let this plugin manage the Neovim
-`tabline` in addition to the `statusline`. By default Neovim `tabline`
+The _linefly_ `tabline` option specifies whether to let this plugin manage the
+Neovim `tabline` in addition to the `statusline`. By default Neovim `tabline`
 management will not be undertaken.
 
 If enabled, _linefly_ will render a simple numbered, and clickable, window-space
@@ -358,9 +349,9 @@ A screenshot of the `tabline`:
 The `winbar` option specifies whether to display a window bar at the top of each
 window. By default window bars will not be displayed.
 
-Displaying a window bar is reasonable when the global statusline is enabled
-via `set laststatus=3`; the `winbar` will then display the file name at the top
-of each window to disambiguate splits. Also, if there only one window in the
+Displaying a window bar is recommended when the global statusline is enabled via
+`set laststatus=3`; the `winbar` will then display the file name at the top of
+each window to disambiguate splits. Also, if there only one window in the
 current tab then a `winbar` will not be displayed (it won't be needed).
 
 To enable the `winbar` feature please add the following to your initialization
