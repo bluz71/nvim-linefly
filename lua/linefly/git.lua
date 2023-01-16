@@ -2,8 +2,6 @@ local is_empty = require("linefly.utils").is_empty
 local options = require("linefly.options").list
 local b = vim.b
 local buf_get_name = vim.api.nvim_buf_get_name
-local g = vim.g
-local system = vim.fn.system
 
 local M = {}
 
@@ -45,7 +43,7 @@ M.detect_branch_name = function()
     return ""
   end
 
-  local git_branch_name = system("git branch --show-current 2> /dev/null")
+  local git_branch_name = vim.fn.system("git branch --show-current 2> /dev/null")
 
   if is_empty(git_branch_name) then
     return ""

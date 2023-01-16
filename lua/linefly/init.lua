@@ -4,17 +4,12 @@
 --  https://is.gd/cQDVa7
 
 local file = require("linefly.file")
-local git = require("linefly.git")
-local plugins = require("linefly.plugins")
 local options = require("linefly.options").list
 local utils = require("linefly.utils")
 local window = require("linefly.window")
 local buf_get_option = vim.api.nvim_buf_get_option
 local fnamemodify = vim.fn.fnamemodify
-local g = vim.g
-local getcwd = vim.fn.getcwd
 local mode = vim.api.nvim_get_mode
-local opt = vim.opt
 local opt_local = vim.opt_local
 local pathshorten = vim.fn.pathshorten
 local tabpagenr = vim.fn.tabpagenr
@@ -62,7 +57,7 @@ M.active_statusline = function()
   local current_mode = mode().mode
   local divider = options().ascii_shapes and "|" or "⎪"
   local arrow = options().ascii_shapes and "" or "↓"
-  local branch_name = git.current_branch_name()
+  local branch_name = require("linefly.git").current_branch_name()
   local mode_emphasis = modes_map[current_mode][3]
 
   local statusline = modes_map[current_mode][1]
@@ -74,7 +69,7 @@ M.active_statusline = function()
     statusline = statusline .. "%*" .. divider .. mode_emphasis
     statusline = statusline .. branch_name .. "%* "
   end
-  statusline = statusline .. plugins.status()
+  statusline = statusline .. require("linefly.plugins").status()
   statusline = statusline .. "%*%=%l:%c %*" .. divider
   statusline = statusline .. "%* " .. mode_emphasis .. "%L%* " .. arrow .. "%P "
   if options().with_indent_status then
@@ -103,7 +98,7 @@ M.statusline = function(active)
   if buf_get_option(0, "buftype") == "nofile" or buf_get_option(0, "filetype") == "netrw" then
     -- Likely a file explorer or some other special type of buffer. Set a short
     -- path statusline for these types of buffers.
-    opt_local.statusline = pathshorten(fnamemodify(getcwd(), ":~:."))
+    opt_local.statusline = pathshorten(fnamemodify(vim.fn.getcwd(), ":~:."))
     if options().winbar then
       opt_local.winbar = nil
     end
@@ -178,7 +173,7 @@ end
 
 M.tabline = function()
   if options().tabline then
-    opt.tabline = "%{%v:lua.linefly.active_tabline()%}"
+    vim.opt.tabline = "%{%v:lua.linefly.active_tabline()%}"
   end
 end
 

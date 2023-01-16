@@ -1,5 +1,3 @@
-local g = vim.g
-
 local options_list = {
   ascii_shapes = false,
   error_symbol = "E",
@@ -20,7 +18,7 @@ local M = {}
 
 M.list = function()
   if not user_settings_merged then
-    options_list = vim.tbl_extend("force", options_list, g.linefly_options or {})
+    options_list = vim.tbl_extend("force", options_list, vim.g.linefly_options or {})
     user_settings_merged = true
   end
 
