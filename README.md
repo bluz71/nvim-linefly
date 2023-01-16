@@ -1,29 +1,28 @@
 linefly statusline
 ==================
 
-**NOTE**, this is a work-in-progess, APIs will change.
+**NOTE**, _linefly_ is a work-in-progess.
 
 _linefly_ is a simple, fast and informative `statusline` for Neovim.
 
-_linefly_ also provides optional `tabline` and Neovim `winbar` support when the
+_linefly_ provides optional `tabline` and `winbar` support when the
 appropriate settings are enabled; refer to
-[`lineflyTabLine`](https://github.com/bluz71/vim-linefly-statusline#lineflywinbar)
+[`lineflyTabLine`](https://github.com/bluz71/nvim-linefly#tabbar)
 and
-[`lineflyWinBar`](https://github.com/bluz71/vim-linefly-statusline#lineflywinbar).
+[`lineflyWinBar`](https://github.com/bluz71/nvim-linefly#winbar).
 
 _linefly_ will adapt it's colors to the colorscheme currently in effect. Colors
 can also be
-[customized](https://github.com/bluz71/vim-linefly-statusline#highlight-groups-and-colors)
+[customized](https://github.com/bluz71/nvim-linefly#highlight-groups-and-colors)
 if desired.
 
 Lastly, _linefly_ is a light _statusline_ plugin clocking in at about 500 lines
 of Lua code. For comparison, the
 [lualine](https://github.com/nvim-lualine/lualine.nvim)
 [lightline](https://github.com/itchyny/lightline.vim),
-[airline](https://github.com/vim-airline/vim-airline) and
-`statusline` plugins
-contain over 8,000, 3,600 and 7,300 code respectively. In fairness, the
-latter plugins are more featureful, configurable and visually pleasing.
+[airline](https://github.com/vim-airline/vim-airline) and `statusline` plugins
+contain over 8,000, 3,600 and 7,300 code respectively. In fairness, the latter
+plugins are more featureful, configurable and visually pleasing.
 
 Screenshots
 -----------
@@ -42,10 +41,10 @@ a single Diagnostic warning and indent-status enabled.
 Statusline Performance Comparison
 ---------------------------------
 
-A performance comparison of _linefly stautusline_ against various popular
-`statusline` plugins, with their out-of-the-box defaults, on a clean and minimal
-Neovim setup with the [moonfly](https://github.com/bluz71/vim-moonfly-colors)
-colorscheme. The Neovim startup times in the following table are provived by the
+A performance comparison of _linefly_ against various popular `statusline`
+plugins, with their out-of-the-box defaults, on a clean and minimal Neovim setup
+with the [moonfly](https://github.com/bluz71/vim-moonfly-colors) colorscheme.
+The Neovim startup times in the following table are provived by the
 [dstein64/vim-startuptime](https://github.com/dstein64/vim-startuptime) plugin.
 
 Startup times are the average of five consecutive runs. Note, `stock` is run
@@ -61,9 +60,7 @@ vary.
 Plugins, Linters and Diagnostics supported
 ------------------------------------------
 
-- [vim-devicons](https://github.com/ryanoasis/vim-devicons) and
-  [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) via the
-  `lineflyWithFileIcon` option
+- [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
 
 - [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 
@@ -74,29 +71,16 @@ Plugins, Linters and Diagnostics supported
 :zap: Requirements
 ------------------
 
-_linefly_ requires a **GUI** capable version of Vim or Neovim with an
-appropriate `colorscheme` set.
+_linefly_ requires Neovim 0.8 or later.
 
-A GUI client, such as Gvim, or a modern terminal version of Vim or Neovim with
-`termguicolors` enabled in a true-color terminal, is required.
-
-I encourage terminal users to use a true-color terminal, such as:
-[iTerm2](https://iterm2.com),
-[Alacritty](https://github.com/alacritty/alacritty)
-[Windows Terminal](https://github.com/microsoft/terminal), or
-[kitty](https://sw.kovidgoyal.net/kitty/index.html) and enable the
-`termguicolors` option.
+_linefly_ also requires a **GUI** capable version Neovim with an appropriate
+`colorscheme` set. A GUI client, or Neovim with the `termguicolors` option
+enabled in a true-color terminal, is required.
 
 Installation
 ------------
 
 Install **bluz71/nvim-linefly** with your preferred plugin manager.
-
-[vim-plug](https://github.com/junegunn/vim-plug):
-
-```viml
-Plug 'bluz71/nvim-linefly'
-```
 
 [packer.nvim](https://github.com/wbthomason/packer.nvim):
 
@@ -110,17 +94,11 @@ use 'bluz71/nvim-linefly'
 { 'bluz71/nvim-linefly' },
 ```
 
-Notice
-------
-
-File explorers, such as _NERDTree_, _netrw_ and certain other special buffers,
-will have their statusline blanked out by this plugin.
-
 Layout And Default Colors
 -------------------------
 
-The *linefly-statusline* layout consists of two main groupings, the left-side
-and right-side groups as follows:
+The *linefly* layout consists of two main groupings, the left-side and
+right-side groups as follows:
 
 ```
 +-------------------------------------------------+
@@ -131,8 +109,8 @@ and right-side groups as follows:
 | Section | Purpose
 |---------|------------------
 | A`*`    | Mode status (normal, insert, visual, command and replace modes)
-| B       | Compacted filename (see below for details)
-| C`*`    | Git repository branch name (if applicable)
+| B       | Filename (see below for details)
+| C`*`    | Git branch name (if applicable)
 | D`*`    | Plugins notification (git, diagnostic and session status)
 | X       | Current position
 | Y`*`    | Total lines and current location as percentage
@@ -141,7 +119,7 @@ and right-side groups as follows:
 Sections marked with a `*` are linked to a highlight group and are colored,
 refer to the next section for details.
 
-Note, filenames will be compacted as follows:
+Note, filenames will be displayed as follows:
 
 - Pathless filenames only for files in the current working directory
 
@@ -204,40 +182,47 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 Lastly, if the fallback colors do not suit then it is very easy to override with
 your own highlights.
 
-:gift: Here is a simple example of customized _linefly_ colors. Save
-the following either at the end of your initialization file, after setting your
+:gift: Here is a simple example of customized _linefly_ colors. Save the
+following either at the end of your initialization file, after setting your
 `colorscheme`, or in an appropriate `after` file such as
-`after/plugin/linefly-statusline.vim`.
+`after/plugin/linefly.lua`.
 
-```viml
-highlight! link LineflyNormal DiffChange
-highlight! link LineflyInsert WildMenu
-highlight! link LineflyVisual IncSearch
-highlight! link LineflyCommand WildMenu
-highlight! link LineflyReplace ErrorMsg
+```lua
+local highlight = vim.api.nvim_set_hl
+
+highlight(0, "LineflyNormal", { link = "DiffChange" })
+highlight(0, "LineflyInsert", { link = "WildMenu" })
+highlight(0, "LineflyVisual", { link = "IncSearch" })
+highlight(0, "LineflyCommand", { link = "WildMenu" })
+highlight(0, "LineflyReplace", { link = "ErrorMsg" })
 ```
 
 :wrench: Options
 ----------------
 
-| Option | Default State
-|--------|--------------
-| [lineflyAsciiShapes](https://github.com/bluz71/vim-linefly-statusline#lineflyasciishapes)                           | Disabled, do display Unicode shapes
-| [lineflyErrorSymbol](https://github.com/bluz71/vim-linefly-statusline#lineflyerrorsymbol)                           | `x`
-| [lineflyWarningSymbol](https://github.com/bluz71/vim-linefly-statusline#lineflywarningsymbol)                       | `!`
-| [lineflyInformationSymbol](https://github.com/bluz71/vim-linefly-statusline#lineflyinformationsymbol)               | `i`
-| [lineflyTabLine](https://github.com/bluz71/vim-linefly-statusline#lineflytabline)                                   | Disabled
-| [lineflyWinBar](https://github.com/bluz71/vim-linefly-statusline#lineflywinbar)                                     | Disabled
-| [lineflyWithIndentStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithindentstatus)                 | Disabled
-| [lineflyWithGitBranch](https://github.com/bluz71/vim-linefly-statusline#lineflywithgitbranch)                       | Enabled
-| [lineflyWithGitsignsStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithgitsignsstatus)             | Enabled if Gitsigns plugin is loaded
-| [lineflyWithDiagnosticStatus](https://github.com/bluz71/vim-linefly-statusline#lineflywithdiagnosticstatus) | Enabled if nvim-lspconfig plugin is loaded
+Default option values:
+
+```lua
+vim.g.linefly_options = {
+  [ascii_shapes](https://github.com/bluz71/nvim-lineflye#ascii_shapes) = false,
+  [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol) = "E",
+  [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol) = "W",
+  [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol) = "I",
+  [tabline](https://github.com/bluz71/nvim-linefly#tabline) = false,
+  [winbar](https://github.com/bluz71/nvim-linefly#winbar) = false,
+  [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) = true,
+  [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon) = false,
+  [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch) = true,
+  [with_gitsigns_status](https://github.com/bluz71/nvim-linefly#with_git_signs_status) = true,
+  [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status)  = false,
+}
+```
 
 ---
 
-### lineflyAsciiShapes
+### ascii_Shapes
 
-The `lineflyAsciiShapes` option specifies whether to only use Ascii characters
+The `ascii_shapes` option specifies whether to only use Ascii characters
 for certain dividers and symbols.
 
 _linefly_ by default **will use** Unicode Symbols and Powerline Glyphs for
@@ -250,89 +235,73 @@ Mono](https://www.jetbrains.com/lp/mono), will provide these shapes.
 To limit use only to Ascii shapes please add the following to your
 initialization file:
 
-```viml
-" Vimscript initialization file
-let g:lineflyAsciiShapes = v:true
-```
-
 ```lua
--- Lua initialization file
-vim.g.lineflyAsciiShapes = true
+vim.g.linefly_options = {
+  ascii_shapes = true
+}
 ```
 
 ---
 
-### lineflyErrorSymbol
+### error_symbol
 
-The `lineflyErrorSymbol` option specifies which character symbol to use when
-displaying [Neovim Diagnostic](https://neovim.io/doc/user/diagnostic.html).
+The `error_symbol` option specifies which character symbol to use when
+displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html).
 
-By default, the `x` character, will be displayed.
+By default, the `E` character, will be displayed.
 
 To specify your own error symbol please add the following to your initialization
 file:
 
-```viml
-" Vimscript initialization file
-let g:lineflyErrorSymbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
-```
-
 ```lua
--- Lua initialization file
-vim.g.lineflyErrorSymbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+vim.g.linefly_options = {
+  error_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+}
 ```
 
 ---
 
-### lineflyWarningSymbol
+### warning_symbol
 
-The `lineflyWarningSymbol` option specifies which character symbol to use when
-displaying [Neovim Diagnostic](https://neovim.io/doc/user/diagnostic.html).
+The `warning_symbol` option specifies which character symbol to use when
+displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html).
 
-By default, the exclamation symbol, `!`, will be displayed.
+By default, the exclamation symbol, `W`, will be displayed.
 
 To specify your own warning symbol please add the following to your
 initialization file:
 
-```viml
-" Vimscript initialization file
-let g:lineflyWarningSymbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
-```
-
 ```lua
--- Lua initialization file
-vim.g.lineflyWarningSymbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+vim.g.linefly_options = {
+  warning_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+}
 ```
 
 ---
 
-### lineflyInformationSymbol
+### information_symbol
 
-The `lineflyInformationSymbol` option specifies which character symbol to use
-when displaying [Neovim Diagnostic](https://neovim.io/doc/user/diagnostic.html).
+The `information_symbol` option specifies which character symbol to use
+when displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html).
 
-By default, the exclamation symbol, `i`, will be displayed.
+By default, the exclamation symbol, `I`, will be displayed.
 
 To specify your own information symbol please add the following to your
 initialization file:
 
-```viml
-" Vimscript initialization file
-let g:lineflyInformationSymbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
-```
-
 ```lua
--- Lua initialization file
-vim.g.lineflyInformationSymbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+vim.g.linefly_options = {
+  information_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+}
 ```
 
 ---
 
-### lineflyTabLine
+### tabline
 
-The `lineflyTabLine` option specifies whether to let this plugin manage the
-`tabline` in addition to the `statusline`. By default `tabline` management will
-not be undertaken.
+The `tabline` option specifies whether to let this plugin manage the Neovim
+`tabline` in addition to the `statusline`. By default Neovim `tabline`
+management will not be undertaken.
 
 If enabled, _linefly_ will render a simple numbered, and clickable, window-space
 layout in the `tabline`; note, no buffers will be displayed in the `tabline`
@@ -341,29 +310,27 @@ since there are many plugins that already provide that capability.
 To enable _linefly_'s `tabline` support please add the following to your
 initialization file:
 
-```viml
-" Vimscript initialization file
-let g:lineflyTabLine = v:true
-```
-
 ```lua
--- Lua initialization file
-vim.g.lineflyTabLine = true
+vim.g.linefly_options = {
+  tabline = true,
+}
 ```
 
 :bulb: Mappings, such as the following, may be useful to quickly switch between
 the numbered window-spaces:
 
-```viml
-nnoremap <Leader>1 1gt
-nnoremap <Leader>2 2gt
-nnoremap <Leader>3 3gt
-nnoremap <Leader>4 4gt
-nnoremap <Leader>5 5gt
-nnoremap <Leader>6 6gt
-nnoremap <Leader>7 7gt
-nnoremap <Leader>8 8gt
-nnoremap <Leader>9 9gt
+```lua
+local map = vim.keymap.set
+
+map("n", "<Leader>1", "1gt")
+map("n", "<Leader>2", "2gt")
+map("n", "<Leader>3", "3gt")
+map("n", "<Leader>4", "4gt")
+map("n", "<Leader>5", "5gt")
+map("n", "<Leader>6", "6gt")
+map("n", "<Leader>7", "7gt")
+map("n", "<Leader>8", "8gt")
+map("n", "<Leader>9", "9gt")
 ```
 
 A screenshot of the `tabline`:
@@ -372,38 +339,32 @@ A screenshot of the `tabline`:
 
 ---
 
-### lineflyWinBar
+### winbar
 
-The `lineflyWinBar` option specifies whether to display Neovim's window bar at
-the top of each window. By default window bars will not be displayed.
+The `winbar` option specifies whether to display a window bar at the top of each
+window. By default window bars will not be displayed.
 
-Note, Neovim 0.8 (or later) is required for this feature.
-
-Displaying a window bar is reasonable when Neovim's global statusline is enabled
+Displaying a window bar is reasonable when the global statusline is enabled
 via `set laststatus=3`; the `winbar` will then display the file name at the top
 of each window to disambiguate splits. Also, if there only one window in the
 current tab then a `winbar` will not be displayed (it won't be needed).
 
-To enable Neovim's `winbar` feature please add the following to your
-initialization file:
-
-```viml
-" Vimscript initialization file
-let g:lineflyWinBar = v:true
-```
+To enable the `winbar` feature please add the following to your initialization
+file:
 
 ```lua
--- Lua initialization file
-vim.g.lineflyWinBar = true
+vim.g.linefly_options = {
+  winbar = true,
+}
 ```
 
 ---
 
-### lineflyWithIndentStatus
+### with_indent_status
 
-The `lineflyWithIndentStatus` option specifies whether to display the
-indentation status as the last component in the statusline. By default
-indentation status will not be displayed.
+The `with_indent_status` option specifies whether to display the indentation
+status as the last component in the statusline. By default indentation status
+will not be displayed.
 
 Note, if the `expandtab` option is set, for the current buffer, then tab stop
 will be displayed, for example `Tab:4` (tab equals four spaces); if on the other
@@ -413,42 +374,56 @@ example `Spc:2` ('spc' short for 'space').
 To enable indentation status please add the following to your initialization
 file:
 
-```viml
-" Vimscript initialization file
-let g:lineflyWithIndentStatus = v:true
-```
-
 ```lua
--- Lua initialization file
-vim.g.lineflyWithIndentStatus = true
+vim.g.linefly_options = {
+  with_indent_status = true,
+}
 ```
 
 ---
 
-### lineflyWithGitBranch
+### with_git_branch
 
-The `lineflyWithGitBranch` option specifies whether to display Git branch
+The `with_git_branch` option specifies whether to display Git branch
 details in the _statusline_. By default Git branches will be displayed in the
 `statusline`.
 
 To disable the display of Git branches in the _statusline_ please add the
 following to your initialization file:
 
-```viml
-" Vimscript initialization file
-let g:lineflyWithGitBranch = v:false
-```
-
 ```lua
--- Lua initialization file
-vim.g.lineflyWithGitBranch = false
+vim.g.linefly_options = {
+  with_git_branch = false,
+}
 ```
 
 ---
 
-### lineflyWithGitsignsStatus
+### with_file_icon
 
-The `lineflyWithGitsignsStatus` option specifies whether to display
+The `with_file_icon` option specifies whether a filetype icon, from a Nerd
+Font, will be displayed prior to the filename in the `statusline` (and optional
+`winbar`).
+
+Note, a [Nerd Font](https://www.nerdfonts.com) must be active **and** the
+[nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) plugin must
+be installed and active.
+
+By default a filetype icon will not be displayed in the `statusline`.
+
+To display a filetype icon please add the following to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  with_file_icon = true,
+}
+```
+
+---
+
+### with_gitsigns_status
+
+The `with_gitsigns_status` option specifies whether to display
 [Gitsigns](https://github.com/lewis6991/gitsigns.nvim) of the current buffer in
 the _statusline_.
 
@@ -457,62 +432,31 @@ By default, Gitsigns will be displayed if the plugin is loaded.
 To disable the display of Gitsigns in the _statusline_ please add the following
 to your initialization file:
 
-```viml
-" Vimscript initialization file
-let g:lineflyWithGitsignsStatus = v:false
-```
-
 ```lua
--- Lua initialization file
-vim.g.lineflyWithGitsignsStatus = false
+vim.g.linefly_options = {
+  with_gitsigns_status = false,
+}
 ```
 
 ---
 
-### lineflyWithFileIcon
+### with_diagnostic_status
 
-The `lineflyWithFileIcon` option specifies whether a filetype icon, from a Nerd
-Font, will be displayed prior to the filename in the `statusline` (and optional
-`winbar`).
+_linefly_ supports [Diagnostics](https://neovim.io/doc/user/diagnostic.html).
 
-Note, a [Nerd Font](https://www.nerdfonts.com) must be active **and** the
-[vim-devicons](https://github.com/ryanoasis/vim-devicons) or
-[nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) plugin must
-be installed and active.
+The `with_diagnostic_status` option specifies whether to indicate the presence
+of the Diagnostics in the current buffer.
 
-By default a filetype icon will not be displayed in the `statusline`.
-
-To display a filetype icon please add the following to your initialization file:
-
-```viml
-" Vimscript initialization file
-let g:lineflyWithFileIcon = v:true
-```
-
-```lua
--- lua initialization file
-vim.g.lineflyWithFileIcon = true
-```
-
----
-
-### lineflyWithDiagnosticStatus
-
-_linefly_ supports [Neovim
-Diagnostics](https://neovim.io/doc/user/diagnostic.html)
-
-The `lineflyWithDiagnosticStatus` option specifies whether to indicate the
-presence of the Neovim Diagnostics in the current buffer.
-
-By default, Neovim Diagnositics will be displayed if the
+By default, Diagnositics will be displayed if the
 [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) plugin is loaded.
 
-If Neovim Diagnostic display is not wanted then please add the following to
-your initialization file:
+If Diagnostic display is not wanted then please add the following to your
+initialization file:
 
-```viml
-" Vimscript initialization file
-let g:lineflyWithDiagnosticStatus = false
+```lua
+vim.g.linefly_options = {
+  with_diagnostic_status = false,
+}
 ```
 
 Alternatives
