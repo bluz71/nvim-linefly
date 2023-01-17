@@ -49,11 +49,7 @@ M.status = function()
   -- Obsession plugin status.
   if g.loaded_obsession then
     local obsession_segment
-    if options().ascii_shapes then
-      obsession_segment = eval([[ObsessionStatus('$', 'S')]])
-    else
-      obsession_segment = eval([[ObsessionStatus('●', '■')]])
-    end
+    obsession_segment = eval([[ObsessionStatus('obsession', '!obsession')]])
     if is_present(obsession_segment) then
       segments = segments .. " %#LineflySession#" .. obsession_segment .. "%*"
     end

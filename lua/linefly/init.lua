@@ -55,8 +55,8 @@ _G.linefly = M
 
 M.active_statusline = function()
   local current_mode = mode().mode
-  local divider = options().ascii_shapes and "|" or "⎪"
-  local arrow = options().ascii_shapes and "" or "↓"
+  local separator = options().separator_symbol
+  local arrow = options().arrow_symbol
   local branch_name = require("linefly.git").current_branch_name()
   local mode_emphasis = modes_map[current_mode][3]
 
@@ -66,29 +66,29 @@ M.active_statusline = function()
   statusline = statusline .. "%{&modified ? '+ ' : '  '}"
   statusline = statusline .. "%{&readonly ? 'RO ' : ''}"
   if utils.is_present(branch_name) then
-    statusline = statusline .. "%*" .. divider .. mode_emphasis
+    statusline = statusline .. "%*" .. separator .. mode_emphasis
     statusline = statusline .. branch_name .. "%* "
   end
   statusline = statusline .. require("linefly.plugins").status()
-  statusline = statusline .. "%*%=%l:%c %*" .. divider
+  statusline = statusline .. "%*%=%l:%c %*" .. separator
   statusline = statusline .. "%* " .. mode_emphasis .. "%L%* " .. arrow .. "%P "
   if options().with_indent_status then
-    statusline = statusline .. "%*" .. divider .. "%* " .. utils.indent_status()
+    statusline = statusline .. "%*" .. separator .. "%* " .. utils.indent_status()
   end
 
   return statusline
 end
 
 M.inactive_statusline = function()
-  local divider = options().ascii_shapes and "|" or "⎪"
-  local arrow = options().ascii_shapes and "" or "↓"
+  local separator = options().separator_symbol
+  local arrow = options().arrow_symbol
 
   local statusline = " %*%<" .. file.name()
   statusline = statusline .. "%{&modified?'+ ':'  '}"
   statusline = statusline .. "%{&readonly?'RO ':''}"
-  statusline = statusline .. "%*%=%l:%c " .. divider .. " %L " .. arrow .. "%P "
+  statusline = statusline .. "%*%=%l:%c " .. separator .. " %L " .. arrow .. "%P "
   if options().with_indent_status then
-    statusline = statusline .. divider .. " " .. utils.indent_status()
+    statusline = statusline .. separator .. " " .. utils.indent_status()
   end
 
   return statusline
@@ -153,7 +153,7 @@ end
 ------------------------------------------------------------
 
 M.active_tabline = function()
-  local symbol = options().ascii_shapes and "*" or "▪"
+  local symbol = options().active_tab_symbol
   local tabline = ""
   local counter = 0
 

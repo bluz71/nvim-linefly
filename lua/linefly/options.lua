@@ -1,5 +1,8 @@
 local options_list = {
-  ascii_shapes = false,
+  separator_symbol = "⎪",
+  arrow_symbol = "↓",
+  active_tab_symbol = "▪",
+  git_branch_symbol = "",
   error_symbol = "E",
   warning_symbol = "W",
   information_symbol = "I",

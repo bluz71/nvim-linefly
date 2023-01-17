@@ -173,7 +173,7 @@ M.generate_groups = function()
   -- Synthesize plugin colors from relevant existing highlight groups.
   colorscheme_git_highlights()
   colorscheme_diagnostic_highlights()
-  synthesize_highlight("LineflySession", "Error", false)
+  highlight(0, "LineflySession", { link = "LineflyGitAdd" })
 
   if options().tabline and highlight_empty("TablineSelSymbol") then
     highlight(0, "TablineSelSymbol", { link = "TablineSel" })

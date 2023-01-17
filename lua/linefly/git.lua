@@ -24,10 +24,11 @@ M.current_branch_name = function()
     return ""
   end
 
-  if options().ascii_shapes then
+  local git_branch_symbol = options().git_branch_symbol
+  if is_empty(git_branch_symbol) then
     return " " .. git_branch_name
   else
-    return "  " .. git_branch_name
+    return " " .. git_branch_symbol .. " " .. git_branch_name
   end
 
   return git_branch_name
