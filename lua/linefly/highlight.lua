@@ -13,7 +13,7 @@ local synIDattr = vim.fn.synIDattr
 local statusline_bg
 
 local highlight_empty = function(group)
-  return not hlexists(group) or is_empty(synIDattr(synIDtrans(hlID(group)), "bg"))
+  return hlexists(group) ~= 1 or is_empty(synIDattr(synIDtrans(hlID(group)), "bg"))
 end
 
 local synthesize_highlight = function(target, source, reverse)
@@ -46,17 +46,17 @@ local synthesize_mode_highlight = function(target, background, foreground)
 end
 
 local colorscheme_diagnostic_highlights = function()
-  if hlexists("DiagnosticError") then
+  if hlexists("DiagnosticError") == 1 then
     synthesize_highlight("LineflyDiagnosticError", "DiagnosticError", false)
   else
     highlight(0, "LineflyDiagnosticError", { link = "StatusLine" })
   end
-  if hlexists("DiagnosticWarn") then
+  if hlexists("DiagnosticWarn") == 1 then
     synthesize_highlight("LineflyDiagnosticWarning", "DiagnosticWarn", false)
   else
     highlight(0, "LineflyDiagnosticWarning", { link = "StatusLine" })
   end
-  if hlexists("DiagnosticInfo") then
+  if hlexists("DiagnosticInfo") == 1 then
     synthesize_highlight("LineflyDiagnosticInformation", "DiagnosticInfo", false)
   else
     highlight(0, "LineflyDiagnosticInformation", { link = "StatusLine" })
@@ -64,11 +64,11 @@ local colorscheme_diagnostic_highlights = function()
 end
 
 local colorscheme_git_highlights = function()
-  if hlexists("GitSignsAdd") then
+  if hlexists("GitSignsAdd") == 1 then
     synthesize_highlight("LineflyGitAdd", "GitSignsAdd", false)
     synthesize_highlight("LineflyGitChange", "GitSignsChange", false)
     synthesize_highlight("LineflyGitDelete", "GitSignsDelete", false)
-  elseif hlexists("diffAdded") then
+  elseif hlexists("diffAdded") == 1 then
     synthesize_highlight("LineflyGitAdd", "diffAdded", false)
     synthesize_highlight("LineflyGitChange", "diffChanged", false)
     synthesize_highlight("LineflyGitDelete", "diffRemoved", false)
@@ -152,7 +152,7 @@ M.generate_groups = function()
   end
 
   -- Extract current StatusLine background color, we will likely need it.
-  if synIDattr(synIDtrans(hlID("StatusLine")), "reverse", "gui") == 1 then
+  if synIDattr(synIDtrans(hlID("StatusLine")), "reverse", "gui") == "1" then
     -- Need to handle reversed highlights, such as Gruvbox StatusLine.
     statusline_bg = synIDattr(synIDtrans(hlID("StatusLine")), "fg", "gui")
   else
