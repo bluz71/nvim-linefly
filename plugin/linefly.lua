@@ -56,7 +56,7 @@ autocmd("WinLeave", {
   group = linefly_events,
 })
 
-autocmd({ "BufEnter", "FocusGained" }, {
+autocmd({ "BufEnter", "BufWrite", "FocusGained" }, {
   callback = function()
     if package.loaded.gitsigns == nil then
       -- Gitsigns is not loaded, use fallback Git branch name detection.
