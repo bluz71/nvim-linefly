@@ -208,7 +208,10 @@ Default option values:
 
 ```lua
 vim.g.linefly_options = {
-  ascii_shapes = false,
+  separator_symbol = "⎪",
+  arrow_symbol = "↓",
+  active_tab_symbol = "▪",
+  git_branch_symbol = "",
   error_symbol = "E",
   warning_symbol = "W",
   information_symbol = "I",
@@ -223,32 +226,85 @@ vim.g.linefly_options = {
 
 | Options | Options
 |---------|--------
-| [ascii_shapes](https://github.com/bluz71/nvim-linefly#ascii_shapes)                     | [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)
-| [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)                 | [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
-| [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
-| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)
-| [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)               | [with_gitsigns_status](https://github.com/bluz71/nvim-linefly#with_gitsigns_status)
+
+| [separator_symbol](https://github.com/bluz71/nvim-linefly#separator_symbol)         | [arrow_symbol](https://github.com/bluz71/nvim-linefly#arrow_symbol)
+| [active_tab_symbol](https://github.com/bluz71/nvim-linefly#active_tab_symbol)       | [git_branch_symbol](https://github.com/bluz71/nvim-linefly#git_branch_symbol)
+| [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)                 | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)
+| [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)     | [tabline](https://github.com/bluz71/nvim-linefly#tabline)
+| [winbar](https://github.com/bluz71/nvim-linefly#winbar)                             | [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status)
+| [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)             | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)
+| [with_gitsigns_status](https://github.com/bluz71/nvim-linefly#with_gitsigns_status)
 
 ---
 
-### ascii_Shapes
+### separator_symbol
 
-The `ascii_shapes` option specifies whether to only use Ascii characters
-for certain dividers and symbols.
+The `separator_symbol` option specifies which character symbol to use for
+segment separators in the `statusline`.
 
-_linefly_ by default **will use** Unicode Symbols and Powerline Glyphs for
-certain shapes such as: Git branch, dividers and active tabs. Note, many modern
-fonts, such as: [Hack](https://sourcefoundry.org/hack),
-[Iosevka](https://typeof.net/Iosevk), [Fira
-Code](https://github.com/tonsky/FiraCode) and [Jetbrains
-Mono](https://www.jetbrains.com/lp/mono), will provide these shapes.
+By default, the `⎪` character (Unicode `U+23AA`) will be displayed.
 
-To limit use only to Ascii shapes please add the following to your
+To specify your own separator symbol please add the following to your
 initialization file:
 
 ```lua
 vim.g.linefly_options = {
-  ascii_shapes = true
+  separator_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+}
+```
+
+---
+
+### arrow_symbol
+
+The `arrow_symbol` option specifies which character symbol to use to indicate
+percentage scroll progress in the `statusline`.
+
+By default, the `↓` character (Unicode `U+2193`) will be displayed.
+
+To specify your own arrow symbol, or no symbol at all, please add the following
+to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  arrow_symbol = '<<SYMBOL-OF-YOUR-CHOOSING-OR-EMPTY>>'
+}
+```
+
+---
+
+### active_tab_symbol
+
+The `active_tab_symbol` option specifies which character symbol to use to
+signify the active tab in the `tabline`.
+
+By default, the `▪` character (Unicode `U+25AA`) will be displayed.
+
+To specify your own active tab symbol please add the following to your
+initialization file:
+
+```lua
+vim.g.linefly_options = {
+  active_tab_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+}
+```
+
+---
+
+### git_branch_symbol
+
+The `git_branch_symbol` option specifies which character symbol to use to
+signify the active tab in the `tabline`.
+
+By default, the `` character (Powerline `U+E0A0`) will be displayed. Many
+modern monospace fonts will contain that character.
+
+To specify your own active tab symbol, or no symbol at all, please add the
+following to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  git_branch_symbol = '<<SYMBOL-OF-YOUR-CHOOSING-OR-EMPTY>>'
 }
 ```
 
