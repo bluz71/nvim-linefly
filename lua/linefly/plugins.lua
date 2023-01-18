@@ -34,15 +34,18 @@ M.status = function()
 
     if errors > 0 then
       segments = segments .. " %#LineflyDiagnosticError#" .. options().error_symbol
-      segments = segments .. " " .. errors .. "%* "
+      segments = segments .. " " .. errors .. "%*"
     end
     if warnings > 0 then
       segments = segments .. " %#LineflyDiagnosticWarning#" .. options().warning_symbol
-      segments = segments .. " " .. warnings .. "%* "
+      segments = segments .. " " .. warnings .. "%*"
     end
     if information > 0 then
       segments = segments .. " %#LineflyDiagnosticInformation#" .. options().information_symbol
-      segments = segments .. " " .. information .. "%* "
+      segments = segments .. " " .. information .. "%*"
+    end
+    if errors > 0 or warnings > 0 or information > 0 then
+      segments = segments .. " "
     end
   end
 
