@@ -115,7 +115,7 @@ right-side groups as follows:
 | Section | Purpose
 |---------|------------------
 | A`*`    | Mode status (normal, insert, visual, command and replace modes)
-| B       | Filename (see below for details)
+| B       | Filename (refer below for details)
 | C`*`    | Git branch name (if applicable)
 | D`*`    | Plugins notification (git, diagnostic and session status)
 | X       | Current position
@@ -258,7 +258,7 @@ vim.g.linefly_options = {
 ### arrow_symbol
 
 The `arrow_symbol` option specifies which character symbol to use to indicate
-percentage scroll progress in the `statusline`.
+location-as-percentage in the `statusline`.
 
 By default, the `↓` character (Unicode `U+2193`) will be displayed.
 
