@@ -46,13 +46,15 @@ M.status = function()
     end
   end
 
-  -- Obsession plugin status.
+  local session_segment
   if g.loaded_obsession then
-    local obsession_segment
-    obsession_segment = eval([[ObsessionStatus('obsession', '!obsession')]])
-    if is_present(obsession_segment) then
-      segments = segments .. " %#LineflySession#" .. obsession_segment .. "%*"
-    end
+    -- Obsession plugin.
+    session_segment = eval([[ObsessionStatus('obsession', '!obsession')]])
+  elseif package.loaded.possession then
+    session_segment = require('possession.session').session_name
+  end
+  if is_present(session_segment) then
+    segments = segments .. " %#LineflySession#" .. session_segment .. "%*"
   end
 
   return segments

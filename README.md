@@ -69,6 +69,8 @@ Modules And Plugins supported
 
 - [Obsession](https://github.com/tpope/vim-obsession)
 
+- [possession](https://github.com/jedrzejboczar/possession.nvim)
+
 :zap: Requirements
 ------------------
 
