@@ -14,7 +14,7 @@ local file_icon = function()
   return require("nvim-web-devicons").get_icon(expand("%"), nil, { default = true }) .. " "
 end
 
-local file_path = function()
+local file_path = function(short_path)
   if is_empty(expand("%:f")) then
     return ""
   end
@@ -29,11 +29,10 @@ local file_path = function()
   end
 
   local path
-  if vim.opt.laststatus:get() == 3 then
-    -- Global statusline is active, no path shortening.
-    path = fnamemodify(expand("%:f"), ":~:.")
-  else
+  if short_path then
     path = pathshorten(fnamemodify(expand("%:f"), ":~:."))
+  else
+    path = fnamemodify(expand("%:f"), ":~:.")
   end
 
   local path_components = vim.split(path, separator)
@@ -49,8 +48,8 @@ end
 
 local M = {}
 
-M.name = function()
-  return file_icon() .. file_path()
+M.name = function(short_path)
+  return file_icon() .. file_path(short_path)
 end
 
 return M

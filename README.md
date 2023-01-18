@@ -1,9 +1,7 @@
-linefly statusline
-==================
+linefly
+=======
 
-**NOTE**, _linefly_ is a work-in-progess.
-
-_linefly_ is a simple, fast and informative `statusline` for Neovim.
+_linefly_ is a simple, fast and informative pure-Lua `statusline` for Neovim.
 
 _linefly_ provides optional `tabline` and `winbar` support when the
 appropriate settings are enabled; refer to
@@ -19,10 +17,10 @@ if desired.
 Lastly, _linefly_ is a light _statusline_ plugin clocking in at about 500 lines
 of Lua code. For comparison, the
 [lualine](https://github.com/nvim-lualine/lualine.nvim)
-[lightline](https://github.com/itchyny/lightline.vim),
-[airline](https://github.com/vim-airline/vim-airline) and `statusline` plugins
-contain over 8,000, 3,600 and 7,300 code respectively. In fairness, the latter
-plugins are more featureful, configurable and visually pleasing.
+[lightline](https://github.com/itchyny/lightline.vim), and
+[airline](https://github.com/vim-airline/vim-airline) plugins contain over
+8,000, 3,600 and 7,300 code respectively. In fairness, the latter plugins are
+more featureful, configurable and visually pleasing.
 
 Screenshots
 -----------
@@ -57,8 +55,10 @@ without any `statusline` plugin.
 Startup times as of January 2023 on my system; performance on other systems will
 vary.
 
-Plugins supported
------------------
+Modules And Plugins supported
+-----------------------------
+
+- [Diagnostic](https://neovim.io/doc/user/diagnostic.html)
 
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
 

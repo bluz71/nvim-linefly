@@ -10,6 +10,7 @@ local window = require("linefly.window")
 local buf_get_option = vim.api.nvim_buf_get_option
 local fnamemodify = vim.fn.fnamemodify
 local mode = vim.api.nvim_get_mode
+local opt = vim.opt
 local opt_local = vim.opt_local
 local pathshorten = vim.fn.pathshorten
 local tabpagenr = vim.fn.tabpagenr
@@ -62,7 +63,7 @@ M.active_statusline = function()
 
   local statusline = modes_map[current_mode][1]
   statusline = statusline .. modes_map[current_mode][2]
-  statusline = statusline .. "%* %<" .. file.name()
+  statusline = statusline .. "%* %<" .. file.name(opt.laststatus:get() ~= 3)
   statusline = statusline .. "%{&modified ? '+ ' : '  '}"
   statusline = statusline .. "%{&readonly ? 'RO ' : ''}"
   if utils.is_present(branch_name) then
@@ -83,7 +84,7 @@ M.inactive_statusline = function()
   local separator = options().separator_symbol
   local arrow = options().arrow_symbol
 
-  local statusline = " %*%<" .. file.name()
+  local statusline = " %*%<" .. file.name(opt.laststatus:get() ~= 3)
   statusline = statusline .. "%{&modified?'+ ':'  '}"
   statusline = statusline .. "%{&readonly?'RO ':''}"
   statusline = statusline .. "%*%=%l:%c " .. separator .. " %L " .. arrow .. "%P "
@@ -131,7 +132,7 @@ M.active_winbar = function()
 
   local winbar = modes_map[current_mode][1]
   winbar = winbar .. string.sub(modes_map[current_mode][2], 1, 2)
-  winbar = winbar .. " %* %<" .. file.name()
+  winbar = winbar .. " %* %<" .. file.name(true)
   winbar = winbar .. "%{&modified ? '+ ' : '  '}"
   winbar = winbar .. "%{&readonly ? 'RO ' : ''}"
   winbar = winbar .. "%#Normal#"
@@ -140,7 +141,7 @@ M.active_winbar = function()
 end
 
 M.inactive_winbar = function()
-  local winbar = " %*%<" .. file.name()
+  local winbar = " %*%<" .. file.name(true)
   winbar = winbar .. "%{&modified?'+ ':'  '}"
   winbar = winbar .. "%{&readonly?'RO ':''}"
   winbar = winbar .. "%#NonText#"
