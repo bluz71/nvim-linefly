@@ -16,8 +16,8 @@ if desired.
 
 Lastly, _linefly_ is a light _statusline_ plugin clocking in at about 500 lines
 of Lua code. For comparison, the
-[lualine](https://github.com/nvim-lualine/lualine.nvim)
-[lightline](https://github.com/itchyny/lightline.vim), and
+[lualine](https://github.com/nvim-lualine/lualine.nvim),
+[lightline](https://github.com/itchyny/lightline.vim) and
 [airline](https://github.com/vim-airline/vim-airline) plugins contain over
 8,000, 3,600 and 7,300 code respectively. In fairness, the latter plugins are
 more featureful, configurable and visually pleasing.
