@@ -22,6 +22,9 @@ of Lua code. For comparison, the
 8,000, 3,600 and 7,300 code respectively. In fairness, the latter plugins are
 more featureful, configurable and visually pleasing.
 
+:warning: _linefly_ has a predominantly fixed layout, this will **not** be an
+appropriate `statusline` plugin if layout flexibility is desired.
+
 Screenshots
 -----------
 
