@@ -227,14 +227,12 @@ vim.g.linefly_options = {
 }
 ```
 
-| Options | Options
-|---------|--------
-| [separator_symbol](https://github.com/bluz71/nvim-linefly#separator_symbol)         | [arrow_symbol](https://github.com/bluz71/nvim-linefly#arrow_symbol)
-| [active_tab_symbol](https://github.com/bluz71/nvim-linefly#active_tab_symbol)       | [git_branch_symbol](https://github.com/bluz71/nvim-linefly#git_branch_symbol)
-| [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)                 | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)
-| [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)     | [tabline](https://github.com/bluz71/nvim-linefly#tabline)
-| [winbar](https://github.com/bluz71/nvim-linefly#winbar)                             | [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status)
-| [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)             | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)
+| Option | Option | Option
+|--------|--------|-------
+| [separator_symbol](https://github.com/bluz71/nvim-linefly#separator_symbol)             | [arrow_symbol](https://github.com/bluz71/nvim-linefly#arrow_symbol)     | [active_tab_symbol](https://github.com/bluz71/nvim-linefly#active_tab_symbol)
+| [git_branch_symbol](https://github.com/bluz71/nvim-linefly#git_branch_symbol)           | [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)     | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)
+| [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)         | [tabline](https://github.com/bluz71/nvim-linefly#tabline)               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
+| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon) | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)
 | [with_gitsigns_status](https://github.com/bluz71/nvim-linefly#with_gitsigns_status) |
 
 ---
