@@ -15,6 +15,7 @@ Default option values:
     tabline = false,
     winbar = false,
     with_diagnostic_status = true,
+    with_indent_status = false,
     with_file_icon = true,
     with_git_branch = true,
     with_gitsigns_status = true,
@@ -33,6 +34,21 @@ initialization file:
 >
   vim.g.linefly_options = {
     separator_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+  }
+<
+------------------------------------------------------------------------------
+arrow_symbol~                                                   *arrow_symbol*
+
+The `arrow_symbol` option specifies which character symbol to use to indicate
+location-as-percentage in the `statusline`.
+
+By default, the `↓` character (Unicode `U+2193`) will be displayed.
+
+To specify your own arrow symbol, or no symbol at all, please add the following
+to your initialization file:
+>
+  vim.g.linefly_options = {
+    arrow_symbol = '<<SYMBOL-OF-YOUR-CHOOSING-OR-EMPTY>>'
   }
 <
 ------------------------------------------------------------------------------
