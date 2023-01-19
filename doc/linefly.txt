@@ -1,0 +1,104 @@
+*linefly* A simple, fast and informative pure-Lua statusline for Neovim.
+
+OPTIONS                                                       *linefly-options*
+
+Default option values:
+>
+  vim.g.linefly_options = {
+    separator_symbol = "⎪",
+    arrow_symbol = "↓",
+    active_tab_symbol = "▪",
+    git_branch_symbol = "",
+    error_symbol = "E",
+    warning_symbol = "W",
+    information_symbol = "I",
+    tabline = false,
+    winbar = false,
+    with_diagnostic_status = true,
+    with_file_icon = true,
+    with_git_branch = true,
+    with_gitsigns_status = true,
+<
+
+separator_symbol~                                           *separator_symbol*
+
+The `separator_symbol` option specifies which character symbol to use for
+segment separators in the `statusline`.
+
+By default, the `⎪` character (Unicode `U+23AA`) will be displayed.
+
+To specify your own separator symbol please add the following to your
+initialization file:
+
+>
+  vim.g.linefly_options = {
+    separator_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+  }
+<
+
+active_tab_symbol~                                         *active_tab_symbol*
+
+The `active_tab_symbol` option specifies which character symbol to use to
+signify the active tab in the `tabline`.
+
+By default, the `▪` character (Unicode `U+25AA`) will be displayed.
+
+To specify your own active tab symbol please add the following to your
+initialization file:
+
+>
+  vim.g.linefly_options = {
+    active_tab_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+  }
+<
+
+git_branch_symbol~                                         *git_branch_symbol*
+
+The `git_branch_symbol` option specifies which character symbol to use to
+signify the active tab in the `tabline`.
+
+By default, the `` character (Powerline `U+E0A0`) will be displayed. Many
+modern monospace fonts will contain that character.
+
+To specify your own active tab symbol, or no symbol at all, please add the
+following to your initialization file:
+
+>
+  vim.g.linefly_options = {
+    git_branch_symbol = '<<SYMBOL-OF-YOUR-CHOOSING-OR-EMPTY>>'
+  }
+<
+
+error_symbol~                                                   *error_symbol*
+
+The `error_symbol` option specifies which character symbol to use when
+displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html) errors.
+
+By default, the `E` character will be displayed.
+
+To specify your own error symbol please add the following to your initialization
+file:
+
+>
+vim.g.linefly_options = {
+  error_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+}
+<
+
+warning_symbol~                                               *warning_symbol*
+
+The `warning_symbol` option specifies which character symbol to use when
+displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html) warnings.
+
+By default, the `W` character will be displayed.
+
+To specify your own warning symbol please add the following to your
+initialization file:
+
+>
+  vim.g.linefly_options = {
+    warning_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+  }
+<
+
+vim:tw=78:ts=8:noet:ft=help:norl:
