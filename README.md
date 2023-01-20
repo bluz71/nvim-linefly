@@ -71,6 +71,8 @@ Modules And Plugins supported
 
 - [possession](https://github.com/jedrzejboczar/possession.nvim)
 
+- [nvim-possession](https://github.com/gennaro-tedesco/nvim-possession)
+
 :zap: Requirements
 ------------------
 
