@@ -553,19 +553,6 @@ vim.g.linefly_options = {
 }
 ```
 
-Alternatives
-------------
-
-- [lualine.nvim](https://github.com/nvim-lualine/lualine.nvim)
-- [feline.nvim](https://github.com/feline-nvim/feline.nvim)
-- [Galaxyline](https://github.com/glepnir/galaxyline.nvim)
-- [Heirline](https://github.com/rebelot/heirline.nvim)
-- [Windline](https://github.com/windwp/windline.nvim)
-- [staline.nvim](https://github.com/tamton-aquib/staline.nvim)
-- [neoline](https://github.com/adelarsq/neoline.vim)
-- [Statusline.lua](https://github.com/beauwilliams/statusline.lua)
-- [nvim-hardline](https://github.com/ojroques/nvim-hardline)
-
 Sponsor
 -------
 

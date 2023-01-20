@@ -1,8 +1,3 @@
--- Useful information about Lua implemented statuslines:
---  https://is.gd/0neIrY
---  https://is.gd/jWqwWz
---  https://is.gd/cQDVa7
-
 local file = require("linefly.file")
 local options = require("linefly.options").list
 local utils = require("linefly.utils")
