@@ -19,8 +19,8 @@ of Lua code. For comparison, the
 [lualine](https://github.com/nvim-lualine/lualine.nvim),
 [lightline](https://github.com/itchyny/lightline.vim) and
 [airline](https://github.com/vim-airline/vim-airline) plugins contain over
-8,000, 3,600 and 7,300 code respectively. In fairness, the latter plugins are
-more featureful, configurable and visually pleasing.
+8,000, 3,600 and 7,300 lines of code respectively. In fairness, the latter
+plugins are more featureful, configurable and visually pleasing.
 
 :warning: _linefly_ has a predominantly fixed layout, this will **not** be an
 appropriate `statusline` plugin if layout flexibility is desired.
@@ -222,21 +222,23 @@ vim.g.linefly_options = {
   information_symbol = "I",
   tabline = false,
   winbar = false,
-  with_diagnostic_status = true,
-  with_indent_status = false,
   with_file_icon = true,
   with_git_branch = true,
-  with_gitsigns_status = true,
+  with_git_status = true,
+  with_diagnostic_status = true,
+  with_session_status = true,
+  with_indent_status = false,
 }
 ```
 
 | Option | Option | Option
 |--------|--------|-------
-| [separator_symbol](https://github.com/bluz71/nvim-linefly#separator_symbol)             | [arrow_symbol](https://github.com/bluz71/nvim-linefly#arrow_symbol)     | [active_tab_symbol](https://github.com/bluz71/nvim-linefly#active_tab_symbol)
-| [git_branch_symbol](https://github.com/bluz71/nvim-linefly#git_branch_symbol)           | [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)     | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)
-| [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)         | [tabline](https://github.com/bluz71/nvim-linefly#tabline)               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
-| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon) | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)
-| [with_gitsigns_status](https://github.com/bluz71/nvim-linefly#with_gitsigns_status) |
+| [separator_symbol](https://github.com/bluz71/nvim-linefly#separator_symbol)             | [arrow_symbol](https://github.com/bluz71/nvim-linefly#arrow_symbol)               | [active_tab_symbol](https://github.com/bluz71/nvim-linefly#active_tab_symbol)
+| [git_branch_symbol](https://github.com/bluz71/nvim-linefly#git_branch_symbol)
+| [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)                     | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)           | [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
+| [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
+| [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)                 | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)         | [with_git_status](https://github.com/bluz71/nvim-linefly#with_git_status) |
+| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status) | [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status) |
 
 ---
 
@@ -431,28 +433,6 @@ vim.g.linefly_options = {
 
 ---
 
-### with_indent_status
-
-The `with_indent_status` option specifies whether to display the indentation
-status as the last component in the statusline. By default indentation status
-will not be displayed.
-
-Note, if the `expandtab` option is set, for the current buffer, then tab stop
-will be displayed, for example `Tab:4` (tab equals four spaces); if on the other
-hand `noexpandtab` option is set then shift width will be displayed instead, for
-example `Spc:2` ('spc' short for 'space').
-
-To enable indentation status please add the following to your initialization
-file:
-
-```lua
-vim.g.linefly_options = {
-  with_indent_status = true,
-}
-```
-
----
-
 ### with_file_icon
 
 The `with_file_icon` option specifies whether a filetype icon, from a Nerd
@@ -471,6 +451,42 @@ initialization file:
 ```lua
 vim.g.linefly_options = {
   with_file_icon = false,
+}
+```
+
+---
+
+### with_git_branch
+
+The `with_git_branch` option specifies whether to display Git branch
+details in the _statusline_. By default Git branches will be displayed in the
+`statusline`.
+
+To disable the display of Git branches in the _statusline_ please add the
+following to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  with_git_branch = false,
+}
+```
+
+---
+
+### with_git_status
+
+The `with_git_status` option specifies whether to display
+[Gitsigns](https://github.com/lewis6991/gitsigns.nvim) of the current buffer in
+the `statusline`.
+
+By default, Git status will be displayed if the plugin is loaded.
+
+To disable the display of Git status in the _statusline_ please add the
+following to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  with_git_status = false,
 }
 ```
 
@@ -497,37 +513,42 @@ vim.g.linefly_options = {
 
 ---
 
-### with_git_branch
+### with_session_status
 
-The `with_git_branch` option specifies whether to display Git branch
-details in the _statusline_. By default Git branches will be displayed in the
-`statusline`.
+The `with_session_status` option specifies whether to display
+[Obsession](https://github.com/tpope/vim-obsession) or [posession](https://github.com/jedrzejboczar/possession.nvim) session details
+the `statusline`.
 
-To disable the display of Git branches in the _statusline_ please add the
+By default, session details will be displayed if the plugin is loaded.
+
+To disable the display of session details in the _statusline_ please add the
 following to your initialization file:
 
 ```lua
 vim.g.linefly_options = {
-  with_git_branch = false,
+  with_session_status = false,
 }
 ```
 
 ---
 
-### with_gitsigns_status
+### with_indent_status
 
-The `with_gitsigns_status` option specifies whether to display
-[Gitsigns](https://github.com/lewis6991/gitsigns.nvim) of the current buffer in
-the `statusline`.
+The `with_indent_status` option specifies whether to display the indentation
+status as the last component in the statusline. By default indentation status
+will not be displayed.
 
-By default, Gitsigns will be displayed if the plugin is loaded.
+Note, if the `expandtab` option is set, for the current buffer, then tab stop
+will be displayed, for example `Tab:4` (tab equals four spaces); if on the other
+hand `noexpandtab` option is set then shift width will be displayed instead, for
+example `Spc:2` ('spc' short for 'space').
 
-To disable the display of Gitsigns in the _statusline_ please add the following
-to your initialization file:
+To enable indentation status please add the following to your initialization
+file:
 
 ```lua
 vim.g.linefly_options = {
-  with_gitsigns_status = false,
+  with_indent_status = true,
 }
 ```
 

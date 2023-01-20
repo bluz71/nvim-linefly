@@ -10,7 +10,7 @@ M.status = function()
   local segments = ""
 
   -- Gitsigns status.
-  if options().with_gitsigns_status and package.loaded.gitsigns then
+  if options().with_git_status and package.loaded.gitsigns then
     local signs = vim.b.gitsigns_status_dict
     if signs and signs.added and signs.added > 0 then
       segments = segments .. " %#LineflyGitAdd#+" .. signs.added .. "%*"
@@ -50,10 +50,10 @@ M.status = function()
   end
 
   local session_segment
-  if g.loaded_obsession then
+  if options().with_session_status and g.loaded_obsession then
     -- Obsession plugin.
     session_segment = eval([[ObsessionStatus('obsession', '!obsession')]])
-  elseif package.loaded.possession then
+  elseif options().with_session_status and package.loaded.possession then
     session_segment = require('possession.session').session_name
   end
   if is_present(session_segment) then

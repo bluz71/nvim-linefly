@@ -8,11 +8,12 @@ local options_list = {
   information_symbol = "I",
   tabline = false,
   winbar = false,
-  with_diagnostic_status = true,
-  with_indent_status = false,
   with_file_icon = true,
   with_git_branch = true,
-  with_gitsigns_status = true,
+  with_git_status = true,
+  with_diagnostic_status = true,
+  with_session_status = true,
+  with_indent_status = false,
 }
 
 local user_settings_merged = false
