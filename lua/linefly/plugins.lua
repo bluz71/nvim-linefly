@@ -54,7 +54,9 @@ M.status = function()
     -- Obsession plugin.
     session_segment = eval([[ObsessionStatus('obsession', '!obsession')]])
   elseif options().with_session_status and package.loaded.possession then
-    session_segment = require('possession.session').session_name
+    session_segment = require("possession.session").session_name
+  elseif options().with_session_status and package.loaded["nvim-possession"] then
+    session_segment = require("nvim-possession").status()
   end
   if is_present(session_segment) then
     segments = segments .. " %#LineflySession#" .. session_segment .. "%*"
