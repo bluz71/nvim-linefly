@@ -14,7 +14,7 @@ can also be
 [customized](https://github.com/bluz71/nvim-linefly#highlight-groups-and-colors)
 if desired.
 
-Lastly, _linefly_ is a light _statusline_ plugin clocking in at about 500 lines
+Lastly, _linefly_ is a light `statusline` plugin clocking in at about 500 lines
 of Lua code. For comparison, the
 [lualine](https://github.com/nvim-lualine/lualine.nvim),
 [lightline](https://github.com/itchyny/lightline.vim) and
@@ -459,10 +459,10 @@ vim.g.linefly_options = {
 ### with_git_branch
 
 The `with_git_branch` option specifies whether to display Git branch
-details in the _statusline_. By default Git branches will be displayed in the
+details in the `statusline`. By default Git branches will be displayed in the
 `statusline`.
 
-To disable the display of Git branches in the _statusline_ please add the
+To disable the display of Git branches in the `statusline` please add the
 following to your initialization file:
 
 ```lua
@@ -479,9 +479,9 @@ The `with_git_status` option specifies whether to display
 [Gitsigns](https://github.com/lewis6991/gitsigns.nvim) of the current buffer in
 the `statusline`.
 
-By default, Git status will be displayed if the plugin is loaded.
+By default, the Git status will be displayed if the plugin is loaded.
 
-To disable the display of Git status in the _statusline_ please add the
+To disable the display of Git status in the `statusline` please add the
 following to your initialization file:
 
 ```lua
@@ -516,12 +516,13 @@ vim.g.linefly_options = {
 ### with_session_status
 
 The `with_session_status` option specifies whether to display
-[Obsession](https://github.com/tpope/vim-obsession) or [posession](https://github.com/jedrzejboczar/possession.nvim) session details
+[Obsession](https://github.com/tpope/vim-obsession) or
+[posession](https://github.com/jedrzejboczar/possession.nvim) session details in
 the `statusline`.
 
-By default, session details will be displayed if the plugin is loaded.
+By default, session details will be displayed if one of those plugins is loaded.
 
-To disable the display of session details in the _statusline_ please add the
+To disable the display of session details in the `statusline` please add the
 following to your initialization file:
 
 ```lua
