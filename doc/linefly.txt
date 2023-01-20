@@ -76,7 +76,7 @@ signify the active tab in the `tabline`.
 By default, the `` character (Powerline `U+E0A0`) will be displayed. Many
 modern monospace fonts will contain that character.
 
-To specify your own active tab symbol, or no symbol at all, please add the
+To specify your own Git branch symbol, or no symbol at all, please add the
 following to your initialization file:
 >
   vim.g.linefly_options = {
