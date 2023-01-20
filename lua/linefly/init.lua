@@ -18,7 +18,7 @@ local win_get_height = vim.api.nvim_win_get_height
 
 -- Refer to ':help mode()' for the full list of available modes. For now only
 -- handle the most common modes.
-local modes_map = {
+local modes_map = setmetatable({
   ["n"] = { "%#LineflyNormal#", " normal ", "%#LineflyNormalEmphasis#" }, -- Normal
   ["no"] = { "%#LineflyNormal#", " o-pend ", "%#LineflyNormalEmphasis#" }, -- Operator pending
   ["niI"] = { "%#LineflyNormal#", " i-pend ", "%#LineflyNormalEmphasis#" }, -- Insert mode pending (Ctrl-o)
@@ -44,7 +44,11 @@ local modes_map = {
   ["Rx"] = { "%#LineflyReplace#", " r-comp ", "%#LineflyReplaceEmphasis#" }, -- Replace completion (Ctrl-x)
   ["t"] = { "%#LineflyInsert#", " t-mode ", "%#LineflyInsertEmphasis#" }, -- Terminal
   ["nt"] = { "%#LineflyNormal#", " normal ", "%#LineflyNormalEmphasis#" }, -- Terminal normal mode
-}
+}, {
+  __index = function()
+    return { "%#LineflyNormal#", " normal ", "%#LineflyNormalEmphasis#" } -- Handle edge modes
+  end,
+})
 
 local M = {}
 
