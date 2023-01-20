@@ -57,7 +57,7 @@ _G.linefly = M
 M.active_statusline = function()
   local current_mode = mode().mode
   local separator = options().separator_symbol
-  local arrow = options().arrow_symbol
+  local progress = options().progress_symbol
   local branch_name = require("linefly.git").current_branch_name()
   local mode_emphasis = modes_map[current_mode][3]
 
@@ -72,7 +72,7 @@ M.active_statusline = function()
   end
   statusline = statusline .. require("linefly.plugins").status()
   statusline = statusline .. "%*%=%l:%c %*" .. separator
-  statusline = statusline .. "%* " .. mode_emphasis .. "%L%* " .. arrow .. "%P "
+  statusline = statusline .. "%* " .. mode_emphasis .. "%L%* " .. progress .. "%P "
   if options().with_indent_status then
     statusline = statusline .. "%*" .. separator .. "%* " .. utils.indent_status()
   end
@@ -82,12 +82,12 @@ end
 
 M.inactive_statusline = function()
   local separator = options().separator_symbol
-  local arrow = options().arrow_symbol
+  local progress = options().progress_symbol
 
   local statusline = " %*%<" .. file.name(opt.laststatus:get() ~= 3)
   statusline = statusline .. "%{&modified?'+ ':'  '}"
   statusline = statusline .. "%{&readonly?'RO ':''}"
-  statusline = statusline .. "%*%=%l:%c " .. separator .. " %L " .. arrow .. "%P "
+  statusline = statusline .. "%*%=%l:%c " .. separator .. " %L " .. progress .. "%P "
   if options().with_indent_status then
     statusline = statusline .. separator .. " " .. utils.indent_status()
   end

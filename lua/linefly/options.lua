@@ -1,6 +1,6 @@
 local options_list = {
   separator_symbol = "⎪",
-  arrow_symbol = "↓",
+  progress_symbol = "↓",
   active_tab_symbol = "▪",
   git_branch_symbol = "",
   error_symbol = "E",

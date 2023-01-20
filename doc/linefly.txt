@@ -6,7 +6,7 @@ Default option values:
 >
   vim.g.linefly_options = {
     separator_symbol = "⎪",
-    arrow_symbol = "↓",
+    progress_symbol = "↓",
     active_tab_symbol = "▪",
     git_branch_symbol = "",
     error_symbol = "E",
@@ -38,18 +38,18 @@ initialization file:
   }
 <
 ------------------------------------------------------------------------------
-arrow_symbol~                                                   *arrow_symbol*
+progress_symbol~                                             *progress_symbol*
 
-The `arrow_symbol` option specifies which character symbol to use to indicate
-location-as-percentage in the `statusline`.
+The `progress_symbol` option specifies which character symbol to use to
+indicate location-as-percentage in the `statusline`.
 
 By default, the `↓` character (Unicode `U+2193`) will be displayed.
 
-To specify your own arrow symbol, or no symbol at all, please add the following
-to your initialization file:
+To specify your own progress symbol, or no symbol at all, please add the
+following to your initialization file:
 >
   vim.g.linefly_options = {
-    arrow_symbol = '<<SYMBOL-OF-YOUR-CHOOSING-OR-EMPTY>>'
+    progress_symbol = '<<SYMBOL-OF-YOUR-CHOOSING-OR-EMPTY>>'
   }
 <
 ------------------------------------------------------------------------------

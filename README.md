@@ -214,7 +214,7 @@ Default option values:
 ```lua
 vim.g.linefly_options = {
   separator_symbol = "⎪",
-  arrow_symbol = "↓",
+  progress_symbol = "↓",
   active_tab_symbol = "▪",
   git_branch_symbol = "",
   error_symbol = "E",
@@ -233,7 +233,7 @@ vim.g.linefly_options = {
 
 | Option | Option | Option
 |--------|--------|-------
-| [separator_symbol](https://github.com/bluz71/nvim-linefly#separator_symbol)             | [arrow_symbol](https://github.com/bluz71/nvim-linefly#arrow_symbol)               | [active_tab_symbol](https://github.com/bluz71/nvim-linefly#active_tab_symbol)
+| [separator_symbol](https://github.com/bluz71/nvim-linefly#separator_symbol)             | [progress_symbol](https://github.com/bluz71/nvim-linefly#progress_symbol)         | [active_tab_symbol](https://github.com/bluz71/nvim-linefly#active_tab_symbol)
 | [git_branch_symbol](https://github.com/bluz71/nvim-linefly#git_branch_symbol)
 | [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)                     | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)           | [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
 | [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
@@ -260,19 +260,19 @@ vim.g.linefly_options = {
 
 ---
 
-### arrow_symbol
+### progress_symbol
 
-The `arrow_symbol` option specifies which character symbol to use to indicate
+The `progress_symbol` option specifies which character symbol to use to indicate
 location-as-percentage in the `statusline`.
 
 By default, the `↓` character (Unicode `U+2193`) will be displayed.
 
-To specify your own arrow symbol, or no symbol at all, please add the following
-to your initialization file:
+To specify your own progress symbol, or no symbol at all, please add the
+following to your initialization file:
 
 ```lua
 vim.g.linefly_options = {
-  arrow_symbol = '<<SYMBOL-OF-YOUR-CHOOSING-OR-EMPTY>>'
+  progress_symbol = '<<SYMBOL-OF-YOUR-CHOOSING-OR-EMPTY>>'
 }
 ```
 
