@@ -28,11 +28,11 @@ appropriate `statusline` plugin if layout flexibility is desired.
 Screenshots
 -----------
 
-![normal](https://raw.githubusercontent.com/bluz71/misc-binaries/master/mistfly/mistfly-normal.png)
-![insert](https://raw.githubusercontent.com/bluz71/misc-binaries/master/mistfly/mistfly-insert.png)
-![visual](https://raw.githubusercontent.com/bluz71/misc-binaries/master/mistfly/mistfly-visual.png)
-![command](https://raw.githubusercontent.com/bluz71/misc-binaries/master/mistfly/mistfly-command.png)
-![replace](https://raw.githubusercontent.com/bluz71/misc-binaries/master/mistfly/mistfly-replace.png)
+![normal](https://raw.githubusercontent.com/bluz71/misc-binaries/master/statusline/statusline-normal.png)
+![insert](https://raw.githubusercontent.com/bluz71/misc-binaries/master/statusline/statusline-insert.png)
+![visual](https://raw.githubusercontent.com/bluz71/misc-binaries/master/statusline/statusline-visual.png)
+![command](https://raw.githubusercontent.com/bluz71/misc-binaries/master/statusline/statusline-command.png)
+![replace](https://raw.githubusercontent.com/bluz71/misc-binaries/master/statusline/statusline-replace.png)
 
 The above screenshots are using the
 [nightfly](https://github.com/bluz71/vim-nightfly-colors) colorscheme and the
