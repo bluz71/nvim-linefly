@@ -39,10 +39,10 @@ The above screenshots are using the
 [Iosevka](https://github.com/be5invis/Iosevka) font with Git changes,
 Diagnostics and indent-status enabled.
 
-Statusline Performance Comparison
----------------------------------
+Statusline Startup Comparison
+-----------------------------
 
-A performance comparison of _linefly_ against various popular `statusline`
+A startup comparison of _linefly_ against various popular `statusline`
 plugins, with their out-of-the-box defaults, on a clean and minimal Neovim setup
 with the [moonfly](https://github.com/bluz71/vim-moonfly-colors) colorscheme.
 The Neovim startup times in the following table are provived by the
@@ -193,7 +193,7 @@ Lastly, if the fallback colors do not suit then it is very easy to override with
 your own highlights.
 
 :gift: Here is a simple example of customized _linefly_ colors. Save the
-following either at the end of your initialization file after setting your
+following at the end of your initialization file after setting your
 `colorscheme`.
 
 ```lua
