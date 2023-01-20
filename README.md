@@ -408,7 +408,7 @@ map("n", "<Leader>9", "9gt")
 
 A screenshot of the `tabline`:
 
-![tabline](https://raw.githubusercontent.com/bluz71/misc-binaries/master/linefly/linefly-tabline.png)
+![tabline](https://raw.githubusercontent.com/bluz71/misc-binaries/master/statusline/tabline.png)
 
 ---
 
