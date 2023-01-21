@@ -9,7 +9,7 @@ local M = {}
 M.status = function()
   local segments = ""
 
-  -- Gitsigns status.
+  -- Git status.
   if options().with_git_status and package.loaded.gitsigns then
     local signs = vim.b.gitsigns_status_dict
     if signs and signs.added and signs.added > 0 then
@@ -49,9 +49,9 @@ M.status = function()
     end
   end
 
+  -- Session status.
   local session_segment
   if options().with_session_status and g.loaded_obsession then
-    -- Obsession plugin.
     session_segment = eval([[ObsessionStatus('obsession', '!obsession')]])
   elseif options().with_session_status and package.loaded.possession then
     session_segment = require("possession.session").session_name

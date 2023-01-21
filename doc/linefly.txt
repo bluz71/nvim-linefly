@@ -236,8 +236,9 @@ initialization file:
 with_session_status~                                     *with_session_status*
 
 The `with_session_status` option specifies whether to display
-Obsession (https://github.com/tpope/vim-obsession) or posession
-(https://github.com/jedrzejboczar/possession.nvim) session details in the
+vim-obsession (https://github.com/tpope/vim-obsession), possession.nvim
+(https://github.com/jedrzejboczar/possession.nvim) or nvim-possession
+(https://github.com/gennaro-tedesco/nvim-possession) session details in the
 `statusline`.
 
 By default, session details will be displayed if one of those plugins is loaded.

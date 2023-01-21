@@ -67,9 +67,9 @@ Modules And Plugins supported
 
 - [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
 
-- [Obsession](https://github.com/tpope/vim-obsession)
+- [vim-obsession](https://github.com/tpope/vim-obsession)
 
-- [possession](https://github.com/jedrzejboczar/possession.nvim)
+- [possession.nvim](https://github.com/jedrzejboczar/possession.nvim)
 
 - [nvim-possession](https://github.com/gennaro-tedesco/nvim-possession)
 
@@ -518,9 +518,10 @@ vim.g.linefly_options = {
 ### with_session_status
 
 The `with_session_status` option specifies whether to display
-[Obsession](https://github.com/tpope/vim-obsession) or
-[posession](https://github.com/jedrzejboczar/possession.nvim) session details in
-the `statusline`.
+[vim-obsession](https://github.com/tpope/vim-obsession),
+[posession.nvim](https://github.com/jedrzejboczar/possession.nvim) or
+[nvim-possession](https://github.com/gennaro-tedesco/nvim-possession) session
+details in the `statusline`.
 
 By default, session details will be displayed if one of those plugins is loaded.
 
