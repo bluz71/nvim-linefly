@@ -5,9 +5,7 @@ local M = {}
 
 M.list = function()
   if not options_initialized then
-    if g.linefly_options == nil then
-      g.linefly_options = {}
-    end
+    g.linefly_options = g.linefly_options or {}
     g.linefly_options = {
       separator_symbol = g.linefly_options.separator_symbol or "⎪",
       progress_symbol = g.linefly_options.progress_symbol or "↓",
