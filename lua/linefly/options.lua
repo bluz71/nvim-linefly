@@ -4,7 +4,7 @@ local options_initialized = false
 local M = {}
 
 M.list = function()
-  if not options_initialized then
+  if not options_initialized or not g.linefly_options then
     g.linefly_options = g.linefly_options or {}
     g.linefly_options = {
       separator_symbol = g.linefly_options.separator_symbol or "⎪",

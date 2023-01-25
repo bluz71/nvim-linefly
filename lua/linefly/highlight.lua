@@ -122,6 +122,12 @@ local colorscheme_mode_highlights = function()
     highlight(0, "LineflyVisual", { link = "MiniStatuslineModeVisual" })
     highlight(0, "LineflyCommand", { link = "MiniStatuslineModeCommand" })
     highlight(0, "LineflyReplace", { link = "MiniStatuslineModeReplace" })
+  elseif g.colors_name == "rose-pine" then
+    synthesize_mode_highlight("LineflyNormal", "Function", "IncSearch")
+    synthesize_mode_highlight("LineflyInsert", "Label", "IncSearch")
+    synthesize_mode_highlight("LineflyVisual", "Todo", "IncSearch")
+    synthesize_mode_highlight("LineflyCommand", "Error", "IncSearch")
+    synthesize_mode_highlight("LineflyReplace", "Repeat", "IncSearch")
   else
     -- Fallback for all other colorschemes.
     if highlight_empty("LineflyNormal") then
