@@ -187,6 +187,8 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [nightfox](https://github.com/EdenEast/nightfox.nvim)
 
+- [onedark](https://github.com/navarasu/onedark.nvim)
+
 - [rose-pine](https://github.com/rose-pine/neovim)
 
 - [sonokai](https://github.com/sainnhe/sonokai)

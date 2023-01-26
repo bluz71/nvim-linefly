@@ -90,8 +90,8 @@ local colorscheme_mode_highlights = function()
     synthesize_mode_highlight("LineflyCommand", "Constant", "VertSplit")
     synthesize_mode_highlight("LineflyReplace", "Conditional", "VertSplit")
   elseif g.colors_name == "edge" or g.colors_name == "everforest"
-    or g.colors_name == "gruvbox-material" or g.colors_name == "sonokai"
-    or g.colors_name == "tokyonight" then
+    or g.colors_name == "gruvbox-material" or g.colors_name == "onedark"
+    or g.colors_name == "sonokai" or g.colors_name == "tokyonight" then
     highlight(0, "LineflyNormal", { link = "MiniStatuslineModeNormal" })
     highlight(0, "LineflyInsert", { link = "MiniStatuslineModeInsert" })
     highlight(0, "LineflyVisual", { link = "MiniStatuslineModeVisual" })
