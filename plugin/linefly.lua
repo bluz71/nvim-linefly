@@ -4,12 +4,11 @@
 -- License:      MIT (https://opensource.org/licenses/MIT)
 
 if vim.fn.has("nvim-0.8") ~= 1 then
-  vim.opt_local.statusline = "nvim-linefly requires Neovim 0.8, or later"
+  vim.api.nvim_echo({ { "nvim-linefly requires Neovim 0.8, or later", "WarningMsg" } }, false, {})
   return
 end
 
 local g = vim.g
-
 if g.lineflyLoaded ~= nil then
   return
 end
