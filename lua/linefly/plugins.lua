@@ -31,17 +31,20 @@ M.status = function()
     local errors = #diagnostic.get(0, { severity = diagnostic.severity.ERROR })
     local warnings = #diagnostic.get(0, { severity = diagnostic.severity.WARN })
     local information = #diagnostic.get(0, { severity = diagnostic.severity.INFO })
+    local error_symbol = options().error_symbol or "E"
+    local warning_symbol = options().warning_symbol or "W"
+    local information_symbol = options().information_symbol or "I"
 
     if errors > 0 then
-      segments = segments .. " %#LineflyDiagnosticError#" .. options().error_symbol
+      segments = segments .. " %#LineflyDiagnosticError#" .. error_symbol
       segments = segments .. " " .. errors .. "%*"
     end
     if warnings > 0 then
-      segments = segments .. " %#LineflyDiagnosticWarning#" .. options().warning_symbol
+      segments = segments .. " %#LineflyDiagnosticWarning#" .. warning_symbol
       segments = segments .. " " .. warnings .. "%*"
     end
     if information > 0 then
-      segments = segments .. " %#LineflyDiagnosticInformation#" .. options().information_symbol
+      segments = segments .. " %#LineflyDiagnosticInformation#" .. information_symbol
       segments = segments .. " " .. information .. "%*"
     end
     if errors > 0 or warnings > 0 or information > 0 then

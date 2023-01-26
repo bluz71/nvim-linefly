@@ -55,8 +55,8 @@ _G.linefly = M
 
 M.active_statusline = function()
   local current_mode = mode().mode
-  local separator = options().separator_symbol
-  local progress = options().progress_symbol
+  local separator = options().separator_symbol or "⎪"
+  local progress = options().progress_symbol or "↓"
   local branch_name = require("linefly.git").current_branch_name()
   local mode_emphasis = modes_map[current_mode][3]
 
@@ -80,8 +80,8 @@ M.active_statusline = function()
 end
 
 M.inactive_statusline = function()
-  local separator = options().separator_symbol
-  local progress = options().progress_symbol
+  local separator = options().separator_symbol or "⎪"
+  local progress = options().progress_symbol or "↓"
 
   local statusline = " %*%<" .. file.name(opt.laststatus:get() ~= 3)
   statusline = statusline .. "%{&modified?'+ ':'  '}"
@@ -153,7 +153,7 @@ end
 ------------------------------------------------------------
 
 M.active_tabline = function()
-  local symbol = options().active_tab_symbol
+  local symbol = options().active_tab_symbol or "▪"
   local tabline = ""
   local counter = 0
 

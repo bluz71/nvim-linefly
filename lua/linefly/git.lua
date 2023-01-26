@@ -24,7 +24,7 @@ M.current_branch_name = function()
     return ""
   end
 
-  local git_branch_symbol = options().git_branch_symbol
+  local git_branch_symbol = options().git_branch_symbol or ""
   if is_empty(git_branch_symbol) then
     return " " .. git_branch_name
   else
