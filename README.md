@@ -162,7 +162,7 @@ colorscheme does not support _linefly_.
 | Command Mode             | `LineflyCommand`       | `WarningMsg`
 | Replace Mode             | `LineflyReplace`       | `Error`
 
-Note, the following colorschemes support _linefly_, either within the
+Note, the following *dark* colorschemes support _linefly_, either within the
 colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [moonfly](https://github.com/bluz71/vim-moonfly-colors)
@@ -179,7 +179,7 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [everforest](https://github.com/sainnhe/everforest)
 
-- [gruvbox](https://github.com/ellisonleao/gruvbox.nvim)
+- [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
 
 - [gruvbox-material](https://github.com/sainnhe/gruvbox-material)
 
@@ -187,7 +187,11 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [nightfox](https://github.com/EdenEast/nightfox.nvim)
 
-- [onedark](https://github.com/navarasu/onedark.nvim)
+- [nord.nvim](https://github.com/shaunsingh/nord.nvim)
+
+- [onedark.nvim](https://github.com/navarasu/onedark.nvim)
+
+- [palenightfall](https://github.com/JoosepAlviste/palenightfall.nvim)
 
 - [rose-pine](https://github.com/rose-pine/neovim)
 
