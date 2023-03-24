@@ -63,6 +63,7 @@ M.active_statusline = function()
   local statusline = modes_map[current_mode][1]
   statusline = statusline .. modes_map[current_mode][2]
   statusline = statusline .. "%* %<" .. file.name(opt.laststatus:get() ~= 3)
+  statusline = statusline .. "%q%{exists('w:quickfix_title')? ' ' . w:quickfix_title : ''}"
   statusline = statusline .. "%{&modified ? '+ ' : '  '}"
   statusline = statusline .. "%{&readonly ? 'RO ' : ''}"
   if utils.is_present(branch_name) then
