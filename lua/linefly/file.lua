@@ -12,7 +12,8 @@ local file_icon = function(for_winbar)
     return ""
   end
 
-  local icon, icon_highlight = require("nvim-web-devicons").get_icon(expand("%"), nil, { default = true })
+  local icon, icon_highlight =
+    require("nvim-web-devicons").get_icon(expand("%"), nil, { default = true })
   if icon_highlight ~= nil then
     -- Generate the custom icon highlight group name.
     local custom_icon_highlight = "Linefly" .. icon_highlight
