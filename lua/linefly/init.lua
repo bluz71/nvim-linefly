@@ -62,7 +62,7 @@ M.active_statusline = function()
 
   local statusline = modes_map[current_mode][1]
   statusline = statusline .. modes_map[current_mode][2]
-  statusline = statusline .. "%* %<" .. file.name(opt.laststatus:get() ~= 3)
+  statusline = statusline .. "%* %<" .. file.name(opt.laststatus:get() ~= 3, false)
   statusline = statusline .. "%q%{exists('w:quickfix_title')? ' ' . w:quickfix_title : ''}"
   statusline = statusline .. "%{&modified ? '+ ' : '  '}"
   statusline = statusline .. "%{&readonly ? 'RO ' : ''}"
@@ -84,7 +84,7 @@ M.inactive_statusline = function()
   local separator = options().separator_symbol or "⎪"
   local progress = options().progress_symbol or "↓"
 
-  local statusline = " %*%<" .. file.name(opt.laststatus:get() ~= 3)
+  local statusline = " %*%<" .. file.name(opt.laststatus:get() ~= 3, false)
   statusline = statusline .. "%{&modified?'+ ':'  '}"
   statusline = statusline .. "%{&readonly?'RO ':''}"
   statusline = statusline .. "%*%=%l:%c " .. separator .. " %L " .. progress .. "%P "
@@ -132,7 +132,7 @@ M.active_winbar = function()
 
   local winbar = modes_map[current_mode][1]
   winbar = winbar .. string.sub(modes_map[current_mode][2], 1, 2)
-  winbar = winbar .. " %* %<" .. file.name(true)
+  winbar = winbar .. " %* %<" .. file.name(true, true)
   winbar = winbar .. "%{&modified ? '+ ' : '  '}"
   winbar = winbar .. "%{&readonly ? 'RO ' : ''}"
   winbar = winbar .. "%#Normal#"
@@ -141,7 +141,7 @@ M.active_winbar = function()
 end
 
 M.inactive_winbar = function()
-  local winbar = " %*%<" .. file.name(true)
+  local winbar = " %*%<" .. file.name(true, true)
   winbar = winbar .. "%{&modified?'+ ':'  '}"
   winbar = winbar .. "%{&readonly?'RO ':''}"
   winbar = winbar .. "%#NonText#"

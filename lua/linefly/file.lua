@@ -1,3 +1,4 @@
+local highlight = require("linefly.highlight")
 local is_empty = require("linefly.utils").is_empty
 local options = require("linefly.options").list
 local buf_get_name = vim.api.nvim_buf_get_name
@@ -6,12 +7,37 @@ local expand = vim.fn.expand
 local fnamemodify = vim.fn.fnamemodify
 local pathshorten = vim.fn.pathshorten
 
-local file_icon = function()
+-- Use a cache to avoid needlessly regenerating a highlight group for the same
+-- DevIcon filetype.
+local file_icon_highlight_cache = {}
+
+local file_icon = function(for_winbar)
   if not options().with_file_icon or is_empty(buf_get_name(0)) or not vim.g.nvim_web_devicons then
     return ""
   end
 
-  return require("nvim-web-devicons").get_icon(expand("%"), nil, { default = true }) .. " "
+  local icon, icon_highlight = require("nvim-web-devicons").get_icon(expand("%"), nil, { default = true })
+  if icon_highlight ~= nil then
+    -- Generate the custom icon highlight group name.
+    local custom_icon_highlight = "Linefly" .. icon_highlight
+    if for_winbar then
+      custom_icon_highlight = custom_icon_highlight .. "WinBar"
+    end
+
+    -- Check if the custom highlight group exists in the cache.
+    local cached_icon_highlight = file_icon_highlight_cache[custom_icon_highlight]
+    if not cached_icon_highlight then
+      -- Custom highlight does not exist, generate it for either the StatusLine
+      -- or WinBar backgroup.
+      highlight.generate_icon_group(custom_icon_highlight, icon_highlight, for_winbar)
+      -- And add it to the cache.
+      file_icon_highlight_cache[custom_icon_highlight] = icon_highlight
+    end
+
+    return "%#" .. custom_icon_highlight .. "#" .. icon .. "%* "
+  else
+    return icon .. " "
+  end
 end
 
 local file_path = function(short_path)
@@ -48,8 +74,8 @@ end
 
 local M = {}
 
-M.name = function(short_path)
-  return file_icon() .. file_path(short_path)
+M.name = function(short_path, for_winbar)
+  return file_icon(for_winbar) .. file_path(short_path)
 end
 
 return M

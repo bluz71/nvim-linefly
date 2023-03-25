@@ -185,4 +185,23 @@ M.generate_groups = function()
   end
 end
 
+M.generate_icon_group = function(custom_icon_highlight, icon_highlight, for_winbar)
+  local source_fg = synIDattr(synIDtrans(hlID(icon_highlight)), "fg", "gui")
+
+  if for_winbar then
+    if highlight_empty("WinBar") then
+      -- Some themes do not set the WinBar highlight group, so just link to the
+      -- base DevIcon highlight group.
+      highlight(0, custom_icon_highlight, { link = icon_highlight })
+    else
+      -- Use the theme's WinBar background color.
+      local winbar_bg = synIDattr(synIDtrans(hlID("WinBar")), "bg", "gui")
+      highlight(0, custom_icon_highlight, { bg = winbar_bg, fg = source_fg })
+    end
+  else
+    -- Custom icon highlight must be for the StatusLine.
+    highlight(0, custom_icon_highlight, { bg = statusline_bg, fg = source_fg })
+  end
+end
+
 return M
