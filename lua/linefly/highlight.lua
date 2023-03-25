@@ -201,7 +201,7 @@ M.generate_icon_group = function(custom_icon_highlight, icon_highlight, for_winb
     return
   end
 
-  -- Extract the foregroup color of the chosen file icon.
+  -- Extract the foregroup color of the file icon.
   local source_fg = synIDattr(synIDtrans(hlID(icon_highlight)), "fg", "gui")
 
   if for_winbar then
