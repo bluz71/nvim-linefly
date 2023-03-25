@@ -45,7 +45,7 @@ M.update_inactive = function()
     if win_get_number(w) ~= current_window then
       win_set_option(w, "statusline", "%{%v:lua.linefly.inactive_statusline()%}")
       if options().winbar and win_get_height(0) > 1 then
-        win_set_option(w, "winbar", "%{%v:lua.linefly.inactive_winbar()%})")
+        win_set_option(w, "winbar", "%{%v:lua.linefly.inactive_winbar()%}")
       end
     end
   end
