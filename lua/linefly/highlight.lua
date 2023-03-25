@@ -12,6 +12,10 @@ local synIDattr = vim.fn.synIDattr
 -- avoid needless highlight extraction and generation.
 local statusline_bg
 
+-- Use a cache to avoid needlessly regenerating a highlight group for the same
+-- DevIcon filetype.
+local file_icon_highlight_cache = {}
+
 local highlight_empty = function(group)
   return hlexists(group) ~= 1 or is_empty(synIDattr(synIDtrans(hlID(group)), "bg"))
 end
@@ -183,9 +187,21 @@ M.generate_groups = function()
   if options().tabline and highlight_empty("TablineSelSymbol") then
     highlight(0, "TablineSelSymbol", { link = "TablineSel" })
   end
+
+  -- Invalidate the file icon cache; likely because a colorscheme change has
+  -- occurred.
+  file_icon_highlight_cache = {}
 end
 
 M.generate_icon_group = function(custom_icon_highlight, icon_highlight, for_winbar)
+  -- Check if the custom highlight group already exists in the cache.
+  local cached_icon_highlight = file_icon_highlight_cache[custom_icon_highlight]
+  if cached_icon_highlight then
+    -- No need to do anything, custom highlight group already exists.
+    return
+  end
+
+  -- Extract the foregroup color of the chosen file icon.
   local source_fg = synIDattr(synIDtrans(hlID(icon_highlight)), "fg", "gui")
 
   if for_winbar then
@@ -202,6 +218,9 @@ M.generate_icon_group = function(custom_icon_highlight, icon_highlight, for_winb
     -- Custom icon highlight must be for the StatusLine.
     highlight(0, custom_icon_highlight, { bg = statusline_bg, fg = source_fg })
   end
+
+  -- And lastly add the new highlight to the cache.
+  file_icon_highlight_cache[custom_icon_highlight] = icon_highlight
 end
 
 return M
