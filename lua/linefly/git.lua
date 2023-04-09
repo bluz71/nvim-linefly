@@ -42,8 +42,8 @@ end
 -- every time the statusline is redrawn.
 M.detect_branch_name = function()
   if not options().with_git_branch or is_empty(buf_get_name(0)) then
-    -- Don't calculate the expensive to branch name if it isn't wanted
-    -- or the buffer is empty.
+    -- Don't calculate the branch name if it isn't wanted or the buffer is
+    -- empty.
     return ""
   end
 
