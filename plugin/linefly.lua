@@ -57,10 +57,7 @@ autocmd("WinLeave", {
 
 autocmd({ "BufEnter", "BufWrite", "FocusGained" }, {
   callback = function()
-    if package.loaded.gitsigns == nil then
-      -- Gitsigns is not loaded, use fallback Git branch name detection.
-      vim.b.git_branch_name = require("linefly.git").detect_branch_name()
-    end
+    vim.b.git_branch_name = require("linefly.git").detect_branch_name()
   end,
   group = linefly_events,
 })
