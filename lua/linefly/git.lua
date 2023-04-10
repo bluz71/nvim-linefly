@@ -15,8 +15,9 @@ M.current_branch_name = function()
 
   if package.loaded.gitsigns ~= nil then
     -- Gitsigns is available, let's use it to access the branch name. Note,
-    -- sometimes on initial buffer load, Gitsigns returns a 'nil' HEAD value (I
-    -- suspect due to a timing issue); use the detected branch name if so.
+    -- sometimes on initial buffer load Gitsigns returns a 'nil' HEAD value (I
+    -- suspect due to a timing issue); use the fallback detected branch name if
+    -- so.
     git_branch_name = b.gitsigns_head or b.git_branch_name
   else
     -- Else use fallback detection.
@@ -52,7 +53,10 @@ M.detect_branch_name = function()
     return b.gitsigns_head
   end
 
+  -- Benchmark system call.
+  -- local start = vim.loop.hrtime()
   local git_branch_name = vim.fn.system("git branch --show-current 2> /dev/null")
+  -- print((vim.loop.hrtime() - start) / 1000000)
 
   if is_empty(git_branch_name) then
     return ""
