@@ -53,9 +53,11 @@ M.detect_branch_name = function()
     return b.gitsigns_head
   end
 
-  -- Benchmark system call.
+  -- Benchmark the 'git branch --show-current' system call if required.
   -- local start = vim.loop.hrtime()
-  local git_branch_name = vim.fn.system("git branch --show-current 2> /dev/null")
+  local file_process_handle = io.popen("git branch --show-current 2> /dev/null")
+  local git_branch_name = file_process_handle:read("*a")
+  file_process_handle:close()
   -- print((vim.loop.hrtime() - start) / 1000000)
 
   if is_empty(git_branch_name) then
