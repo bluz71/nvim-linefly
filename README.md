@@ -509,10 +509,10 @@ _linefly_ supports [Diagnostics](https://neovim.io/doc/user/diagnostic.html).
 The `with_diagnostic_status` option specifies whether to indicate the presence
 of the Diagnostics in the current buffer.
 
-By default, Diagnositics will be displayed if the
+By default, diagnositics will be displayed if the
 [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) plugin is loaded.
 
-If Diagnostic display is not wanted then please add the following to your
+If diagnostic display is not wanted then please add the following to your
 initialization file:
 
 ```lua
