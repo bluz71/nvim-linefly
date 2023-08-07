@@ -18,8 +18,8 @@ Default option values:
     with_git_branch = true,
     with_git_status = true,
     with_diagnostic_status = true,
-    with_macro_status = true,
     with_session_status = true,
+    with_macro_status = true,
     with_indent_status = false,
   }
 <
@@ -234,21 +234,6 @@ initialization file:
   }
 <
 ------------------------------------------------------------------------------
-with_macro_status~                                         *with_macro_status*
-
-The `with_macro_status` option specifies whether to display macro-recording
-status in the `statusline`.
-
-By default, macro-recording status will not be displayed.
-
-To enable the display of macro-recording status in the `statusline` please add
-the following to your initialization file:
->
-  vim.g.linefly_options = {
-    with_macro_status = true,
-  }
-<
-------------------------------------------------------------------------------
 with_session_status~                                     *with_session_status*
 
 The `with_session_status` option specifies whether to display
@@ -265,6 +250,21 @@ following to your initialization file:
 >
   vim.g.linefly_options = {
     with_session_status = false,
+  }
+<
+------------------------------------------------------------------------------
+with_macro_status~                                         *with_macro_status*
+
+The `with_macro_status` option specifies whether to display macro-recording
+status in the `statusline`.
+
+By default, macro-recording status will not be displayed.
+
+To enable the display of macro-recording status in the `statusline` please add
+the following to your initialization file:
+>
+  vim.g.linefly_options = {
+    with_macro_status = true,
   }
 <
 ------------------------------------------------------------------------------

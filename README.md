@@ -250,7 +250,7 @@ vim.g.linefly_options = {
 | [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)                     | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)           | [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
 | [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
 | [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)                 | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)         | [with_git_status](https://github.com/bluz71/nvim-linefly#with_git_status) |
-| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_macro_status](https://github.com/bluz71/nvim-linefly#with_macro_status)     | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status)
+| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status) | [with_macro_status](https://github.com/bluz71/nvim-linefly#with_macro_status)
 | [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status)
 
 ---
@@ -524,23 +524,6 @@ vim.g.linefly_options = {
 }
 ```
 
----
-
-### with_macro_status
-
-The `with_macro_status` option specifies whether to display macro-recording
-status in the `statusline`.
-
-By default, macro-recording status will not be displayed.
-
-To enable the display of macro-recording status in the `statusline` please add
-the following to your initialization file:
-
-```lua
-vim.g.linefly_options = {
-  with_macro_status = true,
-}
-```
 
 ---
 
@@ -560,6 +543,24 @@ following to your initialization file:
 ```lua
 vim.g.linefly_options = {
   with_session_status = false,
+}
+```
+
+---
+
+### with_macro_status
+
+The `with_macro_status` option specifies whether to display macro-recording
+status in the `statusline`.
+
+By default, macro-recording status will not be displayed.
+
+To enable the display of macro-recording status in the `statusline` please add
+the following to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  with_macro_status = true,
 }
 ```
 
