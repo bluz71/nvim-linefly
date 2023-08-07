@@ -526,7 +526,7 @@ vim.g.linefly_options = {
 
 ---
 
-### mistflyWithMacroStatus
+### with_macro_status
 
 The `with_macro_status` option specifies whether to display macro-recording
 status in the `statusline`.
