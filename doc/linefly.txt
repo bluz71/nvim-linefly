@@ -134,8 +134,9 @@ initialization file:
 tabline~                                                             *tabline*
 
 The `tabline` option specifies whether to let this plugin manage the Neovim
-`tabline` in addition to the `statusline`. By default Neovim `tabline`
-management will not be undertaken.
+`tabline` in addition to the `statusline`.
+
+By default, Neovim `tabline` management will not be undertaken.
 
 If enabled, `linefly` will render a simple numbered, and clickable,
 window-space layout in the `tabline`; note, no buffers will be displayed in
@@ -153,7 +154,9 @@ file:
 winbar~                                                               *winbar*
 
 The `winbar` option specifies whether to display a window bar at the top of each
-window. By default window bars will not be displayed.
+window.
+
+By default, window bars will not be displayed.
 
 Displaying a window bar is recommended when the global statusline is enabled via
 `set laststatus=3`; the `winbar` will then display the file name at the top of
@@ -178,7 +181,7 @@ Note, a Nerd Font (https://www.nerdfonts.com) must be active and the
 nvim-web-devicons (https://github.com/kyazdani42/nvim-web-devicons) plugin
 must also be installed and active.
 
-By default a filetype icon will be displayed if possible.
+By default, a filetype icon will be displayed if possible.
 
 To disable the display of a filetype icon please add the following to your
 initialization file:
@@ -191,8 +194,9 @@ initialization file:
 with_git_branch~                                             *with_git_branch*
 
 The `with_git_branch` option specifies whether to display Git branch
-details in the `statusline`. By default Git branches will be displayed in the
-`statusline`.
+details in the `statusline`.
+
+By default, Git branches will be displayed in the `statusline`.
 
 To disable the display of Git branches in the `statusline` please add the
 following to your initialization file:
@@ -246,7 +250,6 @@ By default, session details will be displayed if one of those plugins is loaded.
 
 To disable the display of session details in the `statusline` please add the
 following to your initialization file:
-
 >
   vim.g.linefly_options = {
     with_session_status = false,
@@ -268,11 +271,45 @@ the following to your initialization file:
   }
 <
 ------------------------------------------------------------------------------
+with_search_count~                                         *with_search_count*
+
+The `with_search_count` option specifies whether to display the search count
+in the `statusline`.
+
+By default, search count will not be displayed.
+
+To enable the display of the search count in the `statusline` please add the
+following to your initialization file:
+>
+  vim.g.linefly_options = {
+    with_search_count = true,
+  }
+<
+Note, the search count is only displayed when the `hlsearch` option is set and
+the search count result is not zero.
+------------------------------------------------------------------------------
+with_spell_status~                                         *with_spell_status*
+
+The `with_spell_status` option specifies whether to display the spell status
+in the `statusline`.
+
+By default, spell status will not be displayed.
+
+To enable spell status in the `statusline` please add the following to your
+initialization file:
+
+>
+  vim.g.linefly_options = {
+    with_spell_status = true,
+  }
+<
+------------------------------------------------------------------------------
 with_indent_status~                                       *with_indent_status*
 
 The `with_indent_status` option specifies whether to display the indentation
-status as the last component in the statusline. By default indentation status
-will not be displayed.
+status as the last component in the statusline.
+
+By default, indentation status will not be displayed.
 
 Note, if the `expandtab` option is set, for the current buffer, then tab stop
 will be displayed, for example `Tab:4` (tab equals four spaces); if on the

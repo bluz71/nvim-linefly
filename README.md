@@ -112,7 +112,7 @@ right-side as follows:
 
 ```
 +-------------------------------------------------+
-| A | B | C | D         M               X | Y | Z |
+| A | B | C | D         M           W | X | Y | Z |
 +-------------------------------------------------+
 ```
 
@@ -123,6 +123,7 @@ right-side as follows:
 | C`*`    | Git branch name (if applicable)
 | D`*`    | Plugins notification (git, diagnostic and session status)
 | M       | Optional macro-recording status
+| W       | Optional search count and spell status
 | X       | Current position
 | Y`*`    | Total lines and current location as percentage
 | Z       | Optional indent status (spaces and tabs shift width)
@@ -251,7 +252,7 @@ vim.g.linefly_options = {
 | [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
 | [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)                 | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)         | [with_git_status](https://github.com/bluz71/nvim-linefly#with_git_status) |
 | [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status) | [with_macro_status](https://github.com/bluz71/nvim-linefly#with_macro_status)
-| [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status)
+| [with_search_count](https://github.com/bluz71/nvim-linefly#with_search_count)           | [with_spell_status](https://github.com/bluz71/nvim-linefly#with_spell_status)     | [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status)
 
 ---
 
@@ -386,8 +387,9 @@ vim.g.linefly_options = {
 ### tabline
 
 The _linefly_ `tabline` option specifies whether to let this plugin manage the
-Neovim `tabline` in addition to the `statusline`. By default Neovim `tabline`
-management will not be undertaken.
+Neovim `tabline` in addition to the `statusline`.
+
+By default, Neovim `tabline` management will not be undertaken.
 
 If enabled, _linefly_ will render a simple numbered, and clickable, window-space
 layout in the `tabline`; note, no buffers will be displayed in the `tabline`
@@ -428,7 +430,9 @@ A screenshot of the `tabline`:
 ### winbar
 
 The `winbar` option specifies whether to display a window bar at the top of each
-window. By default window bars will not be displayed.
+window.
+
+By default, window bars will not be displayed.
 
 Displaying a window bar is recommended when the global statusline is enabled via
 `set laststatus=3`; the `winbar` will then display the file name at the top of
@@ -456,7 +460,7 @@ Note, a [Nerd Font](https://www.nerdfonts.com) must be active **and** the
 [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) plugin must
 also be installed and active.
 
-By default a filetype icon will be displayed if possible.
+By default, a filetype icon will be displayed if possible.
 
 To disable the display of a filetype icon please add the following to your
 initialization file:
@@ -472,8 +476,9 @@ vim.g.linefly_options = {
 ### with_git_branch
 
 The `with_git_branch` option specifies whether to display Git branch
-details in the `statusline`. By default Git branches will be displayed in the
-`statusline`.
+details in the `statusline`.
+
+By default, Git branches will be displayed in the `statusline`.
 
 To disable the display of Git branches in the `statusline` please add the
 following to your initialization file:
@@ -524,7 +529,6 @@ vim.g.linefly_options = {
 }
 ```
 
-
 ---
 
 ### with_session_status
@@ -566,11 +570,51 @@ vim.g.linefly_options = {
 
 ---
 
+### with_search_count
+
+The `with_search_count` option specifies whether to display the search count in
+the `statusline`.
+
+By default, search count will not be displayed.
+
+To enable the display of the search count in the `statusline` please add the
+following to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  with_search_count = true,
+}
+```
+
+Note, the search count is only displayed when the `hlsearch` option is set and
+the search count result is not zero.
+
+---
+
+### with_spell_status
+
+The `with_spell_status` option specifies whether to display the spell status in
+the `statusline`.
+
+By default, spell status will not be displayed.
+
+To enable spell status in the `statusline` please add the following to your
+initialization file:
+
+```lua
+vim.g.linefly_options = {
+  with_spell_status = true,
+}
+```
+
+---
+
 ### with_indent_status
 
 The `with_indent_status` option specifies whether to display the indentation
-status as the last component in the statusline. By default indentation status
-will not be displayed.
+status as the last component in the statusline.
+
+By default, indentation status will not be displayed.
 
 Note, if the `expandtab` option is set, for the current buffer, then tab stop
 will be displayed, for example `Tab:4` (tab equals four spaces); if on the other

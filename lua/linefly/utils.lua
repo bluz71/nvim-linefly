@@ -1,4 +1,5 @@
 local opt = vim.opt
+local format = string.format
 
 local M = {}
 
@@ -20,6 +21,29 @@ M.indent_status = function()
     end
     return "Spc:" .. size .. " "
   end
+end
+
+M.search_count = function()
+  local result = vim.fn.searchcount({recompute = 1, maxcount = 0})
+  if vim.tbl_isempty(result) then
+    return ""
+  end
+
+  if result.incomplete == 1 then -- timed out
+    return "[?/??]"
+  elseif result.incomplete == 2 then -- max count exceeded
+    if result.total > result.maxcount and result.current > result.maxcount then
+      return format("[>%d/>%d]", result.current, result.total)
+    elseif result.total > result.maxcount then
+      return format("[%d/>%d]", result.current, result.total)
+    end
+  end
+
+  if result.total == 0 then
+    return ""
+  end
+
+  return format("[%d/%d]", result.current, result.total)
 end
 
 return M

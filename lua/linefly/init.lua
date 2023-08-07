@@ -79,7 +79,19 @@ M.active_statusline = function()
       statusline = statusline .. "%=recording @" .. recording_register
     end
   end
-  statusline = statusline .. "%=%l:%c %*" .. separator
+  statusline = statusline .. "%="
+  if options().with_search_count and opt.hlsearch:get() then
+    local search_count = utils.search_count()
+    if utils.is_present(search_count) then
+      statusline = statusline .. search_count .. "%* "
+      statusline = statusline .. "%*" .. separator .. "%* "
+    end
+  end
+  if options().with_spell_status and opt.spell:get() then
+    statusline = statusline .. "Spell "
+    statusline = statusline .. "%*" .. separator .. "%* "
+  end
+  statusline = statusline .. "%l:%c %*" .. separator
   statusline = statusline .. "%* " .. mode_emphasis .. "%L%* " .. progress .. "%P "
   if options().with_indent_status then
     statusline = statusline .. "%*" .. separator .. "%* " .. utils.indent_status()

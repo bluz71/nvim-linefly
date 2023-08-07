@@ -22,6 +22,8 @@ M.list = function()
       with_diagnostic_status = g.linefly_options.with_diagnostic_status or true,
       with_session_status = g.linefly_options.with_session_status or true,
       with_macro_status = g.linefly_options.with_macro_status or false,
+      with_search_count = g.linefly_options.with_search_count or false,
+      with_spell_status = g.linefly_options.with_spell_status or false,
       with_indent_status = g.linefly_options.with_indent_status or false,
     }
     options_initialized = true
