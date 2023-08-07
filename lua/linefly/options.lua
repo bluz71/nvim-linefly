@@ -20,6 +20,7 @@ M.list = function()
       with_git_branch = g.linefly_options.with_git_branch or true,
       with_git_status = g.linefly_options.with_git_status or true,
       with_diagnostic_status = g.linefly_options.with_diagnostic_status or true,
+      with_macro_status = g.linefly_options.with_macro_status or false,
       with_session_status = g.linefly_options.with_session_status or true,
       with_indent_status = g.linefly_options.with_indent_status or false,
     }

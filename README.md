@@ -107,12 +107,12 @@ Please do **not** lazy-load _linefly_.
 Layout And Default Colors
 -------------------------
 
-The *linefly* layout consists of two main groupings, the left-side and
-right-side groups as follows:
+The *linefly* layout consists of three groupings: the left-side, middle and
+right-side as follows:
 
 ```
 +-------------------------------------------------+
-| A | B | C | D                         X | Y | Z |
+| A | B | C | D         M               X | Y | Z |
 +-------------------------------------------------+
 ```
 
@@ -122,6 +122,7 @@ right-side groups as follows:
 | B       | Filename (refer below for details)
 | C`*`    | Git branch name (if applicable)
 | D`*`    | Plugins notification (git, diagnostic and session status)
+| M       | Optional macro-recording status
 | X       | Current position
 | Y`*`    | Total lines and current location as percentage
 | Z       | Optional indent status (spaces and tabs shift width)
@@ -236,6 +237,7 @@ vim.g.linefly_options = {
   with_git_branch = true,
   with_git_status = true,
   with_diagnostic_status = true,
+  with_macro_status = false,
   with_session_status = true,
   with_indent_status = false,
 }
@@ -248,7 +250,8 @@ vim.g.linefly_options = {
 | [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)                     | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)           | [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
 | [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
 | [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)                 | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)         | [with_git_status](https://github.com/bluz71/nvim-linefly#with_git_status) |
-| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status) | [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status) |
+| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_macro_status](https://github.com/bluz71/nvim-linefly#with_macro_status)     | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status)
+| [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status)
 
 ---
 
@@ -507,7 +510,7 @@ vim.g.linefly_options = {
 _linefly_ supports [Diagnostics](https://neovim.io/doc/user/diagnostic.html).
 
 The `with_diagnostic_status` option specifies whether to indicate the presence
-of the Diagnostics in the current buffer.
+of the diagnostics in the current buffer.
 
 By default, diagnositics will be displayed if the
 [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) plugin is loaded.
@@ -518,6 +521,24 @@ initialization file:
 ```lua
 vim.g.linefly_options = {
   with_diagnostic_status = false,
+}
+```
+
+---
+
+### mistflyWithMacroStatus
+
+The `with_macro_status` option specifies whether to display macro-recording
+status in the `statusline`.
+
+By default, macro-recording status will not be displayed.
+
+To enable the display of macro-recording status in the `statusline` please add
+the following to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  with_macro_status = true,
 }
 ```
 

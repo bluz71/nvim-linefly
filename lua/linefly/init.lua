@@ -3,12 +3,13 @@ local options = require("linefly.options").list
 local utils = require("linefly.utils")
 local window = require("linefly.window")
 local buf_get_option = vim.api.nvim_buf_get_option
-local fnamemodify = vim.fn.fnamemodify
+local fn = vim.fn
+local fnamemodify = fn.fnamemodify
 local mode = vim.api.nvim_get_mode
 local opt = vim.opt
 local opt_local = vim.opt_local
-local pathshorten = vim.fn.pathshorten
-local tabpagenr = vim.fn.tabpagenr
+local pathshorten = fn.pathshorten
+local tabpagenr = fn.tabpagenr
 local win_get_height = vim.api.nvim_win_get_height
 
 -- Refer to ':help mode()' for the full list of available modes. For now only
@@ -71,7 +72,14 @@ M.active_statusline = function()
     statusline = statusline .. branch_name .. "%* "
   end
   statusline = statusline .. require("linefly.plugins").status()
-  statusline = statusline .. "%*%=%l:%c %*" .. separator
+  statusline = statusline .. "%*"
+  if options().with_macro_status then
+    local recording_register = fn.reg_recording()
+    if utils.is_present(recording_register) then
+      statusline = statusline .. "%=recording @" .. recording_register
+    end
+  end
+  statusline = statusline .. "%=%l:%c %*" .. separator
   statusline = statusline .. "%* " .. mode_emphasis .. "%L%* " .. progress .. "%P "
   if options().with_indent_status then
     statusline = statusline .. "%*" .. separator .. "%* " .. utils.indent_status()
