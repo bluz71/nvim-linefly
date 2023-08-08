@@ -83,18 +83,16 @@ M.active_statusline = function()
   if options().with_search_count and opt.hlsearch:get() then
     local search_count = utils.search_count()
     if utils.is_present(search_count) then
-      statusline = statusline .. search_count .. "%* "
-      statusline = statusline .. "%*" .. separator .. "%* "
+      statusline = statusline .. search_count .. " " .. separator .. " "
     end
   end
   if options().with_spell_status and opt.spell:get() then
-    statusline = statusline .. "Spell "
-    statusline = statusline .. "%*" .. separator .. "%* "
+    statusline = statusline .. "Spell " .. separator .. " "
   end
-  statusline = statusline .. "%l:%c %*" .. separator
-  statusline = statusline .. "%* " .. mode_emphasis .. "%L%* " .. progress .. "%P "
+  statusline = statusline .. "%l:%c " .. separator
+  statusline = statusline .. " " .. mode_emphasis .. "%L%* " .. progress .. "%P "
   if options().with_indent_status then
-    statusline = statusline .. "%*" .. separator .. "%* " .. utils.indent_status()
+    statusline = statusline .. separator .. " " .. utils.indent_status()
   end
 
   return statusline
@@ -104,10 +102,10 @@ M.inactive_statusline = function()
   local separator = options().separator_symbol or "⎪"
   local progress = options().progress_symbol or "↓"
 
-  local statusline = " %*%<" .. file.name(opt.laststatus:get() ~= 3, false)
+  local statusline = " %<" .. file.name(opt.laststatus:get() ~= 3, false)
   statusline = statusline .. "%{&modified?'+ ':'  '}"
   statusline = statusline .. "%{&readonly?'RO ':''}"
-  statusline = statusline .. "%*%=%l:%c " .. separator .. " %L " .. progress .. "%P "
+  statusline = statusline .. "%=%l:%c " .. separator .. " %L " .. progress .. "%P "
   if options().with_indent_status then
     statusline = statusline .. separator .. " " .. utils.indent_status()
   end
@@ -161,7 +159,7 @@ M.active_winbar = function()
 end
 
 M.inactive_winbar = function()
-  local winbar = " %*%<" .. file.name(true, true)
+  local winbar = " %<" .. file.name(true, true)
   winbar = winbar .. "%{&modified?'+ ':'  '}"
   winbar = winbar .. "%{&readonly?'RO ':''}"
   winbar = winbar .. "%#NonText#"
