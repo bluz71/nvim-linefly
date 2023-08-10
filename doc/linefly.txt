@@ -1,6 +1,6 @@
 *linefly* A simple, fast and informative pure-Lua statusline for Neovim.
 
-OPTIONS                                                       *linefly-options*
+OPTIONS                                                      *linefly-options*
 
 Default option values:
 >
@@ -72,7 +72,7 @@ initialization file:
 git_branch_symbol~                                         *git_branch_symbol*
 
 The `git_branch_symbol` option specifies which character symbol to use when
-displaying Git branch details
+displaying Git branch details.
 
 By default, the `` character (Powerline `U+E0A0`) will be displayed. Many
 modern monospace fonts will contain that character.
@@ -285,6 +285,7 @@ following to your initialization file:
     with_search_count = true,
   }
 <
+
 Note, the search count is only displayed when the `hlsearch` option is set and
 the search count result is not zero.
 ------------------------------------------------------------------------------
@@ -297,7 +298,6 @@ By default, spell status will not be displayed.
 
 To enable spell status in the `statusline` please add the following to your
 initialization file:
-
 >
   vim.g.linefly_options = {
     with_spell_status = true,

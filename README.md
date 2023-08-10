@@ -313,7 +313,7 @@ vim.g.linefly_options = {
 ### git_branch_symbol
 
 The `git_branch_symbol` option specifies which character symbol to use when
-displaying Git branch details
+displaying Git branch details.
 
 By default, the `` character (Powerline `U+E0A0`) will be displayed. Many
 modern monospace fonts will contain that character.
@@ -386,8 +386,8 @@ vim.g.linefly_options = {
 
 ### tabline
 
-The _linefly_ `tabline` option specifies whether to let this plugin manage the
-Neovim `tabline` in addition to the `statusline`.
+The `tabline` option specifies whether to let this plugin manage the Neovim
+`tabline` in addition to the `statusline`.
 
 By default, Neovim `tabline` management will not be undertaken.
 
@@ -395,8 +395,8 @@ If enabled, _linefly_ will render a simple numbered, and clickable, window-space
 layout in the `tabline`; note, no buffers will be displayed in the `tabline`
 since there are many plugins that already provide that capability.
 
-To enable _linefly_'s `tabline` support please add the following to your
-initialization file:
+To enable `tabline` support please add the following to your initialization
+file:
 
 ```lua
 vim.g.linefly_options = {
