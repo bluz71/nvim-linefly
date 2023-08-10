@@ -312,8 +312,8 @@ vim.g.linefly_options = {
 
 ### git_branch_symbol
 
-The `git_branch_symbol` option specifies which character symbol to use to
-signify the active tab in the `tabline`.
+The `git_branch_symbol` option specifies which character symbol to use when
+displaying Git branch details
 
 By default, the `` character (Powerline `U+E0A0`) will be displayed. Many
 modern monospace fonts will contain that character.
@@ -436,7 +436,7 @@ By default, window bars will not be displayed.
 
 Displaying a window bar is recommended when the global statusline is enabled via
 `set laststatus=3`; the `winbar` will then display the file name at the top of
-each window to disambiguate splits. Also, if there only one window in the
+each window to disambiguate splits. Also, if there is only one window in the
 current tab then a `winbar` will not be displayed (it won't be needed).
 
 To enable the `winbar` feature please add the following to your initialization
@@ -517,7 +517,7 @@ _linefly_ supports [Diagnostics](https://neovim.io/doc/user/diagnostic.html).
 The `with_diagnostic_status` option specifies whether to indicate the presence
 of the diagnostics in the current buffer.
 
-By default, diagnositics will be displayed if the
+By default, diagnostics will be displayed if the
 [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) plugin is loaded.
 
 If diagnostic display is not wanted then please add the following to your
@@ -612,7 +612,7 @@ vim.g.linefly_options = {
 ### with_indent_status
 
 The `with_indent_status` option specifies whether to display the indentation
-status as the last component in the statusline.
+status as the last component in the `statusline`.
 
 By default, indentation status will not be displayed.
 
