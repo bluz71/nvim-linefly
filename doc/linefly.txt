@@ -19,7 +19,7 @@ Default option values:
     with_git_status = true,
     with_diagnostic_status = true,
     with_session_status = true,
-    with_macro_status = true,
+    with_macro_status = false,
     with_indent_status = false,
   }
 <
