@@ -369,8 +369,8 @@ vim.g.linefly_options = {
 
 ### information_symbol
 
-The `information_symbol` option specifies which character symbol to use
-when displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html)
+The `information_symbol` option specifies which character symbol to use when
+displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html)
 information.
 
 By default, the `I` character will be displayed.
@@ -477,8 +477,8 @@ vim.g.linefly_options = {
 
 ### with_git_branch
 
-The `with_git_branch` option specifies whether to display Git branch
-details in the `statusline`.
+The `with_git_branch` option specifies whether to display Git branch details
+in the `statusline`.
 
 By default, Git branches will be displayed in the `statusline`.
 

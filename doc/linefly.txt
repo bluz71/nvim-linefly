@@ -119,8 +119,8 @@ initialization file:
 ------------------------------------------------------------------------------
 information_symbol~                                       *information_symbol*
 
-The `information_symbol` option specifies which character symbol to use
-when displaying Diagnostic (https://neovim.io/doc/user/diagnostic.html)
+The `information_symbol` option specifies which character symbol to use when
+displaying Diagnostic (https://neovim.io/doc/user/diagnostic.html)
 information.
 
 By default, the `I` character will be displayed.
@@ -195,8 +195,8 @@ initialization file:
 ------------------------------------------------------------------------------
 with_git_branch~                                             *with_git_branch*
 
-The `with_git_branch` option specifies whether to display Git branch
-details in the `statusline`.
+The `with_git_branch` option specifies whether to display Git branch details
+in the `statusline`.
 
 By default, Git branches will be displayed in the `statusline`.
 
