@@ -238,8 +238,8 @@ vim.g.linefly_options = {
   with_git_branch = true,
   with_git_status = true,
   with_diagnostic_status = true,
-  with_macro_status = false,
   with_session_status = true,
+  with_macro_status = false,
   with_indent_status = false,
 }
 ```
