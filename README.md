@@ -496,8 +496,8 @@ vim.g.linefly_options = {
 ### with_git_status
 
 The `with_git_status` option specifies whether to display
-[Gitsigns](https://github.com/lewis6991/gitsigns.nvim) of the current buffer in
-the `statusline`.
+[Gitsigns](https://github.com/lewis6991/gitsigns.nvim) of the current buffer
+in the `statusline`.
 
 By default, the Git status will be displayed if the plugin is loaded.
 
