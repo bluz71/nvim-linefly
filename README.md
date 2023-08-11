@@ -338,8 +338,8 @@ displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html) errors.
 
 By default, the `E` character will be displayed.
 
-To specify your own error symbol please add the following to your initialization
-file:
+To specify your own error symbol please add the following to your
+initialization file:
 
 ```lua
 vim.g.linefly_options = {
@@ -431,15 +431,15 @@ A screenshot of the `tabline`:
 
 ### winbar
 
-The `winbar` option specifies whether to display a window bar at the top of each
-window.
+The `winbar` option specifies whether to display a window bar at the top of
+each window.
 
 By default, window bars will not be displayed.
 
-Displaying a window bar is recommended when the global statusline is enabled via
-`set laststatus=3`; the `winbar` will then display the file name at the top of
-each window to disambiguate splits. Also, if there is only one window in the
-current tab then a `winbar` will not be displayed (it won't be needed).
+Displaying a window bar is recommended when the global statusline is enabled
+via `set laststatus=3`; the `winbar` will then display the file name at the
+top of each window to disambiguate splits. Also, if there is only one window
+in the current tab then a `winbar` will not be displayed (it won't be needed).
 
 To enable the `winbar` feature please add the following to your initialization
 file:
@@ -455,8 +455,8 @@ vim.g.linefly_options = {
 ### with_file_icon
 
 The `with_file_icon` option specifies whether a filetype icon, from a Nerd
-Font, will be displayed prior to the filename in the `statusline` (and optional
-`winbar`).
+Font, will be displayed prior to the filename in the `statusline` (and
+optional `winbar`).
 
 Note, a [Nerd Font](https://www.nerdfonts.com) must be active **and** the
 [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) plugin must
@@ -541,7 +541,8 @@ The `with_session_status` option specifies whether to display
 [nvim-possession](https://github.com/gennaro-tedesco/nvim-possession) session
 details in the `statusline`.
 
-By default, session details will be displayed if one of those plugins is loaded.
+By default, session details will be displayed if one of those plugins is
+loaded.
 
 To disable the display of session details in the `statusline` please add the
 following to your initialization file:
