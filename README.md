@@ -238,8 +238,10 @@ vim.g.linefly_options = {
   with_git_branch = true,
   with_git_status = true,
   with_diagnostic_status = true,
-  with_macro_status = false,
   with_session_status = true,
+  with_macro_status = false,
+  with_search_count = false,
+  with_spell_status = false,
   with_indent_status = false,
 }
 ```
@@ -276,8 +278,8 @@ vim.g.linefly_options = {
 
 ### progress_symbol
 
-The `progress_symbol` option specifies which character symbol to use to indicate
-location-as-percentage in the `statusline`.
+The `progress_symbol` option specifies which character symbol to use to
+indicate location-as-percentage in the `statusline`.
 
 By default, the `↓` character (Unicode `U+2193`) will be displayed.
 
@@ -312,8 +314,8 @@ vim.g.linefly_options = {
 
 ### git_branch_symbol
 
-The `git_branch_symbol` option specifies which character symbol to use to
-signify the active tab in the `tabline`.
+The `git_branch_symbol` option specifies which character symbol to use when
+displaying Git branch details.
 
 By default, the `` character (Powerline `U+E0A0`) will be displayed. Many
 modern monospace fonts will contain that character.
@@ -336,8 +338,8 @@ displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html) errors.
 
 By default, the `E` character will be displayed.
 
-To specify your own error symbol please add the following to your initialization
-file:
+To specify your own error symbol please add the following to your
+initialization file:
 
 ```lua
 vim.g.linefly_options = {
@@ -367,8 +369,8 @@ vim.g.linefly_options = {
 
 ### information_symbol
 
-The `information_symbol` option specifies which character symbol to use
-when displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html)
+The `information_symbol` option specifies which character symbol to use when
+displaying [Diagnostic](https://neovim.io/doc/user/diagnostic.html)
 information.
 
 By default, the `I` character will be displayed.
@@ -386,17 +388,18 @@ vim.g.linefly_options = {
 
 ### tabline
 
-The _linefly_ `tabline` option specifies whether to let this plugin manage the
-Neovim `tabline` in addition to the `statusline`.
+The `tabline` option specifies whether to let this plugin manage the Neovim
+`tabline` in addition to the `statusline`.
 
 By default, Neovim `tabline` management will not be undertaken.
 
-If enabled, _linefly_ will render a simple numbered, and clickable, window-space
-layout in the `tabline`; note, no buffers will be displayed in the `tabline`
-since there are many plugins that already provide that capability.
+If enabled, _linefly_ will render a simple numbered, and clickable,
+window-space layout in the `tabline`; note, no buffers will be displayed in
+the `tabline` since there are many plugins that already provide that
+capability.
 
-To enable _linefly_'s `tabline` support please add the following to your
-initialization file:
+To enable `tabline` support please add the following to your initialization
+file:
 
 ```lua
 vim.g.linefly_options = {
@@ -429,15 +432,15 @@ A screenshot of the `tabline`:
 
 ### winbar
 
-The `winbar` option specifies whether to display a window bar at the top of each
-window.
+The `winbar` option specifies whether to display a window bar at the top of
+each window.
 
 By default, window bars will not be displayed.
 
-Displaying a window bar is recommended when the global statusline is enabled via
-`set laststatus=3`; the `winbar` will then display the file name at the top of
-each window to disambiguate splits. Also, if there only one window in the
-current tab then a `winbar` will not be displayed (it won't be needed).
+Displaying a window bar is recommended when the global statusline is enabled
+via `set laststatus=3`; the `winbar` will then display the file name at the
+top of each window to disambiguate splits. Also, if there is only one window
+in the current tab then a `winbar` will not be displayed (it won't be needed).
 
 To enable the `winbar` feature please add the following to your initialization
 file:
@@ -453,12 +456,12 @@ vim.g.linefly_options = {
 ### with_file_icon
 
 The `with_file_icon` option specifies whether a filetype icon, from a Nerd
-Font, will be displayed prior to the filename in the `statusline` (and optional
-`winbar`).
+Font, will be displayed prior to the filename in the `statusline` (and
+optional `winbar`).
 
 Note, a [Nerd Font](https://www.nerdfonts.com) must be active **and** the
-[nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) plugin must
-also be installed and active.
+[nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons) plugin
+must also be installed and active.
 
 By default, a filetype icon will be displayed if possible.
 
@@ -475,8 +478,8 @@ vim.g.linefly_options = {
 
 ### with_git_branch
 
-The `with_git_branch` option specifies whether to display Git branch
-details in the `statusline`.
+The `with_git_branch` option specifies whether to display Git branch details
+in the `statusline`.
 
 By default, Git branches will be displayed in the `statusline`.
 
@@ -494,8 +497,8 @@ vim.g.linefly_options = {
 ### with_git_status
 
 The `with_git_status` option specifies whether to display
-[Gitsigns](https://github.com/lewis6991/gitsigns.nvim) of the current buffer in
-the `statusline`.
+[Gitsigns](https://github.com/lewis6991/gitsigns.nvim) of the current buffer
+in the `statusline`.
 
 By default, the Git status will be displayed if the plugin is loaded.
 
@@ -517,7 +520,7 @@ _linefly_ supports [Diagnostics](https://neovim.io/doc/user/diagnostic.html).
 The `with_diagnostic_status` option specifies whether to indicate the presence
 of the diagnostics in the current buffer.
 
-By default, diagnositics will be displayed if the
+By default, diagnostics will be displayed if the
 [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) plugin is loaded.
 
 If diagnostic display is not wanted then please add the following to your
@@ -539,7 +542,8 @@ The `with_session_status` option specifies whether to display
 [nvim-possession](https://github.com/gennaro-tedesco/nvim-possession) session
 details in the `statusline`.
 
-By default, session details will be displayed if one of those plugins is loaded.
+By default, session details will be displayed if one of those plugins is
+loaded.
 
 To disable the display of session details in the `statusline` please add the
 following to your initialization file:
@@ -572,8 +576,8 @@ vim.g.linefly_options = {
 
 ### with_search_count
 
-The `with_search_count` option specifies whether to display the search count in
-the `statusline`.
+The `with_search_count` option specifies whether to display the search count
+in the `statusline`.
 
 By default, search count will not be displayed.
 
@@ -593,8 +597,8 @@ the search count result is not zero.
 
 ### with_spell_status
 
-The `with_spell_status` option specifies whether to display the spell status in
-the `statusline`.
+The `with_spell_status` option specifies whether to display the spell status
+in the `statusline`.
 
 By default, spell status will not be displayed.
 
@@ -612,14 +616,14 @@ vim.g.linefly_options = {
 ### with_indent_status
 
 The `with_indent_status` option specifies whether to display the indentation
-status as the last component in the statusline.
+status as the last component in the `statusline`.
 
 By default, indentation status will not be displayed.
 
 Note, if the `expandtab` option is set, for the current buffer, then tab stop
-will be displayed, for example `Tab:4` (tab equals four spaces); if on the other
-hand `noexpandtab` option is set then shift width will be displayed instead, for
-example `Spc:2` ('spc' short for 'space').
+will be displayed, for example `Tab:4` (tab equals four spaces); if on the
+other hand `noexpandtab` option is set then shift width will be displayed
+instead, for example `Spc:2` ('spc' short for 'space').
 
 To enable indentation status please add the following to your initialization
 file:
