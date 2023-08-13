@@ -19,7 +19,8 @@ M.count = function()
     local cfg = win_get_config(w)
     local ft = buf_get_option(win_get_buf(w), "filetype")
 
-    if require("linefly.utils").is_empty(cfg.relative) and ft ~= "qf" then
+    if require("linefly.utils").is_empty(cfg.relative) and ft ~= "qf"
+      and ft ~= "neo-tree" and ft ~= "NvimTree" then
       count = count + 1
     end
   end
