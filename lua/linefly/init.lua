@@ -80,7 +80,7 @@ M.active_statusline = function()
     end
   end
   statusline = statusline .. "%="
-  if options().with_search_count and opt.hlsearch:get() then
+  if options().with_search_count and vim.v.hlsearch == 1 then
     local search_count = utils.search_count()
     if utils.is_present(search_count) then
       statusline = statusline .. search_count .. " " .. separator .. " "
