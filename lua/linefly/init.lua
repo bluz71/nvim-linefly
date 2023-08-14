@@ -122,7 +122,10 @@ M.statusline = function(active)
       opt_local.winbar = nil
     end
   elseif buf_get_option(0, "buftype") == "nowrite" then
-    -- Don't set a custom statusline for certain special windows.
+    -- Do not set statusline and winbar for certain special windows.
+    return
+  elseif window.is_floating() then
+    -- Do not set statusline and winbar for floating windows.
     return
   elseif active then
     opt_local.statusline = "%{%v:lua.linefly.active_statusline()%}"

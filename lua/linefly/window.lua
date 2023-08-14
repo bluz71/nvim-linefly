@@ -1,4 +1,5 @@
 local options = require("linefly.options").list
+local utils = require("linefly.utils")
 local buf_get_option = vim.api.nvim_buf_get_option
 local tabpage_list_wins = vim.api.nvim_tabpage_list_wins
 local win_get_buf = vim.api.nvim_win_get_buf
@@ -19,13 +20,21 @@ M.count = function()
     local cfg = win_get_config(w)
     local ft = buf_get_option(win_get_buf(w), "filetype")
 
-    if require("linefly.utils").is_empty(cfg.relative) and ft ~= "qf"
-      and ft ~= "neo-tree" and ft ~= "NvimTree" then
+    if utils.is_empty(cfg.relative) and ft ~= "qf" and ft ~= "neo-tree"
+      and ft ~= "NvimTree" then
       count = count + 1
     end
   end
 
   return count
+end
+
+M.is_floating = function()
+  if utils.is_present(win_get_config(0).relative) then
+    return true
+  else
+    return false
+  end
 end
 
 -- Iterate though the windows and update the statusline and winbar for all
