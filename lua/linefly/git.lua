@@ -26,6 +26,9 @@ M.current_branch_name = function()
 
   if is_empty(git_branch_name) then
     return ""
+  elseif #git_branch_name > 30 then
+    -- Truncate long branch names to 30 characters.
+    git_branch_name = string.sub(git_branch_name, 1, 29) .. "…"
   end
 
   local git_branch_symbol = options().git_branch_symbol or ""
