@@ -23,7 +23,7 @@ M.count = function()
     local ft = buf_get_option(win_get_buf(w), "filetype")
 
     if utils.is_empty(cfg.relative) and ft ~= "qf" and ft ~= "neo-tree"
-      and ft ~= "NvimTree" then
+      and ft ~= "NvimTree" and ft ~= "netrw" then
       count = count + 1
     end
   end

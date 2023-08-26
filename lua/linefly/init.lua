@@ -123,14 +123,15 @@ M.inactive_statusline = function()
 end
 
 M.statusline = function(active)
-  if buf_get_option(0, "buftype") == "nofile" or buf_get_option(0, "filetype") == "netrw" then
+  local bt = buf_get_option(0, "buftype")
+  if bt == "nofile" or buf_get_option(0, "filetype") == "netrw" then
     -- Likely a file explorer or some other special type of buffer. Set a short
     -- path statusline for these types of buffers.
     opt_local.statusline = pathshorten(fnamemodify(vim.fn.getcwd(), ":~:."))
     if options().winbar then
       opt_local.winbar = nil
     end
-  elseif buf_get_option(0, "buftype") == "nowrite" then
+  elseif bt == "nowrite" then
     -- Do not set statusline and winbar for certain special windows.
     return
   elseif window.is_floating() then
