@@ -1,11 +1,13 @@
 local options = require("linefly.options").list
 local utils = require("linefly.utils")
 local buf_get_option = vim.api.nvim_buf_get_option
+local get_option = vim.api.nvim_get_option
 local tabpage_list_wins = vim.api.nvim_tabpage_list_wins
 local win_get_buf = vim.api.nvim_win_get_buf
 local win_get_config = vim.api.nvim_win_get_config
 local win_get_height = vim.api.nvim_win_get_height
 local win_get_number = vim.api.nvim_win_get_number
+local win_get_width = vim.api.nvim_win_get_width
 local win_set_option = vim.api.nvim_win_set_option
 
 local M = {}
@@ -58,6 +60,14 @@ M.update_inactive = function()
         win_set_option(w, "winbar", "%{%v:lua.linefly.inactive_winbar()%}")
       end
     end
+  end
+end
+
+M.statusline_width = function()
+  if vim.opt.laststatus:get() == 3 then
+    return get_option("columns")
+  else
+    return win_get_width(0)
   end
 end
 

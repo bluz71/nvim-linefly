@@ -59,34 +59,43 @@ M.active_statusline = function()
   local separator = options().separator_symbol or "⎪"
   local progress = options().progress_symbol or "↓"
   local branch_name = require("linefly.git").current_branch_name()
+  local plugins_status = require("linefly.plugins").status()
   local mode_emphasis = modes_map[current_mode][3]
+  local statusline_width = window.statusline_width()
 
   local statusline = modes_map[current_mode][1]
-  statusline = statusline .. modes_map[current_mode][2]
-  statusline = statusline .. "%* %<" .. file.name(opt.laststatus:get() ~= 3, false)
+  if statusline_width < 80 then
+    -- Use short mode-indicator if the statusline width is less than 80 columns.
+    statusline = statusline .. string.sub(modes_map[current_mode][2], 1, 2) .. " "
+  else
+    statusline = statusline .. modes_map[current_mode][2]
+  end
+  statusline = statusline .. "%* %<" .. file.name(statusline_width < 120, false)
   statusline = statusline .. "%q%{exists('w:quickfix_title')? ' ' . w:quickfix_title : ''}"
   statusline = statusline .. "%{&modified ? '+ ' : '  '}"
   statusline = statusline .. "%{&readonly ? 'RO ' : ''}"
-  if utils.is_present(branch_name) then
+  if utils.is_present(branch_name) and statusline_width >= 80 then
     statusline = statusline .. "%*" .. separator .. mode_emphasis
     statusline = statusline .. branch_name .. "%* "
   end
-  statusline = statusline .. require("linefly.plugins").status()
-  statusline = statusline .. "%*"
-  if options().with_macro_status then
+  if utils.is_present(plugins_status) and statusline_width >= 80 then
+    statusline = statusline .. require("linefly.plugins").status()
+    statusline = statusline .. "%*"
+  end
+  if options().with_macro_status and statusline_width >= 80 then
     local recording_register = fn.reg_recording()
     if utils.is_present(recording_register) then
       statusline = statusline .. "%=recording @" .. recording_register
     end
   end
   statusline = statusline .. "%="
-  if options().with_search_count and vim.v.hlsearch == 1 then
+  if options().with_search_count and vim.v.hlsearch == 1 and statusline_width >= 80 then
     local search_count = utils.search_count()
     if utils.is_present(search_count) then
       statusline = statusline .. search_count .. " " .. separator .. " "
     end
   end
-  if options().with_spell_status and opt.spell:get() then
+  if options().with_spell_status and opt.spell:get() and statusline_width >= 80 then
     statusline = statusline .. "Spell " .. separator .. " "
   end
   statusline = statusline .. "%l:%c " .. separator
@@ -102,7 +111,7 @@ M.inactive_statusline = function()
   local separator = options().separator_symbol or "⎪"
   local progress = options().progress_symbol or "↓"
 
-  local statusline = " %<" .. file.name(opt.laststatus:get() ~= 3, false)
+  local statusline = " %<" .. file.name(window.statusline_width() <= 120, false)
   statusline = statusline .. "%{&modified?'+ ':'  '}"
   statusline = statusline .. "%{&readonly?'RO ':''}"
   statusline = statusline .. "%=%l:%c " .. separator .. " %L " .. progress .. "%P "

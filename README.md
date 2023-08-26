@@ -131,23 +131,25 @@ right-side as follows:
 Sections marked with a `*` are linked to a highlight group and are colored,
 refer to the next section for details.
 
+Sections C, D, M & W will **not** be displayed when the `statusline` width is
+less than 80 columns.
+
 Note, filenames will be displayed as follows:
 
-- Pathless filenames only for files in the current working directory
+- Pathless filenames for files in the current working directory
 
 - Relative paths in preference to absolute paths for files not in the current
   working directory
 
 - `~`-style home directory paths in preference to absolute paths
 
-- Shortened, for example `foo/bar/bazz/hello.txt` will be displayed as
-  `f/b/b/hello.txt`, but not when Neovim's global statusline (`set
-  laststatus=3`) is in effect.
+- Possibly shortened, for example `foo/bar/bazz/hello.txt` will be displayed as
+  `f/b/b/hello.txt` when `statusline` width is 120 columns or greater.
 
-- Trimmed, a maximum of four path components will be displayed for a filename,
-  if a filename is more deeply nested then only the four most significant
-  components, including the filename, will be displayed with an ellipses `...`
-  prefix used to indicate path trimming.
+- Possibly trimmed. A maximum of four path components will be displayed for a
+  filename; if a filename is more deeply nested then only the four most
+  significant components, including the filename, will be displayed with an
+  ellipses `…` prefix used to indicate path trimming.
 
 Highlight Groups And Colors
 ---------------------------

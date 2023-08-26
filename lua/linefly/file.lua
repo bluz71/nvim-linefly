@@ -56,10 +56,10 @@ local file_path = function(short_path)
   if num_path_components > 4 then
     -- In future, if Neovim switches to Lua 5.2 or above, 'unpack' will need
     -- to change to 'table.unpack'.
-    return ".../" .. table.concat({ unpack(path_components, num_path_components - 3) }, separator)
-  else
-    return path
+    path =  "…/" .. table.concat({ unpack(path_components, num_path_components - 3) }, separator)
   end
+
+  return path
 end
 
 local M = {}
