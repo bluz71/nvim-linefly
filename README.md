@@ -112,7 +112,7 @@ right-side as follows:
 
 ```
 +-------------------------------------------------+
-| A | B | C | D         M           W | X | Y | Z |
+| A | B | C | D                 V | W | X | Y | Z |
 +-------------------------------------------------+
 ```
 
@@ -122,7 +122,7 @@ right-side as follows:
 | B       | Filename (refer below for details)
 | C`*`    | Git branch name (if applicable)
 | D`*`    | Plugins notification (git, diagnostic and session status)
-| M       | Optional macro-recording status
+| V`*`    | Optional macro-recording status
 | W       | Optional search count and spell status
 | X       | Current position
 | Y`*`    | Total lines and current location as percentage
@@ -131,7 +131,7 @@ right-side as follows:
 Sections marked with a `*` are linked to a highlight group and are colored,
 refer to the next section for details.
 
-Sections C, D, M & W will **not** be displayed when the `statusline` width is
+Sections C, D, V & W will **not** be displayed when the `statusline` width is
 less than 80 columns.
 
 Note, filenames will be displayed as follows:

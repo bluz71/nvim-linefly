@@ -82,13 +82,14 @@ M.active_statusline = function()
     statusline = statusline .. require("linefly.plugins").status()
     statusline = statusline .. "%*"
   end
+  statusline = statusline .. "%="
   if options().with_macro_status and statusline_width >= 80 then
     local recording_register = fn.reg_recording()
     if utils.is_present(recording_register) then
-      statusline = statusline .. "%=recording @" .. recording_register
+      statusline = statusline .. "%#LineflySession#recording @"
+      statusline = statusline .. recording_register .. "%* " .. separator .. " "
     end
   end
-  statusline = statusline .. "%="
   if options().with_search_count and vim.v.hlsearch == 1 and statusline_width >= 80 then
     local search_count = utils.search_count()
     if utils.is_present(search_count) then
