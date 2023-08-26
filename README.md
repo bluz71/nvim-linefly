@@ -144,7 +144,7 @@ Note, filenames will be displayed as follows:
 - `~`-style home directory paths in preference to absolute paths
 
 - Possibly shortened, for example `foo/bar/bazz/hello.txt` will be displayed as
-  `f/b/b/hello.txt` when `statusline` width is 120 columns or greater.
+  `f/b/b/hello.txt` when `statusline` width is less than 120 columns.
 
 - Possibly trimmed. A maximum of four path components will be displayed for a
   filename; if a filename is more deeply nested then only the four most
