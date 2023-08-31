@@ -205,6 +205,8 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [sonokai](https://github.com/sainnhe/sonokai)
 
+- [tokyodark](https://github.com/tiagovla/tokyodark.nvim)
+
 - [tokyonight](https://github.com/folke/tokyonight.nvim)
 
 Lastly, if the fallback colors do not suit then it is very easy to override with

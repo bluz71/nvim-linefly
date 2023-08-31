@@ -133,6 +133,12 @@ local colorscheme_mode_highlights = function()
     synthesize_mode_highlight("LineflyVisual", "Todo", "IncSearch")
     synthesize_mode_highlight("LineflyCommand", "Error", "IncSearch")
     synthesize_mode_highlight("LineflyReplace", "Repeat", "IncSearch")
+  elseif g.colors_name == "tokyodark" then
+    highlight(0, "LineflyNormal", { link = "WildMenu" })
+    highlight(0, "LineflyInsert", { link = "Search" })
+    synthesize_mode_highlight("LineflyVisual", "Number", "VertSplit")
+    synthesize_mode_highlight("LineflyCommand", "WarningMsg", "VertSplit")
+    synthesize_mode_highlight("LineflyReplace", "Error", "VertSplit")
   else
     -- Fallback for all other colorschemes.
     if highlight_empty("LineflyNormal") then
