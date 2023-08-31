@@ -11,6 +11,14 @@ M.is_present = function(str)
   return str and string.len(str) > 0
 end
 
+M.truncate = function(str)
+  if #str > 30 then
+    return string.sub(str, 1, 29) .. "…"
+  else
+    return str
+  end
+end
+
 M.indent_status = function()
   if not opt.expandtab:get() then
     return "Tab:" .. opt.tabstop:get() .. " "

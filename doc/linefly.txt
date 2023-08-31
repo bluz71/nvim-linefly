@@ -19,6 +19,7 @@ Default option values:
     with_git_status = true,
     with_diagnostic_status = true,
     with_session_status = true,
+    with_lsp_names = true,
     with_macro_status = false,
     with_search_count = false,
     with_spell_status = false,
@@ -257,6 +258,22 @@ following to your initialization file:
   vim.g.linefly_options = {
     with_session_status = false,
   }
+<
+------------------------------------------------------------------------------
+with_lsp_names~                                             *with_names_names*
+
+The `with_lsp_names` option specifies whether to display all active
+buffer-attached LSP client names in the `statusline`.
+
+By default, LSP names will be displayed.
+
+To disable the display of LSP names in the `statusline` please add the following
+to your initialization file:
+
+>
+vim.g.linefly_options = {
+  with_lsp_names = false,
+}
 <
 ------------------------------------------------------------------------------
 with_macro_status~                                         *with_macro_status*

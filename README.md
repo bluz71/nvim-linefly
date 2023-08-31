@@ -112,7 +112,7 @@ right-side as follows:
 
 ```
 +-------------------------------------------------+
-| A | B | C | D                 V | W | X | Y | Z |
+| A | B | C | D | E             V | W | X | Y | Z |
 +-------------------------------------------------+
 ```
 
@@ -122,6 +122,7 @@ right-side as follows:
 | B       | Filename (refer below for details)
 | C`*`    | Git branch name (if applicable)
 | D`*`    | Plugins notification (git, diagnostic and session status)
+| E       | Active buffer-attached LSP client names
 | V`*`    | Optional macro-recording status
 | W       | Optional search count and spell status
 | X       | Current position
@@ -133,6 +134,9 @@ refer to the next section for details.
 
 Sections C, D, V & W will **not** be displayed when the `statusline` width is
 less than 80 columns.
+
+Section E, active buffer-attached LSP client names, will only be displayed when
+the `statusline` width is greater than or equal to 120 columns.
 
 Note, filenames will be displayed as follows:
 
@@ -241,6 +245,7 @@ vim.g.linefly_options = {
   with_git_status = true,
   with_diagnostic_status = true,
   with_session_status = true,
+  with_lsp_names = true,
   with_macro_status = false,
   with_search_count = false,
   with_spell_status = false,
@@ -254,9 +259,10 @@ vim.g.linefly_options = {
 | [git_branch_symbol](https://github.com/bluz71/nvim-linefly#git_branch_symbol)
 | [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)                     | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)           | [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
 | [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
-| [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)                 | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)         | [with_git_status](https://github.com/bluz71/nvim-linefly#with_git_status) |
-| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status) | [with_macro_status](https://github.com/bluz71/nvim-linefly#with_macro_status)
-| [with_search_count](https://github.com/bluz71/nvim-linefly#with_search_count)           | [with_spell_status](https://github.com/bluz71/nvim-linefly#with_spell_status)     | [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status)
+| [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)                 | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)         | [with_git_status](https://github.com/bluz71/nvim-linefly#with_git_status)
+| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status) | [with_lsp_names](https://github.com/bluz71/nvim-linefly#with_lsp_names)
+| [with_macro_status](https://github.com/bluz71/nvim-linefly#with_macro_status)           | [with_search_count](https://github.com/bluz71/nvim-linefly#with_search_count)     | [with_spell_status](https://github.com/bluz71/nvim-linefly#with_spell_status)
+| [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status)
 
 ---
 
@@ -553,6 +559,24 @@ following to your initialization file:
 ```lua
 vim.g.linefly_options = {
   with_session_status = false,
+}
+```
+
+---
+
+### with_lsp_names
+
+The `with_lsp_names` option specifies whether to display all active
+buffer-attached LSP client names in the `statusline`.
+
+By default, LSP names will be displayed.
+
+To disable the display of LSP names in the `statusline` please add the following
+to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  with_lsp_names = false,
 }
 ```
 

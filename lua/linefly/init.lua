@@ -79,8 +79,14 @@ M.active_statusline = function()
     statusline = statusline .. branch_name .. "%* "
   end
   if utils.is_present(plugins_status) and statusline_width >= 80 then
-    statusline = statusline .. require("linefly.plugins").status()
+    statusline = statusline .. plugins_status
     statusline = statusline .. "%*"
+  end
+  if options().with_lsp_names and statusline_width >= 120 then
+    local lsp_names = require("linefly.lsp").names()
+    if utils.is_present(lsp_names) then
+      statusline = statusline .. separator .. " " .. lsp_names
+    end
   end
   statusline = statusline .. "%="
   if options().with_macro_status and statusline_width >= 80 then

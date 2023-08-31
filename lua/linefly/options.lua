@@ -21,6 +21,7 @@ M.list = function()
       with_git_status = g.linefly_options.with_git_status or true,
       with_diagnostic_status = g.linefly_options.with_diagnostic_status or true,
       with_session_status = g.linefly_options.with_session_status or true,
+      with_lsp_names = g.linefly_options.with_lsp_names or true,
       with_macro_status = g.linefly_options.with_macro_status or false,
       with_search_count = g.linefly_options.with_search_count or false,
       with_spell_status = g.linefly_options.with_spell_status or false,

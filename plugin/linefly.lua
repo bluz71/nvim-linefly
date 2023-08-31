@@ -50,7 +50,11 @@ autocmd({ "WinEnter", "BufWinEnter" }, {
 
 autocmd("WinLeave", {
   callback = function()
-    linefly.statusline(false)
+    -- Only update this inactive statusline when global statusline is not in
+    -- effect.
+    if vim.opt.laststatus:get() ~= 3 then
+      linefly.statusline(false)
+    end
   end,
   group = linefly_events,
 })
@@ -60,4 +64,11 @@ autocmd({ "BufEnter", "BufWrite", "FocusGained" }, {
     vim.b.git_branch_name = require("linefly.git").detect_branch_name()
   end,
   group = linefly_events,
+})
+
+autocmd({ "LspAttach", "LspDetach" }, {
+  callback = function()
+    linefly.statusline(true)
+  end,
+  group = linefly_events
 })
