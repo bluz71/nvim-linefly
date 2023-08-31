@@ -153,7 +153,7 @@ Note, filenames will be displayed as follows:
 - Possibly trimmed. A maximum of four path components will be displayed for a
   filename; if a filename is more deeply nested then only the four most
   significant components, including the filename, will be displayed with an
-  ellipses `…` prefix used to indicate path trimming.
+  ellipsis prefix symbol used to indicate path trimming.
 
 Highlight Groups And Colors
 ---------------------------
@@ -240,6 +240,7 @@ vim.g.linefly_options = {
   error_symbol = "E",
   warning_symbol = "W",
   information_symbol = "I",
+  ellipsis_symbol = "…",
   tabline = false,
   winbar = false,
   with_file_icon = true,
@@ -260,6 +261,7 @@ vim.g.linefly_options = {
 | [separator_symbol](https://github.com/bluz71/nvim-linefly#separator_symbol)             | [progress_symbol](https://github.com/bluz71/nvim-linefly#progress_symbol)         | [active_tab_symbol](https://github.com/bluz71/nvim-linefly#active_tab_symbol)
 | [git_branch_symbol](https://github.com/bluz71/nvim-linefly#git_branch_symbol)
 | [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)                     | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)           | [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
+| [ellipsis_symbol](https://github.com/bluz71/nvim-linefly#ellipsis_symbol)
 | [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
 | [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)                 | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)         | [with_git_status](https://github.com/bluz71/nvim-linefly#with_git_status)
 | [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status) | [with_lsp_names](https://github.com/bluz71/nvim-linefly#with_lsp_names)
@@ -391,6 +393,24 @@ initialization file:
 ```lua
 vim.g.linefly_options = {
   information_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+}
+```
+
+---
+
+### ellipsis_symbol
+
+The `ellipsis_symbol` option specifies which character symbol to use when
+indicating truncation, for example, deeply nested path truncation.
+
+By default, the `…` character will be displayed.
+
+To specify your own information symbol please add the following to your
+initialization file:
+
+```lua
+vim.g.linefly_options = {
+  ellipsis_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
 }
 ```
 

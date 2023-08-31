@@ -54,9 +54,11 @@ local file_path = function(short_path)
   local path_components = vim.split(path, separator)
   local num_path_components = #path_components
   if num_path_components > 4 then
+    local ellipsis = options().ellipsis_symbol or "…"
     -- In future, if Neovim switches to Lua 5.2 or above, 'unpack' will need
     -- to change to 'table.unpack'.
-    path =  "…/" .. table.concat({ unpack(path_components, num_path_components - 3) }, separator)
+    path = ellipsis .. separator
+    path = path .. table.concat({ unpack(path_components, num_path_components - 3) }, separator)
   end
 
   return path

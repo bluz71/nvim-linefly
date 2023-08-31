@@ -14,6 +14,7 @@ M.list = function()
       error_symbol = g.linefly_options.error_symbol or "E",
       warning_symbol = g.linefly_options.warning_symbol or "W",
       information_symbol = g.linefly_options.information_symbol or "I",
+      ellipsis_symbol = g.linefly_options.ellipsis_symbol or "…",
       tabline = g.linefly_options.tabline or false,
       winbar = g.linefly_options.winbar or false,
       with_file_icon = g.linefly_options.with_file_icon or true,

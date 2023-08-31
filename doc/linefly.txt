@@ -12,6 +12,7 @@ Default option values:
     error_symbol = "E",
     warning_symbol = "W",
     information_symbol = "I",
+    ellipsis_symbol = "…",
     tabline = false,
     winbar = false,
     with_file_icon = true,
@@ -132,6 +133,22 @@ initialization file:
   vim.g.linefly_options = {
     information_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
   }
+<
+------------------------------------------------------------------------------
+ellipsis_symbol~                                             *ellipsis_symbol*
+
+
+The `ellipsis_symbol` option specifies which character symbol to use when
+indicating truncation, for example, deeply nested path truncation.
+
+By default, the `…` character will be displayed.
+
+To specify your own information symbol please add the following to your
+initialization file:
+>
+vim.g.linefly_options = {
+  ellipsis_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+}
 <
 ------------------------------------------------------------------------------
 tabline~                                                             *tabline*
@@ -269,7 +286,6 @@ By default, LSP names will be displayed.
 
 To disable the display of LSP names in the `statusline` please add the following
 to your initialization file:
-
 >
 vim.g.linefly_options = {
   with_lsp_names = false,

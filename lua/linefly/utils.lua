@@ -1,3 +1,4 @@
+local options = require("linefly.options").list
 local opt = vim.opt
 local format = string.format
 
@@ -13,7 +14,7 @@ end
 
 M.truncate = function(str)
   if #str > 30 then
-    return string.sub(str, 1, 29) .. "…"
+    return string.sub(str, 1, 29) .. options().ellipsis_symbol
   else
     return str
   end
