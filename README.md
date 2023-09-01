@@ -405,7 +405,7 @@ indicating truncation, for example, deeply nested path truncation.
 
 By default, the `…` character will be displayed.
 
-To specify your own information symbol please add the following to your
+To specify your own ellipsis symbol please add the following to your
 initialization file:
 
 ```lua
