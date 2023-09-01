@@ -90,12 +90,6 @@ Installation
 
 Install **bluz71/nvim-linefly** with your preferred plugin manager.
 
-[packer.nvim](https://github.com/wbthomason/packer.nvim):
-
-```lua
-use 'bluz71/nvim-linefly'
-```
-
 [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
