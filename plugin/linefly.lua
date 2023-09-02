@@ -50,11 +50,7 @@ autocmd({ "WinEnter", "BufWinEnter" }, {
 
 autocmd("WinLeave", {
   callback = function()
-    -- Only update this inactive statusline when global statusline is not in
-    -- effect.
-    if vim.opt.laststatus:get() ~= 3 then
-      linefly.statusline(false)
-    end
+    linefly.statusline(false)
   end,
   group = linefly_events,
 })
