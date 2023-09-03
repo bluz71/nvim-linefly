@@ -23,6 +23,7 @@ M.list = function()
       with_diagnostic_status = true,
       with_session_status = true,
       with_lsp_names = true,
+      with_lsp_status = true,
       with_macro_status = false,
       with_search_count = false,
       with_spell_status = false,

@@ -54,7 +54,7 @@ _G.linefly = M
 -- Status line
 ------------------------------------------------------------
 
-M.active_statusline = function()
+M.active_statusline = function(lsp_status)
   local current_mode = mode().mode
   local separator = options().separator_symbol or "⎪"
   local progress = options().progress_symbol or "↓"
@@ -87,6 +87,11 @@ M.active_statusline = function()
     if utils.is_present(lsp_names) then
       statusline = statusline .. separator .. " " .. lsp_names
     end
+  end
+  if options().with_lsp_status and utils.is_present(lsp_status)
+    and opt.laststatus:get() == 3 and statusline_width >= 120 then
+    -- Note, LSP progress status is propagated down from an LspProgress event.
+    statusline = statusline .. "%=" .. lsp_status
   end
   statusline = statusline .. "%="
   if options().with_macro_status and statusline_width >= 80 then
@@ -129,7 +134,7 @@ M.inactive_statusline = function()
   return statusline
 end
 
-M.statusline = function(active)
+M.statusline = function(active, lsp_status)
   local bt = buf_get_option(0, "buftype")
   if bt == "nofile" or buf_get_option(0, "filetype") == "netrw" then
     -- Likely a file explorer or some other special type of buffer. Set a short
@@ -145,7 +150,11 @@ M.statusline = function(active)
     -- Do not set statusline and winbar for floating windows.
     return
   elseif active then
-    opt_local.statusline = "%{%v:lua.linefly.active_statusline()%}"
+    if utils.is_present(lsp_status) then
+      opt_local.statusline = "%{%v:lua.linefly.active_statusline('" .. lsp_status .. "')%}"
+    else
+      opt_local.statusline = "%{%v:lua.linefly.active_statusline()%}"
+    end
     if options().winbar and window.count() > 1 then
       opt_local.winbar = "%{%v:lua.linefly.active_winbar()%}"
     else

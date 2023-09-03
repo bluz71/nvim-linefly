@@ -3,7 +3,18 @@ linefly
 
 _linefly_ is a simple, fast and informative pure-Lua `statusline` for Neovim.
 
-_linefly_ provides optional `tabline` and `winbar` support when the
+_linefly_ provides a number of useful builtin components:
+
+- Git changes (via [Gitsigns](https://github.com/lewis6991/gitsigns.nvim) plugin if installed)
+- Diagnostic status
+- Attached LSP client namess
+- On-going LSP progress (Neovim `0.10` or greater required)
+- Macro-recording status (useful when `set cmdheight=0`)
+- Current search count (useful when `set cmdheight=0`)
+- Spell status (useful when `set cmdheight=0`)
+- Indent status (tabs or spaces and their associated width)
+
+_linefly_ also provides optional `tabline` and `winbar` support when the
 appropriate settings are enabled; refer to
 [`tabline`](https://github.com/bluz71/nvim-linefly#tabline)
 and
@@ -14,12 +25,12 @@ can also be
 [customized](https://github.com/bluz71/nvim-linefly#highlight-groups-and-colors)
 if desired.
 
-Lastly, _linefly_ is a lean `statusline` plugin clocking in at about 700 lines
+Lastly, _linefly_ is a lean `statusline` plugin clocking in at about 800 lines
 of Lua code. For comparison, the
 [lualine](https://github.com/nvim-lualine/lualine.nvim),
 [lightline](https://github.com/itchyny/lightline.vim) and
 [airline](https://github.com/vim-airline/vim-airline) plugins contain over
-8,000, 3,600 and 7,300 lines of code respectively. In fairness, the latter
+8,200, 3,600 and 7,300 lines of code respectively. In fairness, the latter
 plugins are more featureful, configurable and visually pleasing.
 
 :warning: _linefly_ has a predominantly fixed layout, this will **not** be an
@@ -53,10 +64,10 @@ without any `statusline` plugin.
 
 | stock  | linefly | lualine | lightline | airline
 |--------|---------|---------|-----------|--------
-| 20.2ms | 21.1ms  | 26.9ms  | 32.3ms    | 117.6ms
+| 19.6ms | 22.2ms  | 27.3ms  | 25.4ms    | 78.7ms
 
-Startup times as of January 2023 on my system; performance on other systems will
-vary.
+Startup times as of September 2023 on my system; performance on other systems
+will vary.
 
 Modules And Plugins supported
 -----------------------------
@@ -106,7 +117,7 @@ right-side as follows:
 
 ```
 +-------------------------------------------------+
-| A | B | C | D | E             V | W | X | Y | Z |
+| A | B | C | D | E      M      V | W | X | Y | Z |
 +-------------------------------------------------+
 ```
 
@@ -117,6 +128,7 @@ right-side as follows:
 | C`*`    | Git branch name (if applicable)
 | D`*`    | Plugins notification (git, diagnostic and session status)
 | E       | Active buffer-attached LSP client names
+| M       | LSP progress status
 | V`*`    | Optional macro-recording status
 | W       | Optional search count and spell status
 | X       | Current position
@@ -131,6 +143,10 @@ less than 80 columns.
 
 Section E, active buffer-attached LSP client names, will only be displayed when
 the `statusline` width is greater than or equal to 120 columns.
+
+Section M, LSP progress status, will only be displayed when a global
+`statusline` is in effect and the `statusline` width is greater than or equal to
+120 columns.
 
 Note, filenames will be displayed as follows:
 
@@ -259,8 +275,8 @@ vim.g.linefly_options = {
 | [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
 | [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)                 | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)         | [with_git_status](https://github.com/bluz71/nvim-linefly#with_git_status)
 | [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status) | [with_lsp_names](https://github.com/bluz71/nvim-linefly#with_lsp_names)
-| [with_macro_status](https://github.com/bluz71/nvim-linefly#with_macro_status)           | [with_search_count](https://github.com/bluz71/nvim-linefly#with_search_count)     | [with_spell_status](https://github.com/bluz71/nvim-linefly#with_spell_status)
-| [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status)
+| [with_lsp_status](https://github.com/bluz71/nvim-linefly#with_lsp_status)               | [with_macro_status](https://github.com/bluz71/nvim-linefly#with_macro_status)     | [with_search_count](https://github.com/bluz71/nvim-linefly#with_search_count)
+| [with_spell_status](https://github.com/bluz71/nvim-linefly#with_spell_status)           | [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status)
 
 ---
 
@@ -598,10 +614,31 @@ vim.g.linefly_options = {
 
 ---
 
+### with_lsp_status
+
+The `with_lsp_status` option specifies whether to display LSP progress status
+in the `statusline` if global `statusline` is in effect (`:set laststatus=3`).
+
+By default, LSP progress status will be displayed.
+
+Note, this option **requires** Neovim `0.10` or greater.
+
+To disable the display of LSP progress status in the `statusline` please add the
+following to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  with_lsp_status = false,
+}
+```
+
+---
+
 ### with_macro_status
 
 The `with_macro_status` option specifies whether to display macro-recording
-status in the `statusline`.
+status in the `statusline`. This option is especially useful if `cmdheight` is
+set to `0`.
 
 By default, macro-recording status will not be displayed.
 
@@ -619,7 +656,8 @@ vim.g.linefly_options = {
 ### with_search_count
 
 The `with_search_count` option specifies whether to display the search count
-in the `statusline`.
+in the `statusline`. This option is especially useful if `cmdheight` is set to
+`0`.
 
 By default, search count will not be displayed.
 
@@ -640,7 +678,8 @@ the search count result is not zero.
 ### with_spell_status
 
 The `with_spell_status` option specifies whether to display the spell status
-in the `statusline`.
+in the `statusline`. This option is especially useful if `cmdheight` is set to
+`0`.
 
 By default, spell status will not be displayed.
 

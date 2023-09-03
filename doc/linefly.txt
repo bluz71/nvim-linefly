@@ -21,6 +21,7 @@ Default option values:
     with_diagnostic_status = true,
     with_session_status = true,
     with_lsp_names = true,
+    with_lsp_status = true,
     with_macro_status = false,
     with_search_count = false,
     with_spell_status = false,
@@ -292,10 +293,28 @@ vim.g.linefly_options = {
 }
 <
 ------------------------------------------------------------------------------
+with_lsp_status~                                             *with_lsp_status*
+
+The `with_lsp_status` option specifies whether to display LSP progress status
+in the `statusline` if global `statusline` is in effect (`:set laststatus=3`).
+
+By default, LSP progress status will be displayed.
+
+Note, this options requires Neovim `0.10` or greater.
+
+To disable the display of LSP progress status in the `statusline` please add the
+following to your initialization file:
+>
+vim.g.linefly_options = {
+  with_lsp_status = false,
+}
+<
+------------------------------------------------------------------------------
 with_macro_status~                                         *with_macro_status*
 
 The `with_macro_status` option specifies whether to display macro-recording
-status in the `statusline`.
+status in the `statusline`. This option is especially useful if `cmdheight` is
+set to `0`.
 
 By default, macro-recording status will not be displayed.
 
@@ -310,7 +329,8 @@ the following to your initialization file:
 with_search_count~                                         *with_search_count*
 
 The `with_search_count` option specifies whether to display the search count
-in the `statusline`.
+in the `statusline`. This option is especially useful if `cmdheight` is set to
+`0`.
 
 By default, search count will not be displayed.
 
@@ -328,7 +348,8 @@ the search count result is not zero.
 with_spell_status~                                         *with_spell_status*
 
 The `with_spell_status` option specifies whether to display the spell status
-in the `statusline`.
+in the `statusline`. This option is especially useful if `cmdheight` is set to
+`0`.
 
 By default, spell status will not be displayed.
 

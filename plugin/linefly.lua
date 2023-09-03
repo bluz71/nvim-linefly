@@ -68,3 +68,15 @@ autocmd({ "LspAttach", "LspDetach" }, {
   end,
   group = linefly_events
 })
+
+if vim.fn.has("nvim-0.10") == 1 then
+  autocmd("LspProgress", {
+    callback = function(data)
+      local lsp_status = require("linefly.lsp").status(data)
+      if lsp_status then
+        linefly.statusline(true, lsp_status)
+      end
+    end,
+    group = linefly_events
+  })
+end
