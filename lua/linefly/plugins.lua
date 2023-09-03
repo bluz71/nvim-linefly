@@ -1,4 +1,4 @@
-local is_present = require("linefly.utils").is_present
+local utils = require("linefly.utils")
 local options = require("linefly.options").list
 local diagnostic = vim.diagnostic
 local eval = vim.api.nvim_eval
@@ -21,7 +21,7 @@ M.status = function()
     if signs and signs.removed and signs.removed > 0 then
       segments = segments .. " %#LineflyGitDelete#-" .. signs.removed .. "%*"
     end
-    if is_present(segments) then
+    if utils.is_present(segments) then
       segments = segments .. " "
     end
   end
@@ -61,8 +61,8 @@ M.status = function()
   elseif options().with_session_status and package.loaded["nvim-possession"] then
     session_segment = require("nvim-possession").status()
   end
-  if is_present(session_segment) then
-    segments = segments .. " %#LineflySession#" .. session_segment .. "%*"
+  if utils.is_present(session_segment) then
+    segments = segments .. " %#LineflySession#" .. utils.truncate(session_segment) .. " %*"
   end
 
   return segments
