@@ -62,7 +62,7 @@ autocmd({ "BufEnter", "BufWrite", "FocusGained" }, {
   group = linefly_events,
 })
 
-autocmd({ "LspAttach", "LspDetach" }, {
+autocmd({ "DiagnosticChanged", "LspAttach", "LspDetach" }, {
   callback = function()
     linefly.statusline(true)
   end,
