@@ -3,7 +3,7 @@
 OPTIONS                                                      *linefly-options*
 
 Default option values:
->
+>lua
   vim.g.linefly_options = {
     separator_symbol = "⎪",
     progress_symbol = "↓",
@@ -38,7 +38,7 @@ By default, the `⎪` character (Unicode `U+23AA`) will be displayed.
 
 To specify your own separator symbol please add the following to your
 initialization file:
->
+>lua
   vim.g.linefly_options = {
     separator_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
   }
@@ -53,7 +53,7 @@ By default, the `↓` character (Unicode `U+2193`) will be displayed.
 
 To specify your own progress symbol, or no symbol at all, please add the
 following to your initialization file:
->
+>lua
   vim.g.linefly_options = {
     progress_symbol = '<<SYMBOL-OF-YOUR-CHOOSING-OR-EMPTY>>'
   }
@@ -68,7 +68,7 @@ By default, the `▪` character (Unicode `U+25AA`) will be displayed.
 
 To specify your own active tab symbol please add the following to your
 initialization file:
->
+>lua
   vim.g.linefly_options = {
     active_tab_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
   }
@@ -84,7 +84,7 @@ modern monospace fonts will contain that character.
 
 To specify your own Git branch symbol, or no symbol at all, please add the
 following to your initialization file:
->
+>lua
   vim.g.linefly_options = {
     git_branch_symbol = '<<SYMBOL-OF-YOUR-CHOOSING-OR-EMPTY>>'
   }
@@ -99,7 +99,7 @@ By default, the `E` character will be displayed.
 
 To specify your own error symbol please add the following to your
 initialization file:
->
+>lua
   vim.g.linefly_options = {
     error_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
   }
@@ -114,7 +114,7 @@ By default, the `W` character will be displayed.
 
 To specify your own warning symbol please add the following to your
 initialization file:
->
+>lua
   vim.g.linefly_options = {
     warning_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
   }
@@ -130,7 +130,7 @@ By default, the `I` character will be displayed.
 
 To specify your own information symbol please add the following to your
 initialization file:
->
+>lua
   vim.g.linefly_options = {
     information_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
   }
@@ -146,7 +146,7 @@ By default, the `…` character will be displayed.
 
 To specify your own ellipsis symbol please add the following to your
 initialization file:
->
+>lua
   vim.g.linefly_options = {
     ellipsis_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
   }
@@ -166,7 +166,7 @@ capability.
 
 To enable `tabline` support please add the following to your initialization
 file:
->
+>lua
   vim.g.linefly_options = {
     tabline = true,
   }
@@ -186,7 +186,7 @@ in the current tab then a `winbar` will not be displayed (it won't be needed).
 
 To enable the `winbar` feature please add the following to your initialization
 file:
->
+>lua
   vim.g.linefly_options = {
     winbar = true,
   }
@@ -206,7 +206,7 @@ By default, a filetype icon will be displayed if possible.
 
 To disable the display of a filetype icon please add the following to your
 initialization file:
->
+>lua
   vim.g.linefly_options = {
     with_file_icon = false,
   }
@@ -221,7 +221,7 @@ By default, Git branches will be displayed in the `statusline`.
 
 To disable the display of Git branches in the `statusline` please add the
 following to your initialization file:
->
+>lua
   vim.g.linefly_options = {
     with_git_branch = false,
   }
@@ -237,7 +237,7 @@ By default, the Git status will be displayed if the plugin is loaded.
 
 To disable the display of Git status in the `statusline` please add the
 following to your initialization file:
->
+>lua
   vim.g.linefly_options = {
     with_git_status = false,
   }
@@ -253,7 +253,7 @@ By default, diagnostics will be displayed if the nvim-lspconfig
 
 If diagnostic display is not wanted then please add the following to your
 initialization file:
->
+>lua
   vim.g.linefly_options = {
     with_diagnostic_status = false,
   }
@@ -272,7 +272,7 @@ loaded.
 
 To disable the display of session details in the `statusline` please add the
 following to your initialization file:
->
+>lua
   vim.g.linefly_options = {
     with_session_status = false,
   }
@@ -287,7 +287,7 @@ By default, LSP names will be displayed.
 
 To disable the display of LSP names in the `statusline` please add the following
 to your initialization file:
->
+>lua
   vim.g.linefly_options = {
     with_lsp_names = false,
   }
@@ -304,7 +304,7 @@ Note, this options requires Neovim `0.10` or greater.
 
 To disable the display of LSP progress status in the `statusline` please add the
 following to your initialization file:
->
+>lua
   vim.g.linefly_options = {
     with_lsp_status = false,
   }
@@ -320,7 +320,7 @@ By default, macro-recording status will not be displayed.
 
 To enable the display of macro-recording status in the `statusline` please add
 the following to your initialization file:
->
+>lua
   vim.g.linefly_options = {
     with_macro_status = true,
   }
@@ -336,7 +336,7 @@ By default, search count will not be displayed.
 
 To enable the display of the search count in the `statusline` please add the
 following to your initialization file:
->
+>lua
   vim.g.linefly_options = {
     with_search_count = true,
   }
@@ -355,7 +355,7 @@ By default, spell status will not be displayed.
 
 To enable spell status in the `statusline` please add the following to your
 initialization file:
->
+>lua
   vim.g.linefly_options = {
     with_spell_status = true,
   }
@@ -375,7 +375,7 @@ instead, for example `Spc:2` ('spc' short for 'space').
 
 To enable indentation status please add the following to your initialization
 file:
->
+>lua
   vim.g.linefly_options = {
     with_indent_status = true,
   }
