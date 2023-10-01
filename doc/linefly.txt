@@ -147,9 +147,9 @@ By default, the `…` character will be displayed.
 To specify your own ellipsis symbol please add the following to your
 initialization file:
 >
-vim.g.linefly_options = {
-  ellipsis_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
-}
+  vim.g.linefly_options = {
+    ellipsis_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+  }
 <
 ------------------------------------------------------------------------------
 tabline~                                                             *tabline*
@@ -288,9 +288,9 @@ By default, LSP names will be displayed.
 To disable the display of LSP names in the `statusline` please add the following
 to your initialization file:
 >
-vim.g.linefly_options = {
-  with_lsp_names = false,
-}
+  vim.g.linefly_options = {
+    with_lsp_names = false,
+  }
 <
 ------------------------------------------------------------------------------
 with_lsp_status~                                             *with_lsp_status*
@@ -305,9 +305,9 @@ Note, this options requires Neovim `0.10` or greater.
 To disable the display of LSP progress status in the `statusline` please add the
 following to your initialization file:
 >
-vim.g.linefly_options = {
-  with_lsp_status = false,
-}
+  vim.g.linefly_options = {
+    with_lsp_status = false,
+  }
 <
 ------------------------------------------------------------------------------
 with_macro_status~                                         *with_macro_status*
