@@ -82,10 +82,10 @@ M.active_statusline = function(lsp_status)
     statusline = statusline .. plugins_status
     statusline = statusline .. "%*"
   end
-  if options().with_lsp_names and statusline_width >= 120 then
-    local lsp_names = require("linefly.lsp").names()
-    if utils.is_present(lsp_names) then
-      statusline = statusline .. separator .. " " .. lsp_names
+  if options().with_attached_clients and statusline_width >= 120 then
+    local attached_clients = require("linefly.lsp").attached_clients()
+    if utils.is_present(attached_clients) then
+      statusline = statusline .. separator .. " " .. attached_clients
     end
   end
   if options().with_lsp_status and utils.is_present(lsp_status)

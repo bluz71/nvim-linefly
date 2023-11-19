@@ -20,7 +20,7 @@ Default option values:
     with_git_status = true,
     with_diagnostic_status = true,
     with_session_status = true,
-    with_lsp_names = true,
+    with_attached_clients = true,
     with_lsp_status = true,
     with_macro_status = false,
     with_search_count = false,
@@ -278,18 +278,21 @@ following to your initialization file:
   }
 <
 ------------------------------------------------------------------------------
-with_lsp_names~                                             *with_names_names*
+with_attached_clients~                                 *with_attached_clients*
 
-The `with_lsp_names` option specifies whether to display all active
-buffer-attached LSP client names in the `statusline`.
+The `with_attached_clients` option specifies whether to display all active
+buffer-attached language servers and linters in the `statusline`.
 
-By default, LSP names will be displayed.
+Note, linter names are derived from the nvim-lint
+(https://github.com/mfussenegger/nvim-lint) plugin, if active.
 
-To disable the display of LSP names in the `statusline` please add the following
-to your initialization file:
+By default, attached clients will be displayed.
+
+To disable the display of attached clients in the `statusline` please add the
+following to your initialization file:
 >lua
   vim.g.linefly_options = {
-    with_lsp_names = false,
+    with_attached_clients = false,
   }
 <
 ------------------------------------------------------------------------------

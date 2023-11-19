@@ -74,6 +74,8 @@ Modules And Plugins supported
 
 - [Diagnostic](https://neovim.io/doc/user/diagnostic.html)
 
+- [nvim-lint](https://github.com/mfussenegger/nvim-lint)
+
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)
 
 - [Gitsigns](https://github.com/lewis6991/gitsigns.nvim)
@@ -258,7 +260,7 @@ vim.g.linefly_options = {
   with_git_status = true,
   with_diagnostic_status = true,
   with_session_status = true,
-  with_lsp_names = true,
+  with_attached_clients = true,
   with_macro_status = false,
   with_search_count = false,
   with_spell_status = false,
@@ -274,7 +276,7 @@ vim.g.linefly_options = {
 | [ellipsis_symbol](https://github.com/bluz71/nvim-linefly#ellipsis_symbol)
 | [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
 | [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)                 | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)         | [with_git_status](https://github.com/bluz71/nvim-linefly#with_git_status)
-| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status) | [with_lsp_names](https://github.com/bluz71/nvim-linefly#with_lsp_names)
+| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status) | [with_attached_clients](https://github.com/bluz71/nvim-linefly#with_attached_clients)
 | [with_lsp_status](https://github.com/bluz71/nvim-linefly#with_lsp_status)               | [with_macro_status](https://github.com/bluz71/nvim-linefly#with_macro_status)     | [with_search_count](https://github.com/bluz71/nvim-linefly#with_search_count)
 | [with_spell_status](https://github.com/bluz71/nvim-linefly#with_spell_status)           | [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status)
 
@@ -596,19 +598,22 @@ vim.g.linefly_options = {
 
 ---
 
-### with_lsp_names
+### with_attached_clients
 
-The `with_lsp_names` option specifies whether to display all active
-buffer-attached LSP client names in the `statusline`.
+The `with_attached_clients` option specifies whether to display all active
+buffer-attached language servers and linters in the `statusline`.
 
-By default, LSP names will be displayed.
+Note, linter names are derived from the
+[nvim-lint](https://github.com/mfussenegger/nvim-lint) plugin, if active.
 
-To disable the display of LSP names in the `statusline` please add the following
-to your initialization file:
+By default, attached clients will be displayed.
+
+To disable the display of attached clients in the `statusline` please add the
+following to your initialization file:
 
 ```lua
 vim.g.linefly_options = {
-  with_lsp_names = false,
+  with_attached_clients = false,
 }
 ```
 

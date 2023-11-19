@@ -4,23 +4,37 @@ local get_current_buf = vim.api.nvim_get_current_buf
 
 local M = {}
 
-M.names = function()
+M.attached_clients = function()
+  local buf_attached_clients = {}
   local buf_lsp_clients = vim.lsp.get_active_clients({ bufnr = get_current_buf() })
-  local buf_lsp_names = {}
 
   if buf_lsp_clients and #buf_lsp_clients > 0 then
     for _, lsp_client in pairs(buf_lsp_clients) do
-      table.insert(buf_lsp_names, lsp_client.name or "")
+      table.insert(buf_attached_clients, lsp_client.name or "")
     end
-  else
+  end
+
+  -- Check if the nvim-lint plugin is loaded and whether any clients are
+  -- attached.
+  if package.loaded.lint ~= nil then
+    local buf_lint_clients = require("lint").linters_by_ft[vim.bo.filetype]
+    if buf_lint_clients and #buf_lint_clients > 0 then
+      for _, lint_client in pairs(buf_lint_clients) do
+        table.insert(buf_attached_clients, lint_client or "")
+      end
+    end
+  end
+
+  -- Exit early if there are no clients attached.
+  if #buf_attached_clients == 0 then
     return
   end
 
-  -- Comma-separate LSP names.
-  local lsp_names = table.concat(buf_lsp_names, ", ")
+  -- Comma-separate language server & linter names.
+  local names = table.concat(buf_attached_clients, ", ")
 
-  -- Truncate long LSP names if necessary.
-  return utils.truncate(lsp_names)
+  -- Truncate long language server & linter names if necessary.
+  return utils.truncate(names)
 end
 
 M.status = function(data)
