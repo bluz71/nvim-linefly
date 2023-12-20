@@ -136,8 +136,9 @@ end
 
 M.statusline = function(active, lsp_status)
   local bt = buf_get_option(0, "buftype")
-  if bt == "nofile" or buf_get_option(0, "filetype") == "netrw" then
-    local ft = buf_get_option(0, "filetype")
+  local ft = buf_get_option(0, "filetype")
+
+  if bt == "nofile" or ft == "netrw" then
     if string.sub(ft, 1, 3) == "dap" then
       -- This is an nvim-dap-ui window, hence configure a specific simple
       -- statusline and winbar (if needed) for this type of window.
