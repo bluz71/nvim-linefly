@@ -140,8 +140,8 @@ M.statusline = function(active, lsp_status)
 
   if bt == "nofile" or ft == "netrw" then
     if string.sub(ft, 1, 5) == "dapui" then
-      -- This is an nvim-dap-ui window, hence configure a specific simple
-      -- statusline and winbar (if needed) for this type of window.
+      -- This is an nvim-dap-ui window; hence, configure a simple statusline
+      -- and winbar (if needed) for this type of debugger window.
       opt_local.statusline = " %f"
       if opt.laststatus:get() == 3 and options().winbar then
         opt_local.winbar = "%{%v:lua.linefly.inactive_winbar()%}"
