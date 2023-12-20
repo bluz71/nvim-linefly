@@ -74,6 +74,8 @@ Modules And Plugins supported
 
 - [Diagnostic](https://neovim.io/doc/user/diagnostic.html)
 
+- [nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui)
+
 - [nvim-lint](https://github.com/mfussenegger/nvim-lint)
 
 - [nvim-web-devicons](https://github.com/kyazdani42/nvim-web-devicons)

@@ -137,8 +137,20 @@ end
 M.statusline = function(active, lsp_status)
   local bt = buf_get_option(0, "buftype")
   if bt == "nofile" or buf_get_option(0, "filetype") == "netrw" then
-    -- Likely a file explorer or some other special type of buffer. Set a short
-    -- path statusline for these types of buffers.
+    local ft = buf_get_option(0, "filetype")
+    if string.sub(ft, 1, 3) == "dap" then
+      -- This is an nvim-dap-ui window, hence configure a specific simple
+      -- statusline and winbar (if needed) for this type of window.
+      opt_local.statusline = " %f"
+      if opt.laststatus:get() == 3 and options().winbar then
+        opt_local.winbar = "%{%v:lua.linefly.inactive_winbar()%}"
+      else
+        opt_local.winbar = nil
+      end
+      return
+    end
+    -- Else, likely a file explorer or some other special type of buffer. Set a
+    -- short path statusline for these types of buffers.
     opt_local.statusline = pathshorten(fnamemodify(vim.fn.getcwd(), ":~:."))
     if options().winbar then
       opt_local.winbar = nil
