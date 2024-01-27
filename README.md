@@ -121,7 +121,7 @@ right-side as follows:
 
 ```
 +-------------------------------------------------+
-| A | B | C | D | E      M      V | W | X | Y | Z |
+| A | B | C | D | E    M    U | V | W | X | Y | Z |
 +-------------------------------------------------+
 ```
 
@@ -133,6 +133,7 @@ right-side as follows:
 | D`*`    | Plugins notification (git, diagnostic and session status)
 | E       | Active buffer-attached LSP client names
 | M       | LSP progress status
+| U       | `showcmd` content if `showcmdloc=statusline`
 | V`*`    | Optional macro-recording status
 | W       | Optional search count and spell status
 | X       | Current position
@@ -142,7 +143,7 @@ right-side as follows:
 Sections marked with a `*` are linked to a highlight group and are colored,
 refer to the next section for details.
 
-Sections C, D, V & W will **not** be displayed when the `statusline` width is
+Sections C, D, U, V & W will **not** be displayed when the `statusline` width is
 less than 80 columns.
 
 Section E, active buffer-attached LSP client names, will only be displayed when

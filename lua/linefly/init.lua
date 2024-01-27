@@ -94,6 +94,10 @@ M.active_statusline = function(lsp_status)
     statusline = statusline .. "%=" .. lsp_status
   end
   statusline = statusline .. "%="
+  if fn.has("nvim-0.9") and opt.showcmdloc:get() == "statusline"
+    and opt.showcmd:get() and statusline_width >= 80 then
+    statusline = statusline .. "%S " .. separator .. " "
+  end
   if options().with_macro_status and statusline_width >= 80 then
     local recording_register = fn.reg_recording()
     if utils.is_present(recording_register) then
