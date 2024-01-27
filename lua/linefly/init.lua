@@ -93,6 +93,7 @@ M.active_statusline = function(lsp_status)
     -- Note, LSP progress status is propagated down from an LspProgress event.
     statusline = statusline .. "%=" .. lsp_status
   end
+  -- Right-hand side section.
   statusline = statusline .. "%="
   if fn.has("nvim-0.9") and opt.showcmdloc:get() == "statusline"
     and opt.showcmd:get() and statusline_width >= 80 then
