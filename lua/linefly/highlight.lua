@@ -130,6 +130,12 @@ local colorscheme_mode_highlights = function()
     synthesize_mode_highlight("LineflyVisual", "GruvboxOrange", "GruvboxBg0")
     synthesize_mode_highlight("LineflyCommand", "GruvboxGreen", "GruvboxBg0")
     synthesize_mode_highlight("LineflyReplace", "GruvboxRed", "GruvboxBg0")
+  elseif g.colors_name == "retrobox" then
+    synthesize_mode_highlight("LineflyNormal", "Structure", "VertSplit")
+    synthesize_mode_highlight("LineflyInsert", "Directory", "VertSplit")
+    highlight(0, "LineflyVisual", { link = "Visual" })
+    synthesize_mode_highlight("LineflyCommand", "MoreMsg", "VertSplit")
+    highlight(0, "LineflyReplace", { link = "ErrorMsg" })
   elseif g.colors_name == "carbonfox" or g.colors_name == "nightfox"
     or g.colors_name == "nordfox" or g.colors_name == "terafox" then
     highlight(0, "LineflyNormal", { link = "Todo" })
