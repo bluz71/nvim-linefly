@@ -68,7 +68,11 @@ local colorscheme_diagnostic_highlights = function()
 end
 
 local colorscheme_git_highlights = function()
-  if hlexists("GitSignsAdd") == 1 then
+  if g.colors_name == "default" and hlexists("Added") == 1 then
+    synthesize_highlight("LineflyGitAdd", "Added", false)
+    synthesize_highlight("LineflyGitChange", "Changed", false)
+    synthesize_highlight("LineflyGitDelete", "Removed", false)
+  elseif hlexists("GitSignsAdd") == 1 then
     synthesize_highlight("LineflyGitAdd", "GitSignsAdd", false)
     synthesize_highlight("LineflyGitChange", "GitSignsChange", false)
     synthesize_highlight("LineflyGitDelete", "GitSignsDelete", false)
@@ -87,6 +91,12 @@ local colorscheme_mode_highlights = function()
   if g.colors_name == "moonfly" or g.colors_name == "nightfly" then
     -- Do nothing since both colorschemes already set linefly mode colors.
     return
+  elseif g.colors_name == "default" then
+    synthesize_mode_highlight("LineflyNormal", "Directory", "VertSplit")
+    synthesize_mode_highlight("LIneflyInsert", "String", "VertSplit")
+    synthesize_mode_highlight("LineflyVisual", "Identifier", "VertSplit")
+    synthesize_mode_highlight("LineflyCommand", "WarningMsg", "VertSplit")
+    synthesize_mode_highlight("LineflyReplace", "Removed", "VertSplit")
   elseif g.colors_name == "catppuccin" then
     synthesize_mode_highlight("LineflyNormal", "Title", "VertSplit")
     synthesize_mode_highlight("LineflyInsert", "String", "VertSplit")
@@ -164,6 +174,12 @@ local M = {}
 M.generate_groups = function()
   if g.colors_name == nil then
     return
+  end
+
+  -- Tweak the default Neovim theme to work better with Linefly if it is in effect.
+  if g.colors_name == "default" then
+    highlight(0, "StatusLine", { link = "StatusLineNC" })
+    highlight(0, "WinSeparator", { link = "SignColumn" })
   end
 
   -- Extract current StatusLine background color, we will likely need it.
