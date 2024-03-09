@@ -2,11 +2,8 @@ local is_empty = require("linefly.utils").is_empty
 local is_present = require("linefly.utils").is_present
 local options = require("linefly.options").list
 local g = vim.g
+local get_hl_by_name = vim.api.nvim_get_hl_by_name
 local highlight = vim.api.nvim_set_hl
-local hlexists = vim.fn.hlexists
-local hlID = vim.fn.hlID
-local synIDtrans = vim.fn.synIDtrans
-local synIDattr = vim.fn.synIDattr
 
 -- Cache current statusline background for performance reasons; that being to
 -- avoid needless highlight extraction and generation.
@@ -17,16 +14,21 @@ local statusline_bg
 local file_icon_highlight_cache = {}
 
 local highlight_empty = function(group)
-  return hlexists(group) ~= 1 or is_empty(synIDattr(synIDtrans(hlID(group)), "bg"))
+  return get_hl_by_name(group, true) == vim.empty_dict()
+    or is_empty(get_hl_by_name(group, true).background)
+end
+
+local highlight_present = function(group)
+  return get_hl_by_name(group, true) ~= vim.empty_dict()
 end
 
 local synthesize_highlight = function(target, source, reverse)
   local source_fg
 
   if reverse then
-    source_fg = synIDattr(synIDtrans(hlID(source)), "bg", "gui")
+    source_fg = get_hl_by_name(source, true).background
   else
-    source_fg = synIDattr(synIDtrans(hlID(source)), "fg", "gui")
+    source_fg = get_hl_by_name(source, true).foreground
   end
 
   if is_present(statusline_bg) and is_present(source_fg) then
@@ -38,8 +40,8 @@ local synthesize_highlight = function(target, source, reverse)
 end
 
 local synthesize_mode_highlight = function(target, background, foreground)
-  local mode_bg = synIDattr(synIDtrans(hlID(background)), "fg", "gui")
-  local mode_fg = synIDattr(synIDtrans(hlID(foreground)), "fg", "gui")
+  local mode_bg = get_hl_by_name(background, true).foreground
+  local mode_fg = get_hl_by_name(foreground, true).foreground
 
   if is_present(mode_bg) and is_present(mode_fg) then
     highlight(0, target, { bg = mode_bg, fg = mode_fg })
@@ -50,17 +52,17 @@ local synthesize_mode_highlight = function(target, background, foreground)
 end
 
 local colorscheme_diagnostic_highlights = function()
-  if hlexists("DiagnosticError") == 1 then
+  if highlight_present("DiagnosticError") then
     synthesize_highlight("LineflyDiagnosticError", "DiagnosticError", false)
   else
     highlight(0, "LineflyDiagnosticError", { link = "StatusLine" })
   end
-  if hlexists("DiagnosticWarn") == 1 then
+  if highlight_present("DiagnosticWarn") then
     synthesize_highlight("LineflyDiagnosticWarning", "DiagnosticWarn", false)
   else
     highlight(0, "LineflyDiagnosticWarning", { link = "StatusLine" })
   end
-  if hlexists("DiagnosticInfo") == 1 then
+  if highlight_present("DiagnosticInfo") == 1 then
     synthesize_highlight("LineflyDiagnosticInformation", "DiagnosticInfo", false)
   else
     highlight(0, "LineflyDiagnosticInformation", { link = "StatusLine" })
@@ -68,15 +70,15 @@ local colorscheme_diagnostic_highlights = function()
 end
 
 local colorscheme_git_highlights = function()
-  if g.colors_name == "default" and hlexists("Added") == 1 then
+  if g.colors_name == "default" and highlight_present("Added") then
     synthesize_highlight("LineflyGitAdd", "Added", false)
     synthesize_highlight("LineflyGitChange", "Changed", false)
     synthesize_highlight("LineflyGitDelete", "Removed", false)
-  elseif hlexists("GitSignsAdd") == 1 then
+  elseif highlight_present("GitSignsAdd") then
     synthesize_highlight("LineflyGitAdd", "GitSignsAdd", false)
     synthesize_highlight("LineflyGitChange", "GitSignsChange", false)
     synthesize_highlight("LineflyGitDelete", "GitSignsDelete", false)
-  elseif hlexists("diffAdded") == 1 then
+  elseif highlight_present("diffAdded") then
     synthesize_highlight("LineflyGitAdd", "diffAdded", false)
     synthesize_highlight("LineflyGitChange", "diffChanged", false)
     synthesize_highlight("LineflyGitDelete", "diffRemoved", false)
@@ -189,12 +191,13 @@ M.generate_groups = function()
   end
 
   -- Extract current StatusLine background color, we will likely need it.
-  if synIDattr(synIDtrans(hlID("StatusLine")), "reverse", "gui") == "1" then
+  local statusline_reverse = get_hl_by_name("StatusLine", true).reverse
+  if statusline_reverse and statusline_reverse == true then
     -- Need to handle reversed highlights, such as Gruvbox StatusLine.
-    statusline_bg = synIDattr(synIDtrans(hlID("StatusLine")), "fg", "gui")
+    statusline_bg = get_hl_by_name("StatusLine", true).foreground
   else
     -- Most colorschemes fall through to here.
-    statusline_bg = synIDattr(synIDtrans(hlID("StatusLine")), "bg", "gui")
+    statusline_bg = get_hl_by_name("StatusLine", true).background
   end
 
   -- Mode highlights.
@@ -229,8 +232,8 @@ M.generate_icon_group = function(custom_icon_highlight, icon_highlight, for_winb
     return
   end
 
-  -- Extract the foregroup color of the file icon.
-  local source_fg = synIDattr(synIDtrans(hlID(icon_highlight)), "fg", "gui")
+  -- Extract the foreground color of the file icon.
+  local source_fg = get_hl_by_name(icon_highlight, true).foreground
 
   if for_winbar then
     if highlight_empty("WinBar") then
@@ -239,7 +242,7 @@ M.generate_icon_group = function(custom_icon_highlight, icon_highlight, for_winb
       highlight(0, custom_icon_highlight, { link = icon_highlight })
     else
       -- Use the theme's WinBar background color.
-      local winbar_bg = synIDattr(synIDtrans(hlID("WinBar")), "bg", "gui")
+      local winbar_bg = get_hl_by_name("WinBar", true).background
       highlight(0, custom_icon_highlight, { bg = winbar_bg, fg = source_fg })
     end
   else
