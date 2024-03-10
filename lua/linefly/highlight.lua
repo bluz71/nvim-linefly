@@ -2,7 +2,7 @@ local is_empty = require("linefly.utils").is_empty
 local is_present = require("linefly.utils").is_present
 local options = require("linefly.options").list
 local g = vim.g
-local get_hl_by_name = vim.api.nvim_get_hl_by_name
+local get_highlight = vim.api.nvim_get_hl
 local highlight = vim.api.nvim_set_hl
 
 -- Cache current statusline background for performance reasons; that being to
@@ -14,21 +14,21 @@ local statusline_bg
 local file_icon_highlight_cache = {}
 
 local highlight_empty = function(group)
-  return get_hl_by_name(group, true) == vim.empty_dict()
-    or is_empty(get_hl_by_name(group, true).background)
+  return get_highlight(0, { name = group }) == vim.empty_dict()
+    or is_empty(get_highlight(0, { name = group, link = false }).bg)
 end
 
 local highlight_present = function(group)
-  return get_hl_by_name(group, true) ~= vim.empty_dict()
+  return get_highlight(0, { name = group }) ~= vim.empty_dict()
 end
 
 local synthesize_highlight = function(target, source, reverse)
   local source_fg
 
   if reverse then
-    source_fg = get_hl_by_name(source, true).background
+    source_fg = get_highlight(0, { name = source, link = false }).bg
   else
-    source_fg = get_hl_by_name(source, true).foreground
+    source_fg = get_highlight(0, { name = source, link = false }).fg
   end
 
   if is_present(statusline_bg) and is_present(source_fg) then
@@ -40,8 +40,8 @@ local synthesize_highlight = function(target, source, reverse)
 end
 
 local synthesize_mode_highlight = function(target, background, foreground)
-  local mode_bg = get_hl_by_name(background, true).foreground
-  local mode_fg = get_hl_by_name(foreground, true).foreground
+  local mode_bg = get_highlight(0, { name = background, link = false }).fg
+  local mode_fg = get_highlight(0, { name = foreground, link = false }).fg
 
   if is_present(mode_bg) and is_present(mode_fg) then
     highlight(0, target, { bg = mode_bg, fg = mode_fg })
@@ -138,6 +138,12 @@ local colorscheme_mode_highlights = function()
     highlight(0, "LineflyVisual", { link = "Visual" })
     synthesize_mode_highlight("LineflyCommand", "MoreMsg", "VertSplit")
     highlight(0, "LineflyReplace", { link = "ErrorMsg" })
+  elseif g.colors_name == "minicyan" or g.colors_name == "minischeme" then
+    synthesize_mode_highlight("LineflyNormal", "Directory", "VertSplit")
+    synthesize_mode_highlight("LIneflyInsert", "String", "VertSplit")
+    synthesize_mode_highlight("LineflyVisual", "Conditional", "VertSplit")
+    synthesize_mode_highlight("LineflyCommand", "WarningMsg", "VertSplit")
+    synthesize_mode_highlight("LineflyReplace", "Special", "VertSplit")
   elseif g.colors_name == "carbonfox" or g.colors_name == "nightfox"
     or g.colors_name == "nordfox" or g.colors_name == "terafox" then
     highlight(0, "LineflyNormal", { link = "Todo" })
@@ -191,13 +197,13 @@ M.generate_groups = function()
   end
 
   -- Extract current StatusLine background color, we will likely need it.
-  local statusline_reverse = get_hl_by_name("StatusLine", true).reverse
+  local statusline_reverse = get_highlight(0, { name = "StatusLine", link = false }).reverse
   if statusline_reverse and statusline_reverse == true then
     -- Need to handle reversed highlights, such as Gruvbox StatusLine.
-    statusline_bg = get_hl_by_name("StatusLine", true).foreground
+    statusline_bg = get_highlight(0, { name = "StatusLine", link = false }).fg
   else
     -- Most colorschemes fall through to here.
-    statusline_bg = get_hl_by_name("StatusLine", true).background
+    statusline_bg = get_highlight(0, { name = "StatusLine", link = false }).bg
   end
 
   -- Mode highlights.
@@ -233,7 +239,7 @@ M.generate_icon_group = function(custom_icon_highlight, icon_highlight, for_winb
   end
 
   -- Extract the foreground color of the file icon.
-  local source_fg = get_hl_by_name(icon_highlight, true).foreground
+  local source_fg = get_highlight(0, { name = icon_highlight, link = false }).fg
 
   if for_winbar then
     if highlight_empty("WinBar") then
@@ -242,7 +248,7 @@ M.generate_icon_group = function(custom_icon_highlight, icon_highlight, for_winb
       highlight(0, custom_icon_highlight, { link = icon_highlight })
     else
       -- Use the theme's WinBar background color.
-      local winbar_bg = get_hl_by_name("WinBar", true).background
+      local winbar_bg = get_highlight(0, { name = "WinBar", link = false }).bg
       highlight(0, custom_icon_highlight, { bg = winbar_bg, fg = source_fg })
     end
   else

@@ -64,9 +64,9 @@ without any `statusline` plugin.
 
 | stock  | linefly | lualine | lightline | airline
 |--------|---------|---------|-----------|--------
-| 19.6ms | 22.2ms  | 27.3ms  | 25.4ms    | 78.7ms
+| 18.0ms | 18.9ms  | 23.2ms  | 22.0ms    | 76.0ms
 
-Startup times as of September 2023 on my system; performance on other systems
+Startup times as of March 2024 on my system; performance on other systems
 will vary.
 
 Modules And Plugins supported
@@ -194,6 +194,8 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [catppuccin](https://github.com/catppuccin/nvim)
 
+- [default](https://github.com/neovim/neovim/issues/14790)
+
 - [dracula](https://github.com/dracula/vim)
 
 - [edge](https://github.com/sainnhe/edge)
@@ -208,6 +210,8 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [kanagawa](https://github.com/rebelot/kanagawa.nvim)
 
+- [mini.base16](https://github.com/echasnovski/mini.base16)
+
 - [nightfox](https://github.com/EdenEast/nightfox.nvim)
 
 - [nord.nvim](https://github.com/shaunsingh/nord.nvim)
@@ -215,6 +219,8 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 - [onedark.nvim](https://github.com/navarasu/onedark.nvim)
 
 - [palenightfall](https://github.com/JoosepAlviste/palenightfall.nvim)
+
+- [retrobox](https://github.com/vim/colorschemes)
 
 - [rose-pine](https://github.com/rose-pine/neovim)
 
