@@ -633,16 +633,16 @@ vim.g.linefly_options = {
 The `with_lsp_status` option specifies whether to display LSP progress status
 in the `statusline` if global `statusline` is in effect (`:set laststatus=3`).
 
-By default, LSP progress status will be displayed.
+By default, LSP progress status will not be displayed.
 
 Note, this option **requires** Neovim `0.10` or greater.
 
-To disable the display of LSP progress status in the `statusline` please add the
+To enable the display of LSP progress status in the `statusline` please add the
 following to your initialization file:
 
 ```lua
 vim.g.linefly_options = {
-  with_lsp_status = false,
+  with_lsp_status = true,
 }
 ```
 
