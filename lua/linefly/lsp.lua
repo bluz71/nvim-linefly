@@ -38,25 +38,26 @@ M.attached_clients = function()
 end
 
 M.status = function(data)
-  if not options().with_lsp_status or vim.opt.laststatus:get() ~= 3 then
-    -- Exit early if LSP status is not wanted or global statusline is not in
-    -- effect.
-    return
-  end
-
-  local lsp_status
-  if data.data.result.value.kind == "end" then
-    return "" -- This will clear out the last LSP status message in the statusline.
-  else
-    lsp_status = vim.lsp.status()
-  end
-
-  if utils.is_present(lsp_status) then
-    -- Truncate long LSP status messages if necessary.
-    return utils.truncate(lsp_status)
-  else
-    return lsp_status
-  end
+  -- if not options().with_lsp_status or vim.opt.laststatus:get() ~= 3 then
+  --   -- Exit early if LSP status is not wanted or global statusline is not in
+  --   -- effect.
+  --   return
+  -- end
+  --
+  -- local lsp_status
+  -- if data.data.result.value.kind == "end" then
+  --   return "" -- This will clear out the last LSP status message in the statusline.
+  -- else
+  --   lsp_status = vim.lsp.status()
+  -- end
+  --
+  -- if utils.is_present(lsp_status) then
+  --   -- Truncate long LSP status messages if necessary.
+  --   return utils.truncate(lsp_status)
+  -- else
+  --   return lsp_status
+  -- end
+  return ""
 end
 
 return M
