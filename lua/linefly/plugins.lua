@@ -57,7 +57,7 @@ M.status = function()
   if options().with_session_status and g.loaded_obsession then
     session_segment = eval([[ObsessionStatus('obsession', '!obsession')]])
   elseif options().with_session_status and package.loaded.possession then
-    session_segment = require("possession.session").session_name
+    session_segment = require("possession.session").get_session_name()
   elseif options().with_session_status and package.loaded["nvim-possession"] then
     session_segment = require("nvim-possession").status()
   end
