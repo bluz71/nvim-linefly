@@ -62,7 +62,7 @@ local colorscheme_diagnostic_highlights = function()
   else
     highlight(0, "LineflyDiagnosticWarning", { link = "StatusLine" })
   end
-  if highlight_present("DiagnosticInfo") == 1 then
+  if highlight_present("DiagnosticInfo") then
     synthesize_highlight("LineflyDiagnosticInformation", "DiagnosticInfo", false)
   else
     highlight(0, "LineflyDiagnosticInformation", { link = "StatusLine" })
