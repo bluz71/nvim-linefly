@@ -3,8 +3,8 @@
 -- URL:          github.com/bluz71/nvim-linefly
 -- License:      MIT (https://opensource.org/licenses/MIT)
 
-if vim.fn.has("nvim-0.8") ~= 1 then
-  vim.api.nvim_echo({ { "nvim-linefly requires Neovim 0.8, or later", "WarningMsg" } }, false, {})
+if vim.fn.has("nvim-0.9") ~= 1 then
+  vim.api.nvim_echo({ { "nvim-linefly requires Neovim 0.9, or later", "WarningMsg" } }, false, {})
   return
 end
 
