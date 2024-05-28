@@ -17,6 +17,7 @@ g.lineflyLoaded = true
 local linefly = require("linefly")
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
+local has = vim.fn.has
 
 local linefly_events = augroup("LineflyEvents", {})
 
@@ -69,7 +70,7 @@ autocmd({ "DiagnosticChanged", "LspAttach", "LspDetach" }, {
   group = linefly_events
 })
 
-if vim.fn.has("nvim-0.10") == 1 then
+if has("nvim-0.10") == 1 then
   autocmd("LspProgress", {
     callback = function(data)
       local lsp_status = require("linefly.lsp").status(data)

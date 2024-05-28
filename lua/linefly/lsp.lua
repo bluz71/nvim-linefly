@@ -1,12 +1,19 @@
 local utils = require("linefly.utils")
 local options = require("linefly.options").list
 local get_current_buf = vim.api.nvim_get_current_buf
+local has = vim.fn.has
+local lsp = vim.lsp
 
 local M = {}
 
 M.attached_clients = function()
   local buf_attached_clients = {}
-  local buf_lsp_clients = vim.lsp.get_active_clients({ bufnr = get_current_buf() })
+  local buf_lsp_clients
+  if has('nvim-0.10') == 1 then
+    buf_lsp_clients = lsp.get_clients({ bufnr = get_current_buf() })
+  else
+    buf_lsp_clients = lsp.get_active_clients({ bufnr = get_current_buf() })
+  end
 
   if buf_lsp_clients and #buf_lsp_clients > 0 then
     for _, lsp_client in pairs(buf_lsp_clients) do
@@ -48,7 +55,7 @@ M.status = function(data)
   if data.data.params.value.kind == "end" then
     return "" -- This will clear out the last LSP status message in the statusline.
   else
-    lsp_status = vim.lsp.status()
+    lsp_status = lsp.status()
   end
 
   if utils.is_present(lsp_status) then
