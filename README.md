@@ -266,6 +266,7 @@ vim.g.linefly_options = {
   with_diagnostic_status = true,
   with_session_status = true,
   with_attached_clients = true,
+  with_lsp_status = false,
   with_macro_status = false,
   with_search_count = false,
   with_spell_status = false,
