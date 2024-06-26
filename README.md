@@ -196,8 +196,6 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [edge](https://github.com/sainnhe/edge)
 
-- [embark](https://github.com/embark-theme/vim)
-
 - [everforest](https://github.com/sainnhe/everforest)
 
 - [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
@@ -213,8 +211,6 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 - [nord.nvim](https://github.com/shaunsingh/nord.nvim)
 
 - [onedark.nvim](https://github.com/navarasu/onedark.nvim)
-
-- [palenightfall](https://github.com/JoosepAlviste/palenightfall.nvim)
 
 - [retrobox](https://github.com/vim/colorschemes)
 

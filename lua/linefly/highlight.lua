@@ -99,27 +99,28 @@ local colorscheme_mode_highlights = function()
     synthesize_mode_highlight("LineflyVisual", "Identifier", "VertSplit")
     synthesize_mode_highlight("LineflyCommand", "WarningMsg", "VertSplit")
     synthesize_mode_highlight("LineflyReplace", "Removed", "VertSplit")
-  elseif g.colors_name == "catppuccin" then
-    synthesize_mode_highlight("LineflyNormal", "Title", "VertSplit")
-    synthesize_mode_highlight("LineflyInsert", "String", "VertSplit")
-    synthesize_mode_highlight("LineflyVisual", "Statement", "VertSplit")
-    synthesize_mode_highlight("LineflyCommand", "Constant", "VertSplit")
-    synthesize_mode_highlight("LineflyReplace", "Conditional", "VertSplit")
-  elseif g.colors_name == "edge" or g.colors_name == "everforest"
-    or g.colors_name == "gruvbox-material" or g.colors_name == "nord"
-    or g.colors_name == "onedark" or g.colors_name == "sonokai"
-    or g.colors_name == "tokyonight" then
+  elseif
+    g.colors_name == "catppuccin-frappe"
+    or g.colors_name == "catppuccin-latte"
+    or g.colors_name == "catppuccin-macchiato"
+    or g.colors_name == "catppuccin-mocha"
+    or g.colors_name == "edge"
+    or g.colors_name == "everforest"
+    or g.colors_name == "gruvbox-material"
+    or g.colors_name == "kanagawa"
+    or g.colors_name == "minicyan"
+    or g.colors_name == "minischeme"
+    or g.colors_name == "nord"
+    or g.colors_name == "onedark"
+    or g.colors_name == "rose-pine"
+    or g.colors_name == "sonokai"
+    or g.colors_name == "tokyonight"
+  then
     highlight(0, "LineflyNormal", { link = "MiniStatuslineModeNormal" })
     highlight(0, "LineflyInsert", { link = "MiniStatuslineModeInsert" })
     highlight(0, "LineflyVisual", { link = "MiniStatuslineModeVisual" })
     highlight(0, "LineflyCommand", { link = "MiniStatuslineModeCommand" })
     highlight(0, "LineflyReplace", { link = "MiniStatuslineModeReplace" })
-  elseif g.colors_name == "kanagawa" then
-    synthesize_mode_highlight("LineflyNormal", "Directory", "VertSplit")
-    synthesize_mode_highlight("LineflyInsert", "GitSignsAdd", "VertSplit")
-    synthesize_mode_highlight("LineflyVisual", "Conditional", "VertSplit")
-    synthesize_mode_highlight("LineflyCommand", "Operator", "VertSplit")
-    synthesize_mode_highlight("LineflyReplace", "GitSignsDelete", "VertSplit")
   elseif g.colors_name == "dracula" then
     highlight(0, "LineflyNormal", { link = "WildMenu" })
     highlight(0, "LineflyInsert", { link = "Search" })
@@ -138,25 +139,20 @@ local colorscheme_mode_highlights = function()
     highlight(0, "LineflyVisual", { link = "Visual" })
     synthesize_mode_highlight("LineflyCommand", "MoreMsg", "VertSplit")
     highlight(0, "LineflyReplace", { link = "ErrorMsg" })
-  elseif g.colors_name == "minicyan" or g.colors_name == "minischeme" then
-    synthesize_mode_highlight("LineflyNormal", "Directory", "VertSplit")
-    synthesize_mode_highlight("LIneflyInsert", "String", "VertSplit")
-    synthesize_mode_highlight("LineflyVisual", "Conditional", "VertSplit")
-    synthesize_mode_highlight("LineflyCommand", "WarningMsg", "VertSplit")
-    synthesize_mode_highlight("LineflyReplace", "Special", "VertSplit")
-  elseif g.colors_name == "carbonfox" or g.colors_name == "nightfox"
-    or g.colors_name == "nordfox" or g.colors_name == "terafox" then
-    highlight(0, "LineflyNormal", { link = "Todo" })
+  elseif
+    g.colors_name == "carbonfox"
+    or g.colors_name == "dawnfox"
+    or g.colors_name == "duskfox"
+    or g.colors_name == "dayfox"
+    or g.colors_name == "nightfox"
+    or g.colors_name == "nordfox"
+    or g.colors_name == "terafox"
+  then
+    highlight(0, "LineflyNormal", { link = "MiniStatuslineModeOther" })
     highlight(0, "LineflyInsert", { link = "MiniStatuslineModeInsert" })
     highlight(0, "LineflyVisual", { link = "MiniStatuslineModeVisual" })
     highlight(0, "LineflyCommand", { link = "MiniStatuslineModeCommand" })
     highlight(0, "LineflyReplace", { link = "MiniStatuslineModeReplace" })
-  elseif g.colors_name == "rose-pine" then
-    synthesize_mode_highlight("LineflyNormal", "Function", "IncSearch")
-    synthesize_mode_highlight("LineflyInsert", "Label", "IncSearch")
-    synthesize_mode_highlight("LineflyVisual", "Todo", "IncSearch")
-    synthesize_mode_highlight("LineflyCommand", "Error", "IncSearch")
-    synthesize_mode_highlight("LineflyReplace", "Repeat", "IncSearch")
   elseif g.colors_name == "tokyodark" then
     highlight(0, "LineflyNormal", { link = "WildMenu" })
     highlight(0, "LineflyInsert", { link = "Search" })
