@@ -125,10 +125,10 @@ local colorscheme_mode_highlights = function()
     highlight(0, "LineflyReplace", { link = "MiniStatuslineModeReplace" })
   elseif g.colors_name == "dracula" then
     highlight(0, "LineflyNormal", { link = "WildMenu" })
-    highlight(0, "LineflyInsert", { link = "Search" })
+    synthesize_mode_highlight("LineflyInsert", "Title", "WildMenu")
     synthesize_mode_highlight("LineflyVisual", "String", "WildMenu")
-    highlight(0, "LineflyCommand", { link = "WildMenu" })
-    highlight(0, "LineflyReplace", { link = "IncSearch" })
+    highlight(0, "LineflyCommand", { link = "IncSearch" })
+    highlight(0, "LineflyReplace", { link = "ErrorMsg" })
   elseif g.colors_name == "gruvbox" then
     synthesize_mode_highlight("LineflyNormal", "GruvboxFg4", "GruvboxBg0")
     synthesize_mode_highlight("LineflyInsert", "GruvboxBlue", "GruvboxBg0")
