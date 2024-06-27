@@ -20,10 +20,10 @@ M.count = function()
 
   for _, w in pairs(windows) do
     local cfg = win_get_config(w)
+    local bt = buf_get_option(win_get_buf(w), "buftype")
     local ft = buf_get_option(win_get_buf(w), "filetype")
 
-    if utils.is_empty(cfg.relative) and ft ~= "qf" and ft ~= "neo-tree"
-      and ft ~= "NvimTree" and ft ~= "netrw" then
+    if utils.is_empty(cfg.relative) and bt ~= "nofile" and ft ~= "netrw" then
       count = count + 1
     end
   end
