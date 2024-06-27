@@ -1,4 +1,5 @@
 local file = require("linefly.file")
+local location = require("linefly.constants").location
 local options = require("linefly.options").list
 local utils = require("linefly.utils")
 local window = require("linefly.window")
@@ -70,7 +71,7 @@ M.active_statusline = function(lsp_status)
   else
     statusline = statusline .. modes_map[current_mode][2]
   end
-  statusline = statusline .. "%* %<" .. file.name(statusline_width < 120, false)
+  statusline = statusline .. "%* %<" .. file.name(statusline_width < 120, location.ActiveStatusLine)
   statusline = statusline .. "%q%{exists('w:quickfix_title')? ' ' . w:quickfix_title : ''}"
   statusline = statusline .. "%{&modified ? '+ ' : '  '}"
   statusline = statusline .. "%{&readonly ? 'RO ' : ''}"
@@ -128,7 +129,7 @@ M.inactive_statusline = function()
   local separator = options().separator_symbol or "⎪"
   local progress = options().progress_symbol or "↓"
 
-  local statusline = " %<" .. file.name(window.statusline_width() <= 120, false)
+  local statusline = " %<" .. file.name(window.statusline_width() <= 120, location.InactiveStatusLine)
   statusline = statusline .. "%{&modified?'+ ':'  '}"
   statusline = statusline .. "%{&readonly?'RO ':''}"
   statusline = statusline .. "%=%l:%c " .. separator .. " %L " .. progress .. "%P "
@@ -197,7 +198,7 @@ M.active_winbar = function()
 
   local winbar = modes_map[current_mode][1]
   winbar = winbar .. string.sub(modes_map[current_mode][2], 1, 2)
-  winbar = winbar .. " %* %<" .. file.name(true, true)
+  winbar = winbar .. " %* %<" .. file.name(true, location.WinBar)
   winbar = winbar .. "%{&modified ? '+ ' : '  '}"
   winbar = winbar .. "%{&readonly ? 'RO ' : ''}"
   winbar = winbar .. "%#Normal#"
@@ -206,7 +207,7 @@ M.active_winbar = function()
 end
 
 M.inactive_winbar = function()
-  local winbar = " %<" .. file.name(true, true)
+  local winbar = " %<" .. file.name(true, location.WinBar)
   winbar = winbar .. "%{&modified?'+ ':'  '}"
   winbar = winbar .. "%{&readonly?'RO ':''}"
   winbar = winbar .. "%#NonText#"

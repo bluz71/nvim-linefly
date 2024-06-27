@@ -1,13 +1,15 @@
 local is_empty = require("linefly.utils").is_empty
 local is_present = require("linefly.utils").is_present
+local location = require("linefly.constants").location
 local options = require("linefly.options").list
 local g = vim.g
 local get_highlight = vim.api.nvim_get_hl
 local highlight = vim.api.nvim_set_hl
 
--- Cache current statusline background for performance reasons; that being to
+-- Cache current statusline backgrounds for performance reasons; that being to
 -- avoid needless highlight extraction and generation.
 local statusline_bg
+local statusline_nc_bg
 
 -- Use a cache to avoid needlessly regenerating a highlight group for the same
 -- DevIcon filetype.
@@ -197,9 +199,11 @@ M.generate_groups = function()
   if statusline_reverse and statusline_reverse == true then
     -- Need to handle reversed highlights, such as Gruvbox StatusLine.
     statusline_bg = get_highlight(0, { name = "StatusLine", link = false }).fg
+    statusline_nc_bg = get_highlight(0, { name = "StatusLineNC", link = false }).fg
   else
     -- Most colorschemes fall through to here.
     statusline_bg = get_highlight(0, { name = "StatusLine", link = false }).bg
+    statusline_nc_bg = get_highlight(0, { name = "StatusLineNC", link = false }).bg
   end
 
   -- Mode highlights.
@@ -226,7 +230,7 @@ M.generate_groups = function()
   file_icon_highlight_cache = {}
 end
 
-M.generate_icon_group = function(custom_icon_highlight, icon_highlight, for_winbar)
+M.generate_icon_group = function(custom_icon_highlight, icon_highlight, context)
   -- Check if the custom highlight group already exists in the cache.
   local cached_icon_highlight = file_icon_highlight_cache[custom_icon_highlight]
   if cached_icon_highlight then
@@ -237,7 +241,7 @@ M.generate_icon_group = function(custom_icon_highlight, icon_highlight, for_winb
   -- Extract the foreground color of the file icon.
   local source_fg = get_highlight(0, { name = icon_highlight, link = false }).fg
 
-  if for_winbar then
+  if context == location.WinBar then
     if highlight_empty("WinBar") then
       -- Some themes do not set the WinBar highlight group, so just link to the
       -- base DevIcon highlight group.
@@ -247,8 +251,11 @@ M.generate_icon_group = function(custom_icon_highlight, icon_highlight, for_winb
       local winbar_bg = get_highlight(0, { name = "WinBar", link = false }).bg
       highlight(0, custom_icon_highlight, { bg = winbar_bg, fg = source_fg })
     end
+  elseif context == location.InactiveStatusLine then
+    -- Custom icon highlight for the inactive StatusLineNC.
+    highlight(0, custom_icon_highlight, { bg = statusline_nc_bg, fg = source_fg })
   else
-    -- Custom icon highlight must be for the StatusLine.
+    -- Custom icon highlight must be for the active StatusLine.
     highlight(0, custom_icon_highlight, { bg = statusline_bg, fg = source_fg })
   end
 

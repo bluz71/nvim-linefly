@@ -1,5 +1,6 @@
 local highlight = require("linefly.highlight")
 local is_empty = require("linefly.utils").is_empty
+local location = require("linefly.constants").location
 local options = require("linefly.options").list
 local buf_get_name = vim.api.nvim_buf_get_name
 local buf_get_option = vim.api.nvim_buf_get_option
@@ -7,7 +8,7 @@ local expand = vim.fn.expand
 local fnamemodify = vim.fn.fnamemodify
 local pathshorten = vim.fn.pathshorten
 
-local file_icon = function(for_winbar)
+local file_icon = function(context)
   if not options().with_file_icon or is_empty(buf_get_name(0)) or not vim.g.nvim_web_devicons then
     return ""
   end
@@ -17,12 +18,14 @@ local file_icon = function(for_winbar)
   if icon_highlight ~= nil then
     -- Generate the custom icon highlight group name.
     local custom_icon_highlight = "Linefly" .. icon_highlight
-    if for_winbar then
+    if context == location.WinBar then
       custom_icon_highlight = custom_icon_highlight .. "WinBar"
+    elseif context == location.InactiveStatusLine then
+      custom_icon_highlight = custom_icon_highlight .. "NC"
     end
 
     -- Generate a custom highlight if it does not exist.
-    highlight.generate_icon_group(custom_icon_highlight, icon_highlight, for_winbar)
+    highlight.generate_icon_group(custom_icon_highlight, icon_highlight, context)
 
     return "%#" .. custom_icon_highlight .. "#" .. icon .. "%* "
   else
@@ -66,8 +69,8 @@ end
 
 local M = {}
 
-M.name = function(short_path, for_winbar)
-  return file_icon(for_winbar) .. file_path(short_path)
+M.name = function(short_path, context)
+  return file_icon(context) .. file_path(short_path)
 end
 
 return M
