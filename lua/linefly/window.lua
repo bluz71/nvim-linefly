@@ -23,7 +23,7 @@ M.count = function()
     local bt = buf_get_option(win_get_buf(w), "buftype")
     local ft = buf_get_option(win_get_buf(w), "filetype")
 
-    if utils.is_empty(cfg.relative) and bt ~= "nofile" and ft ~= "netrw" then
+    if utils.is_empty(cfg.relative) and bt ~= "nofile" and ft ~= "netrw" and ft ~= "oil" then
       count = count + 1
     end
   end
