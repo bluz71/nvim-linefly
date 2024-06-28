@@ -13,11 +13,8 @@ M.current_branch_name = function()
   local git_branch_name
 
   if package.loaded.gitsigns ~= nil then
-    -- Gitsigns is available, let's use it to access the branch name. Note,
-    -- sometimes on initial buffer load Gitsigns returns a 'nil' HEAD value (I
-    -- suspect due to a timing issue); use the fallback detected branch name if
-    -- so.
-    git_branch_name = b.gitsigns_head or b.git_branch_name
+    -- Gitsigns is available, let's use it to access the branch name.
+    git_branch_name = b.gitsigns_head
   else
     -- Else use fallback detection.
     git_branch_name = b.git_branch_name
@@ -48,11 +45,6 @@ M.detect_branch_name = function()
     -- Don't calculate the branch name if it isn't wanted or the buffer is
     -- empty.
     return ""
-  end
-
-  -- Use Gitsigns if available and it has a branch value.
-  if package.loaded.gitsigns ~= nil and utils.is_present(b.gitsigns_head) then
-    return b.gitsigns_head
   end
 
   -- Benchmark the 'git branch --show-current' system call if required.

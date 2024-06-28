@@ -58,7 +58,10 @@ autocmd("WinLeave", {
 
 autocmd({ "BufEnter", "BufWrite", "FocusGained" }, {
   callback = function()
-    vim.b.git_branch_name = require("linefly.git").detect_branch_name()
+    if package.loaded.gitsigns == nil then
+      -- Gitsigns is not loaded, use fallback Git branch name detection.
+      vim.b.git_branch_name = require("linefly.git").detect_branch_name()
+    end
   end,
   group = linefly_events,
 })
@@ -67,7 +70,15 @@ autocmd({ "DiagnosticChanged", "LspAttach", "LspDetach" }, {
   callback = function()
     linefly.statusline(true)
   end,
-  group = linefly_events
+  group = linefly_events,
+})
+
+autocmd("User", {
+  pattern = "GitSignsUpdate",
+  callback = function()
+    linefly.statusline(true)
+  end,
+  group = linefly_events,
 })
 
 if has("nvim-0.10") == 1 then
@@ -78,6 +89,6 @@ if has("nvim-0.10") == 1 then
         linefly.statusline(true, lsp_status)
       end
     end,
-    group = linefly_events
+    group = linefly_events,
   })
 end
