@@ -188,6 +188,8 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [nightfly](https://github.com/bluz71/vim-nightfly-guicolors)
 
+- [bamboo.nvim](https://github.com/ribru17/bamboo.nvim)
+
 - [catppuccin](https://github.com/catppuccin/nvim)
 
 - [default](https://github.com/neovim/neovim/issues/14790)

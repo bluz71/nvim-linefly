@@ -102,7 +102,8 @@ local colorscheme_mode_highlights = function()
     synthesize_mode_highlight("LineflyCommand", "WarningMsg", "VertSplit")
     synthesize_mode_highlight("LineflyReplace", "Removed", "VertSplit")
   elseif
-    g.colors_name == "catppuccin-frappe"
+    g.colors_name == "bamboo"
+    or g.colors_name == "catppuccin-frappe"
     or g.colors_name == "catppuccin-latte"
     or g.colors_name == "catppuccin-macchiato"
     or g.colors_name == "catppuccin-mocha"
