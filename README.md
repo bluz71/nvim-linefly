@@ -200,6 +200,8 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [everforest](https://github.com/sainnhe/everforest)
 
+- [falcon](https://github.com/fenetikm/falcon)
+
 - [gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim)
 
 - [gruvbox-material](https://github.com/sainnhe/gruvbox-material)

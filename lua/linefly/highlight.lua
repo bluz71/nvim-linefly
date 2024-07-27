@@ -162,6 +162,12 @@ local colorscheme_mode_highlights = function()
     synthesize_mode_highlight("LineflyVisual", "Number", "VertSplit")
     synthesize_mode_highlight("LineflyCommand", "WarningMsg", "VertSplit")
     synthesize_mode_highlight("LineflyReplace", "Error", "VertSplit")
+  elseif g.colors_name == "falcon" then
+    synthesize_mode_highlight("LineflyNormal", "Directory", "NonText")
+    synthesize_mode_highlight("LineflyInsert", "Done", "NonText")
+    synthesize_mode_highlight("LineflyVisual", "javaScriptGlobal", "NonText")
+    synthesize_mode_highlight("LineflyCommand", "DiagnosticWarn", "NonText")
+    synthesize_mode_highlight("LineflyReplace", "ErrorMsg", "NonText")
   else
     -- Fallback for all other colorschemes.
     if highlight_empty("LineflyNormal") then
