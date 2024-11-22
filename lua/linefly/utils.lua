@@ -33,7 +33,12 @@ M.indent_status = function()
 end
 
 M.search_count = function()
-  local result = vim.fn.searchcount({recompute = 1, maxcount = 0})
+  local ok, result = pcall(vim.fn.searchcount, { recompute = 1, maxcount = 0 })
+
+  if not ok then -- failed search
+    return "[?/??]"
+  end
+
   if vim.tbl_isempty(result) then
     return ""
   end
