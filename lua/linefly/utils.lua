@@ -37,7 +37,7 @@ M.search_count = function()
 
   if not ok or not result then -- failed search
     return ""
-  elseif vim.tbl_isempty(result) then
+  elseif result.total == 0 then -- no matches
     return ""
   elseif result.incomplete == 1 then -- timed out
     return "[?/??]"
@@ -47,8 +47,6 @@ M.search_count = function()
     elseif result.total > result.maxcount then
       return format("[%d/>%d]", result.current, result.total)
     end
-  elseif result.total == 0 then
-    return ""
   end
 
   return format("[%d/%d]", result.current, result.total)
