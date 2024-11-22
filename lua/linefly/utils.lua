@@ -35,15 +35,11 @@ end
 M.search_count = function()
   local ok, result = pcall(vim.fn.searchcount, { recompute = 1, maxcount = 0 })
 
-  if not ok then -- failed search
-    return "[?/??]"
-  end
-
-  if vim.tbl_isempty(result) then
+  if not ok or not result then -- failed search
     return ""
-  end
-
-  if result.incomplete == 1 then -- timed out
+  elseif vim.tbl_isempty(result) then
+    return ""
+  elseif result.incomplete == 1 then -- timed out
     return "[?/??]"
   elseif result.incomplete == 2 then -- max count exceeded
     if result.total > result.maxcount and result.current > result.maxcount then
@@ -51,9 +47,7 @@ M.search_count = function()
     elseif result.total > result.maxcount then
       return format("[%d/>%d]", result.current, result.total)
     end
-  end
-
-  if result.total == 0 then
+  elseif result.total == 0 then
     return ""
   end
 
