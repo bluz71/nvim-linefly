@@ -210,7 +210,7 @@ M.inactive_winbar = function()
   local winbar = " %<" .. file.name(true, location.WinBar)
   winbar = winbar .. "%{&modified?'+ ':'  '}"
   winbar = winbar .. "%{&readonly?'RO ':''}"
-  winbar = winbar .. "%#NonText#"
+  winbar = winbar .. "%#Normal#"
 
   return winbar
 end
