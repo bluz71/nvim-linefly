@@ -9,11 +9,7 @@ local M = {}
 M.attached_clients = function()
   local buf_attached_clients = {}
   local buf_lsp_clients
-  if has('nvim-0.10') == 1 then
-    buf_lsp_clients = lsp.get_clients({ bufnr = get_current_buf() })
-  else
-    buf_lsp_clients = lsp.get_active_clients({ bufnr = get_current_buf() })
-  end
+  buf_lsp_clients = lsp.get_clients({ bufnr = get_current_buf() })
 
   if buf_lsp_clients and #buf_lsp_clients > 0 then
     for _, lsp_client in pairs(buf_lsp_clients) do
