@@ -303,8 +303,6 @@ in the `statusline` if global `statusline` is in effect (`:set laststatus=3`).
 
 By default, LSP progress status will not be displayed.
 
-Note, this options requires Neovim `0.10` or greater.
-
 To enable the display of LSP progress status in the `statusline` please add the
 following to your initialization file:
 >lua

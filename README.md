@@ -8,7 +8,7 @@ _linefly_ provides a number of useful builtin components:
 - Git changes (via [Gitsigns](https://github.com/lewis6991/gitsigns.nvim) plugin if installed)
 - Diagnostic status
 - Attached LSP client namess
-- On-going LSP progress (Neovim `0.10` or greater required)
+- On-going LSP progress
 - Macro-recording status (useful when `set cmdheight=0`)
 - Current search count (useful when `set cmdheight=0`)
 - Spell status (useful when `set cmdheight=0`)
@@ -91,7 +91,7 @@ Modules And Plugins supported
 :zap: Requirements
 ------------------
 
-_linefly_ requires Neovim 0.9, or later.
+_linefly_ requires Neovim 0.10, or later.
 
 Lastly, please make sure that the `laststatus` option is set to either: `1`, `2`
 or `3`.
@@ -631,8 +631,6 @@ The `with_lsp_status` option specifies whether to display LSP progress status
 in the `statusline` if global `statusline` is in effect (`:set laststatus=3`).
 
 By default, LSP progress status will not be displayed.
-
-Note, this option **requires** Neovim `0.10` or greater.
 
 To enable the display of LSP progress status in the `statusline` please add the
 following to your initialization file:
