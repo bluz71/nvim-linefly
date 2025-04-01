@@ -1,5 +1,5 @@
 local options = require("linefly.options").list
-local opt = vim.opt
+local o = vim.o
 local format = string.format
 
 local M = {}
@@ -21,12 +21,12 @@ M.truncate = function(str)
 end
 
 M.indent_status = function()
-  if not opt.expandtab:get() then
-    return "Tab:" .. opt.tabstop:get() .. " "
+  if not o.expandtab then
+    return "Tab:" .. o.tabstop .. " "
   else
-    local size = opt.shiftwidth:get()
+    local size = o.shiftwidth
     if size == 0 then
-      size = opt.tabstop:get()
+      size = o.tabstop
     end
     return "Spc:" .. size .. " "
   end

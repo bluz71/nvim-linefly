@@ -64,7 +64,7 @@ M.update_inactive = function()
 end
 
 M.statusline_width = function()
-  if vim.opt.laststatus:get() == 3 then
+  if vim.o.laststatus == 3 then
     return get_option("columns")
   else
     return win_get_width(0)

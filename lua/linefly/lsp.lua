@@ -1,7 +1,6 @@
 local utils = require("linefly.utils")
 local options = require("linefly.options").list
 local get_current_buf = vim.api.nvim_get_current_buf
-local has = vim.fn.has
 local lsp = vim.lsp
 
 local M = {}
@@ -17,8 +16,7 @@ M.attached_clients = function()
     end
   end
 
-  -- Check if the nvim-lint plugin is loaded and whether any clients are
-  -- attached.
+  -- Check if the nvim-lint plugin is loaded and whether any clients are attached.
   if package.loaded.lint ~= nil then
     local buf_lint_clients = require("lint").linters_by_ft[vim.bo.filetype]
     if buf_lint_clients and #buf_lint_clients > 0 then
@@ -41,9 +39,8 @@ M.attached_clients = function()
 end
 
 M.status = function(data)
-  if not options().with_lsp_status or vim.opt.laststatus:get() ~= 3 then
-    -- Exit early if LSP status is not wanted or global statusline is not in
-    -- effect.
+  if not options().with_lsp_status or vim.o.laststatus ~= 3 then
+    -- Exit early if LSP status is not wanted or global statusline is not in effect.
     return
   end
 

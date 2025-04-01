@@ -7,14 +7,14 @@ local buf_get_option = vim.api.nvim_buf_get_option
 local fn = vim.fn
 local fnamemodify = fn.fnamemodify
 local mode = vim.api.nvim_get_mode
-local opt = vim.opt
-local opt_local = vim.opt_local
+local o = vim.o
 local pathshorten = fn.pathshorten
 local tabpagenr = fn.tabpagenr
 local win_get_height = vim.api.nvim_win_get_height
+local wo = vim.wo
 
--- Refer to ':help mode()' for the full list of available modes. For now only
--- handle the most common modes.
+-- Refer to ':help mode()' for the full list of available modes. For now only handle the most common
+-- modes.
 local modes_map = setmetatable({
   ["n"] = { "%#LineflyNormal#", " normal ", "%#LineflyNormalEmphasis#" }, -- Normal
   ["no"] = { "%#LineflyNormal#", " o-pend ", "%#LineflyNormalEmphasis#" }, -- Operator pending
@@ -89,14 +89,18 @@ M.active_statusline = function(lsp_status)
       statusline = statusline .. separator .. " " .. attached_clients
     end
   end
-  if options().with_lsp_status and utils.is_present(lsp_status)
-    and opt.laststatus:get() == 3 and statusline_width >= 120 then
+  if
+    options().with_lsp_status
+    and utils.is_present(lsp_status)
+    and o.laststatus == 3
+    and statusline_width >= 120
+  then
     -- Note, LSP progress status is propagated down from an LspProgress event.
     statusline = statusline .. "%=" .. lsp_status
   end
   -- Right-hand side section.
   statusline = statusline .. "%="
-  if opt.showcmdloc:get() == "statusline" and opt.showcmd:get() and statusline_width >= 80 then
+  if o.showcmdloc == "statusline" and o.showcmd and statusline_width >= 80 then
     statusline = statusline .. "%S " .. separator .. " "
   end
   if options().with_macro_status and statusline_width >= 80 then
@@ -112,7 +116,7 @@ M.active_statusline = function(lsp_status)
       statusline = statusline .. search_count .. " " .. separator .. " "
     end
   end
-  if options().with_spell_status and opt.spell:get() and statusline_width >= 80 then
+  if options().with_spell_status and o.spell and statusline_width >= 80 then
     statusline = statusline .. "Spell " .. separator .. " "
   end
   statusline = statusline .. "%l:%c " .. separator
@@ -128,7 +132,8 @@ M.inactive_statusline = function()
   local separator = options().separator_symbol or "⎪"
   local progress = options().progress_symbol or "↓"
 
-  local statusline = " %<" .. file.name(window.statusline_width() <= 120, location.InactiveStatusLine)
+  local statusline = " %<"
+  statusline = statusline .. file.name(window.statusline_width() <= 120, location.InactiveStatusLine)
   statusline = statusline .. "%{&modified?'+ ':'  '}"
   statusline = statusline .. "%{&readonly?'RO ':''}"
   statusline = statusline .. "%=%l:%c " .. separator .. " %L " .. progress .. "%P "
@@ -145,21 +150,21 @@ M.statusline = function(active, lsp_status)
 
   if bt == "nofile" or ft == "qf" or ft == "netrw" or ft == "oil" then
     if string.sub(ft, 1, 5) == "dapui" then
-      -- This is an nvim-dap-ui window; hence, configure a simple statusline
-      -- and winbar (if needed) for this type of debugger window.
-      opt_local.statusline = " %f"
-      if opt.laststatus:get() == 3 and options().winbar then
-        opt_local.winbar = "%{%v:lua.linefly.inactive_winbar()%}"
+      -- This is a nvim-dap-ui window; hence, configure a simple statusline and winbar (if needed)
+      -- for this type of debugger window.
+      wo.statusline = " %f"
+      if o.laststatus == 3 and options().winbar then
+        wo.winbar = "%{%v:lua.linefly.inactive_winbar()%}"
       else
-        opt_local.winbar = nil
+        wo.winbar = nil
       end
       return
     end
-    -- Else, likely a file explorer or some other special type of buffer. Set a
-    -- short path statusline for these types of buffers.
-    opt_local.statusline = pathshorten(fnamemodify(vim.fn.getcwd(), ":~:."))
+    -- Else, likely a file explorer or some other special type of buffer. Set a short path
+    -- statusline for these types of buffers.
+    wo.statusline = pathshorten(fnamemodify(vim.fn.getcwd(), ":~:."))
     if options().winbar then
-      opt_local.winbar = nil
+      wo.winbar = nil
     end
   elseif bt == "nowrite" then
     -- Do not set statusline and winbar for certain special windows.
@@ -169,21 +174,21 @@ M.statusline = function(active, lsp_status)
     return
   elseif active then
     if utils.is_present(lsp_status) then
-      opt_local.statusline = "%{%v:lua.linefly.active_statusline('" .. lsp_status .. "')%}"
+      wo.statusline = "%{%v:lua.linefly.active_statusline('" .. lsp_status .. "')%}"
     else
-      opt_local.statusline = "%{%v:lua.linefly.active_statusline()%}"
+      wo.statusline = "%{%v:lua.linefly.active_statusline()%}"
     end
     if options().winbar and window.count() > 1 then
-      opt_local.winbar = "%{%v:lua.linefly.active_winbar()%}"
+      wo.winbar = "%{%v:lua.linefly.active_winbar()%}"
     else
-      opt_local.winbar = nil
+      wo.winbar = nil
     end
   else
-    opt_local.statusline = "%{%v:lua.linefly.inactive_statusline()%}"
+    wo.statusline = "%{%v:lua.linefly.inactive_statusline()%}"
     if options().winbar and window.count() > 1 and win_get_height(0) > 1 then
-      opt_local.winbar = "%{%v:lua.linefly.inactive_winbar()%}"
+      wo.winbar = "%{%v:lua.linefly.inactive_winbar()%}"
     else
-      opt_local.winbar = nil
+      wo.winbar = nil
     end
   end
 end
@@ -239,7 +244,7 @@ end
 
 M.tabline = function()
   if options().tabline then
-    vim.opt.tabline = "%{%v:lua.linefly.active_tabline()%}"
+    o.tabline = "%{%v:lua.linefly.active_tabline()%}"
   end
 end
 

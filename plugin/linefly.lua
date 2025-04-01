@@ -1,7 +1,7 @@
--- A simple Vim / Neovim statusline.
+-- A simple Neovim statusline.
 --
--- URL:          github.com/bluz71/nvim-linefly
--- License:      MIT (https://opensource.org/licenses/MIT)
+-- URL:      github.com/bluz71/nvim-linefly
+-- License:  MIT (https://opensource.org/licenses/MIT)
 
 if vim.fn.has("nvim-0.10") ~= 1 then
   vim.api.nvim_echo({ { "nvim-linefly requires Neovim 0.10, or later", "WarningMsg" } }, false, {})
