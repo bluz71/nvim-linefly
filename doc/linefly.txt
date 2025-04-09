@@ -1,4 +1,4 @@
-*linefly* A simple, fast and informative pure-Lua statusline for Neovim.
+*linefly* A simple, fast and informative pure-Lua statusline for Neovim
 
 OPTIONS                                                      *linefly-options*
 
