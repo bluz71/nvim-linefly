@@ -107,6 +107,9 @@ local colorscheme_mode_highlights = function()
     or g.colors_name == "catppuccin-latte"
     or g.colors_name == "catppuccin-macchiato"
     or g.colors_name == "catppuccin-mocha"
+    or g.colors_name == "cyberdream"
+    or g.colors_name == "dracula"
+    or g.colors_name == "dracula-soft"
     or g.colors_name == "edge"
     or g.colors_name == "everforest"
     or g.colors_name == "gruvbox-material"
@@ -114,22 +117,18 @@ local colorscheme_mode_highlights = function()
     or g.colors_name == "minicyan"
     or g.colors_name == "minischeme"
     or g.colors_name == "nord"
+    or g.colors_name == "nordic"
     or g.colors_name == "onedark"
     or g.colors_name == "rose-pine"
     or g.colors_name == "sonokai"
     or g.colors_name == "tokyonight"
+    or g.colors_name == "vscode"
   then
     highlight(0, "LineflyNormal", { link = "MiniStatuslineModeNormal" })
     highlight(0, "LineflyInsert", { link = "MiniStatuslineModeInsert" })
     highlight(0, "LineflyVisual", { link = "MiniStatuslineModeVisual" })
     highlight(0, "LineflyCommand", { link = "MiniStatuslineModeCommand" })
     highlight(0, "LineflyReplace", { link = "MiniStatuslineModeReplace" })
-  elseif g.colors_name == "dracula" then
-    highlight(0, "LineflyNormal", { link = "WildMenu" })
-    synthesize_mode_highlight("LineflyInsert", "Title", "WildMenu")
-    synthesize_mode_highlight("LineflyVisual", "String", "WildMenu")
-    highlight(0, "LineflyCommand", { link = "IncSearch" })
-    highlight(0, "LineflyReplace", { link = "ErrorMsg" })
   elseif g.colors_name == "gruvbox" then
     synthesize_mode_highlight("LineflyNormal", "GruvboxFg4", "GruvboxBg0")
     synthesize_mode_highlight("LineflyInsert", "GruvboxBlue", "GruvboxBg0")
@@ -156,6 +155,12 @@ local colorscheme_mode_highlights = function()
     highlight(0, "LineflyVisual", { link = "MiniStatuslineModeVisual" })
     highlight(0, "LineflyCommand", { link = "MiniStatuslineModeCommand" })
     highlight(0, "LineflyReplace", { link = "MiniStatuslineModeReplace" })
+  elseif g.colors_name == "oxocarbon" then
+    highlight(0, "LineflyNormal", { link = "StatusNormal" })
+    highlight(0, "LineflyInsert", { link = "StatusInsert" })
+    highlight(0, "LineflyVisual", { link = "StatusVisual" })
+    highlight(0, "LineflyCommand", { link = "StatusCommand" })
+    highlight(0, "LineflyReplace", { link = "StatusReplace" })
   elseif g.colors_name == "tokyodark" then
     highlight(0, "LineflyNormal", { link = "WildMenu" })
     highlight(0, "LineflyInsert", { link = "Search" })

@@ -192,13 +192,17 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [catppuccin](https://github.com/catppuccin/nvim)
 
+- [cyberdream](https://github.com/scottmckendry/cyberdream.nvim)
+
 - [default](https://github.com/neovim/neovim/issues/14790)
 
-- [dracula](https://github.com/dracula/vim)
+- [dracula.nvim](https://github.com/Mofiqul/dracula.nvim)
 
 - [edge](https://github.com/sainnhe/edge)
 
 - [everforest](https://github.com/sainnhe/everforest)
+
+- [everforest.nvim](https://github.com/neanias/everforest-nvim)
 
 - [falcon](https://github.com/fenetikm/falcon)
 
@@ -214,7 +218,11 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 
 - [nord.nvim](https://github.com/shaunsingh/nord.nvim)
 
+- [Nordic](https://github.com/AlexvZyl/nordic.nvim)
+
 - [onedark.nvim](https://github.com/navarasu/onedark.nvim)
+
+- [oxocarbon.nvim](https://github.com/nyoom-engineering/oxocarbon.nvim)
 
 - [retrobox](https://github.com/vim/colorschemes)
 
@@ -225,6 +233,8 @@ colorscheme (moonfly & nightfly) or within this plugin (all others):
 - [tokyodark](https://github.com/tiagovla/tokyodark.nvim)
 
 - [tokyonight](https://github.com/folke/tokyonight.nvim)
+
+- [vscode.nvim](https://github.com/Mofiqul/vscode.nvim)
 
 Lastly, if the fallback colors do not suit then it is very easy to override with
 your own highlights.
