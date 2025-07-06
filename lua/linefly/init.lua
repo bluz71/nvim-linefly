@@ -3,6 +3,7 @@ local location = require("linefly.constants").location
 local options = require("linefly.options").list
 local utils = require("linefly.utils")
 local window = require("linefly.window")
+local buf_get_name = vim.api.nvim_buf_get_name
 local buf_get_option = vim.api.nvim_buf_get_option
 local fn = vim.fn
 local fnamemodify = fn.fnamemodify
@@ -147,6 +148,14 @@ end
 M.statusline = function(active, lsp_status)
   local bt = buf_get_option(0, "buftype")
   local ft = buf_get_option(0, "filetype")
+
+  -- Do not set a statusline for user-selected exclude file patterns, instead fallback to the Neovim
+  -- default statusline.
+  for _, pattern in ipairs(options().exclude_patterns) do
+    if vim.regex(pattern):match_str(buf_get_name(0)) ~= nil then
+      return
+    end
+  end
 
   if bt == "nofile" or ft == "qf" or ft == "netrw" or ft == "oil" then
     if string.sub(ft, 1, 5) == "dapui" then

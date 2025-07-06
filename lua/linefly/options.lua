@@ -15,6 +15,7 @@ M.list = function()
       warning_symbol = "W",
       information_symbol = "I",
       ellipsis_symbol = "…",
+      exclude_patterns = {},
       tabline = false,
       winbar = false,
       with_file_icon = true,

@@ -268,6 +268,7 @@ vim.g.linefly_options = {
   warning_symbol = "W",
   information_symbol = "I",
   ellipsis_symbol = "…",
+  exclude_patterns = {},
   tabline = false,
   winbar = false,
   with_file_icon = true,
@@ -289,8 +290,8 @@ vim.g.linefly_options = {
 | [separator_symbol](https://github.com/bluz71/nvim-linefly#separator_symbol)             | [progress_symbol](https://github.com/bluz71/nvim-linefly#progress_symbol)         | [active_tab_symbol](https://github.com/bluz71/nvim-linefly#active_tab_symbol)
 | [git_branch_symbol](https://github.com/bluz71/nvim-linefly#git_branch_symbol)
 | [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)                     | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)           | [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
-| [ellipsis_symbol](https://github.com/bluz71/nvim-linefly#ellipsis_symbol)
-| [tabline](https://github.com/bluz71/nvim-linefly#tabline)                               | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
+| [ellipsis_symbol](https://github.com/bluz71/nvim-linefly#ellipsis_symbol)               |
+| [exclude_patterns](https://github.com/bluz71/nvim-linefly#exclude_patterns)             | [tabline](https://github.com/bluz71/nvim-linefly#tabline)                         | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
 | [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)                 | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)         | [with_git_status](https://github.com/bluz71/nvim-linefly#with_git_status)
 | [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status) | [with_attached_clients](https://github.com/bluz71/nvim-linefly#with_attached_clients)
 | [with_lsp_status](https://github.com/bluz71/nvim-linefly#with_lsp_status)               | [with_macro_status](https://github.com/bluz71/nvim-linefly#with_macro_status)     | [with_search_count](https://github.com/bluz71/nvim-linefly#with_search_count)
@@ -439,6 +440,24 @@ initialization file:
 ```lua
 vim.g.linefly_options = {
   ellipsis_symbol = '<<SYMBOL-OF-YOUR-CHOOSING>>'
+}
+```
+
+---
+
+### exclude_patterns
+
+The `exclude_patterns` option is a list containing file path patterns which will
+be ignored when creating a `statusline`, instead the default Neovim `statusline`
+will be set.
+
+The default exclude patterns is an empty list.
+
+For example, to avoid setting a `linefly` `statusline` for `Jqplay` buffers:
+
+```lua
+vim.g.linefly_options = {
+  exclude_patterns = {"jq-filter://.*", "jq-output://.*"}
 }
 ```
 
