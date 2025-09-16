@@ -101,13 +101,21 @@ Installation
 
 Install **bluz71/nvim-linefly** with your preferred plugin manager.
 
-[lazy.nvim](https://github.com/folke/lazy.nvim):
+- [lazy.nvim](https://github.com/folke/lazy.nvim):
 
 ```lua
 { 'bluz71/nvim-linefly' },
 ```
 
 Please do **not** lazy-load _linefly_.
+
+- [Neovim vim.pack](https://neovim.io/doc/user/pack.html#vim.pack):
+
+```lua
+vim.pack.add({
+  { src = "https://github.com/bluz71/nvim-linefly" },
+})
+```
 
 Layout And Default Colors
 -------------------------
