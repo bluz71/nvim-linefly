@@ -25,7 +25,7 @@ can also be
 [customized](https://github.com/bluz71/nvim-linefly#highlight-groups-and-colors)
 if desired.
 
-Lastly, _linefly_ is a lean `statusline` plugin clocking in at about 850 lines
+Lastly, _linefly_ is a lean `statusline` plugin clocking in at about 900 lines
 of Lua code. For comparison, the
 [lualine](https://github.com/nvim-lualine/lualine.nvim),
 [lightline](https://github.com/itchyny/lightline.vim) and

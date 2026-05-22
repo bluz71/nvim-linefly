@@ -34,6 +34,14 @@ autocmd("VimEnter", {
   group = linefly_events,
 })
 
+autocmd("OptionSet", {
+  pattern = "diff",
+  callback = function()
+    require("linefly.window").unset_quickfix_winbar()
+  end,
+  group = linefly_events,
+})
+
 autocmd("VimEnter", {
   callback = function()
     linefly.tabline()

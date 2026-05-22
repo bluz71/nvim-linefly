@@ -39,7 +39,7 @@ M.is_floating = function()
   end
 end
 
--- Iterate though the windows and update the statusline and winbar for all
+-- Iterate over the active windows and update the statusline and winbar for all
 -- inactive windows.
 --
 -- This is needed when starting Neovim with multiple splits, for example 'nvim
@@ -59,6 +59,31 @@ M.update_inactive = function()
       if options().winbar and win_get_height(0) > 1 then
         win_set_option(w, "winbar", "%{%v:lua.linefly.inactive_winbar()%}")
       end
+    end
+  end
+end
+
+-- Iterate over the active windows looking for the quickfix list, when found
+-- deactive its winbar.
+--
+-- Note, Neovim DiffTool, which displays the quickfix list, activates through
+-- diff option setting, not through traditional Vim entering. Hence, the need
+-- for this iterative approach.
+--
+-- This function will be called via an OptionSet "diff" autocmd.
+M.unset_quickfix_winbar = function()
+  if not options().winbar then
+    -- Exit early, winbar option is not active.
+    return
+  end
+
+  local windows = tabpage_list_wins(0)
+
+  for _, w in pairs(windows) do
+    if buf_get_option(win_get_buf(w), "filetype") == "qf" then
+      win_set_option(w, "winbar", nil)
+      -- The quickfix list was found, exit immediately.
+      return
     end
   end
 end
