@@ -13,6 +13,7 @@ M.is_present = function(str)
 end
 
 M.truncate = function(str)
+  str = vim.trim(str)
   if #str > 30 then
     return string.sub(str, 1, 29) .. options().ellipsis_symbol
   else
