@@ -20,8 +20,9 @@ M.count = function()
 
   for _, w in pairs(windows) do
     local cfg = win_get_config(w)
-    local bt = buf_get_option(win_get_buf(w), "buftype")
-    local ft = buf_get_option(win_get_buf(w), "filetype")
+    local buf = win_get_buf(w)
+    local bt = buf_get_option(buf, "buftype")
+    local ft = buf_get_option(buf, "filetype")
 
     if utils.is_empty(cfg.relative) and bt ~= "nofile" and ft ~= "netrw" and ft ~= "oil" then
       count = count + 1
