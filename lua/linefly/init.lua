@@ -7,10 +7,12 @@ local buf_get_name = vim.api.nvim_buf_get_name
 local buf_get_option = vim.api.nvim_buf_get_option
 local fn = vim.fn
 local fnamemodify = fn.fnamemodify
+local has = vim.fn.has
 local mode = vim.api.nvim_get_mode
 local o = vim.o
 local pathshorten = fn.pathshorten
 local tabpagenr = fn.tabpagenr
+local ui = vim.ui
 local win_get_height = vim.api.nvim_win_get_height
 local wo = vim.wo
 
@@ -101,6 +103,12 @@ M.active_statusline = function(lsp_status)
   end
   -- Right-hand side section.
   statusline = statusline .. "%="
+  if has("nvim-0.12") == 1 and options().with_progress_status and statusline_width >= 80 then
+    local progress_status = vim.ui.progress_status()
+    if utils.is_present(progress_status) then
+      statusline = statusline .. utils.truncate(progress_status) .. " " .. separator .. " "
+    end
+  end
   if o.showcmdloc == "statusline" and o.showcmd and statusline_width >= 80 then
     statusline = statusline .. "%S " .. separator .. " "
   end

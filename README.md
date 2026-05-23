@@ -9,6 +9,7 @@ _linefly_ provides a number of useful builtin components:
 - Diagnostic status
 - Attached LSP client namess
 - On-going LSP progress
+- Neovim progress messages
 - Macro-recording status (useful when `set cmdheight=0`)
 - Current search count (useful when `set cmdheight=0`)
 - Spell status (useful when `set cmdheight=0`)
@@ -286,6 +287,7 @@ vim.g.linefly_options = {
   with_session_status = true,
   with_attached_clients = true,
   with_lsp_status = false,
+  with_progress_status = false,
   with_macro_status = false,
   with_search_count = false,
   with_spell_status = false,
@@ -295,15 +297,15 @@ vim.g.linefly_options = {
 
 | Option | Option | Option
 |--------|--------|-------
-| [separator_symbol](https://github.com/bluz71/nvim-linefly#separator_symbol)             | [progress_symbol](https://github.com/bluz71/nvim-linefly#progress_symbol)         | [active_tab_symbol](https://github.com/bluz71/nvim-linefly#active_tab_symbol)
+| [separator_symbol](https://github.com/bluz71/nvim-linefly#separator_symbol)             | [progress_symbol](https://github.com/bluz71/nvim-linefly#progress_symbol)           | [active_tab_symbol](https://github.com/bluz71/nvim-linefly#active_tab_symbol)
 | [git_branch_symbol](https://github.com/bluz71/nvim-linefly#git_branch_symbol)
-| [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)                     | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)           | [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
+| [error_symbol](https://github.com/bluz71/nvim-linefly#error_symbol)                     | [warning_symbol](https://github.com/bluz71/nvim-linefly#warning_symbol)             | [information_symbol](https://github.com/bluz71/nvim-linefly#information_symbol)
 | [ellipsis_symbol](https://github.com/bluz71/nvim-linefly#ellipsis_symbol)               |
-| [exclude_patterns](https://github.com/bluz71/nvim-linefly#exclude_patterns)             | [tabline](https://github.com/bluz71/nvim-linefly#tabline)                         | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
-| [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)                 | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)         | [with_git_status](https://github.com/bluz71/nvim-linefly#with_git_status)
-| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status) | [with_attached_clients](https://github.com/bluz71/nvim-linefly#with_attached_clients)
-| [with_lsp_status](https://github.com/bluz71/nvim-linefly#with_lsp_status)               | [with_macro_status](https://github.com/bluz71/nvim-linefly#with_macro_status)     | [with_search_count](https://github.com/bluz71/nvim-linefly#with_search_count)
-| [with_spell_status](https://github.com/bluz71/nvim-linefly#with_spell_status)           | [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status)
+| [exclude_patterns](https://github.com/bluz71/nvim-linefly#exclude_patterns)             | [tabline](https://github.com/bluz71/nvim-linefly#tabline)                           | [winbar](https://github.com/bluz71/nvim-linefly#winbar)
+| [with_file_icon](https://github.com/bluz71/nvim-linefly#with_file_icon)                 | [with_git_branch](https://github.com/bluz71/nvim-linefly#with_git_branch)           | [with_git_status](https://github.com/bluz71/nvim-linefly#with_git_status)
+| [with_diagnostic_status](https://github.com/bluz71/nvim-linefly#with_diagnostic_status) | [with_session_status](https://github.com/bluz71/nvim-linefly#with_session_status)   | [with_attached_clients](https://github.com/bluz71/nvim-linefly#with_attached_clients)
+| [with_lsp_status](https://github.com/bluz71/nvim-linefly#with_lsp_status)               | [with_progress_status](https://github.com/bluz71/nvim-linefly#with_progress_status) | [with_macro_status](https://github.com/bluz71/nvim-linefly#with_macro_status)
+| [with_search_count](https://github.com/bluz71/nvim-linefly#with_search_count)           | [with_spell_status](https://github.com/bluz71/nvim-linefly#with_spell_status)       | [with_indent_status](https://github.com/bluz71/nvim-linefly#with_indent_status)
 
 ---
 
@@ -678,6 +680,23 @@ vim.g.linefly_options = {
 }
 ```
 
+---
+
+### with_progress_status
+
+The `with_progress_status` option specifies whether to display Neovim UI
+progress messages in the `statusline`.
+
+By default, progress messages will not be displayed.
+
+To enable the display of Neovim progress messages in the `statusline` please add
+the following to your initialization file:
+
+```lua
+vim.g.linefly_options = {
+  with_progress_status = true,
+}
+```
 ---
 
 ### with_macro_status
