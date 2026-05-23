@@ -78,6 +78,9 @@ M.active_statusline = function(lsp_status)
   statusline = statusline .. "%q%{exists('w:quickfix_title')? ' ' . w:quickfix_title : ''}"
   statusline = statusline .. "%{&modified ? '+ ' : '  '}"
   statusline = statusline .. "%{&readonly ? 'RO ' : ''}"
+  if has("nvim-0.12") == 1 then
+    statusline = statusline .. "%{&busy > 0 ? '◐ ' : ''}"
+  end
   if utils.is_present(branch_name) and statusline_width >= 80 then
     statusline = statusline .. "%*" .. separator .. mode_emphasis
     statusline = statusline .. branch_name .. "%* "
