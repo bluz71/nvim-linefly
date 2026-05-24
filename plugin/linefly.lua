@@ -15,6 +15,7 @@ end
 g.lineflyLoaded = true
 
 local linefly = require("linefly")
+local window = require("linefly.window")
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -29,7 +30,7 @@ autocmd({ "VimEnter", "ColorScheme" }, {
 
 autocmd("VimEnter", {
   callback = function()
-    require("linefly.window").update_inactive()
+    window.update_inactive()
   end,
   group = linefly_events,
 })
@@ -37,7 +38,7 @@ autocmd("VimEnter", {
 autocmd("OptionSet", {
   pattern = "diff",
   callback = function()
-    require("linefly.window").unset_quickfix_winbar()
+    window.unset_quickfix_winbar()
   end,
   group = linefly_events,
 })
@@ -94,6 +95,14 @@ autocmd("LspProgress", {
     if lsp_status then
       linefly.statusline(true, lsp_status)
     end
+  end,
+  group = linefly_events,
+})
+
+autocmd("FileType", {
+  pattern = "nvim-undotree",
+  callback = function()
+    window.unset_winbars()
   end,
   group = linefly_events,
 })

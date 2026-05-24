@@ -89,6 +89,35 @@ M.unset_quickfix_winbar = function()
   end
 end
 
+-- The Neovim Undotree plugin window launches by splitting the current buffer
+-- into a new vertical split then overwriting that new split with the Undotree
+-- contents. This breaks linefly winbar handling by first expanding the window
+-- count (usually 1 to 2) but then when the Undotree contents populate the split
+-- the window count changes (usually 2 back to 1, see count() above) because
+-- 'nofile' buffer types are ignored (Undotree sets it buffer type to 'nofile').
+-- However, at that point it is too late, the solo buffer window (not the
+-- Undotree split) will have an extraneous winbar. We only want winbars when
+-- there are 2 or more real windows (sans 'nofile' and quickfix lists etc).
+--
+-- The only solution I can figure out is to blank out winbars when a FileType
+-- "nvim-undotree" event is encountered and the window count is only 1.
+M.unset_winbars = function()
+  if not options().winbar then
+    -- Exit early, winbar option is not active.
+    return
+  end
+
+  if M.count() == 1 then
+    -- The real window count is only 1, that is sans 'nofile' and quickfix lists
+    -- etc. Blank out all winbars in that case.
+    local windows = tabpage_list_wins(0)
+
+    for _, w in pairs(windows) do
+      win_set_option(w, "winbar", nil)
+    end
+  end
+end
+
 M.statusline_width = function()
   if vim.o.laststatus == 3 then
     return get_option("columns")
