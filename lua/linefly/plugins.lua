@@ -3,6 +3,12 @@ local options = require("linefly.options").list
 local diagnostic = vim.diagnostic
 local eval = vim.api.nvim_eval
 local g = vim.g
+local get_mode = vim.api.nvim_get_mode
+
+local in_edit_mode = function()
+  local mode = get_mode().mode:sub(1, 1)
+  return mode == "i" or mode == "R"
+end
 
 local M = {}
 
@@ -27,7 +33,7 @@ M.status = function()
   end
 
   -- Diagnostic status.
-  if options().with_diagnostic_status and g.lspconfig then
+  if options().with_diagnostic_status and g.lspconfig and not in_edit_mode() then
     local errors = #diagnostic.get(0, { severity = diagnostic.severity.ERROR })
     local warnings = #diagnostic.get(0, { severity = diagnostic.severity.WARN })
     local information = #diagnostic.get(0, { severity = diagnostic.severity.INFO })
